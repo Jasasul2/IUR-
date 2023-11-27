@@ -42,19 +42,27 @@
         <!-- Right Side of the Grid-->
         <StackPanel Name="RightMainStackPanel" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <!-- Tab Control for task library, productivity analysis and application settings -->
+
             <Border Name="TabSelectionBorder" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch" Background="#e3b694">
                 <TabControl Height="360" Background="#e3b694">
                     <TabItem Header="Task Library" Background="#e3b694" Width="225" Height="40">
-                        <Grid Background="#f5e8bc"/>
+                        <Border Name="TabSelectionBorder1" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch" Background="#e3b694">
+                            <Grid Background="#f5e8bc"/>
+                        </Border>
                     </TabItem>
                     <TabItem Header="Productivity" Background="#e3b694" Width="225" Height="40">
-                        <Grid Background="#f5e8bc"/>
+                        <Border Name="TabSelectionBorder2" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch" Background="#e3b694">
+                            <Grid Background="#f5e8bc"/>
+                        </Border>
                     </TabItem>
                     <TabItem Header="Settings" Background="#e3b694" Width="225" Height="40">
-                        <Grid Background="#f5e8bc"/>
+                        <Border Name="TabSelectionBorder3" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch" Background="#e3b694">
+                            <Grid Background="#f5e8bc"/>
+                        </Border>
                     </TabItem>
                 </TabControl>
             </Border>
+
 
             <!-- Task Editor -->
             <Border Name="TaskEditorBorder" BorderBrush="Black" BorderThickness="3" Margin="10,10,10,10" HorizontalAlignment="Stretch" Background="#e3b694">
@@ -62,25 +70,76 @@
                     <!-- Name and save and reset buttons -->
                     <Border BorderBrush="Black" BorderThickness="1">
                         <StackPanel Name="TaskEditorManagement" Orientation="Horizontal" VerticalAlignment="Stretch">
-                            <Label Name="TaskEditor" Content="Task Editor" Height="40" Width="100" Margin="7,5,5,5" VerticalContentAlignment="Center"/>
-                            <Button Name="SaveTask" Content="S" Height="40" Width="40" Margin="480,5,10,5" />
-                            <Button x:Name="ResetTaskButton" Content="R" Height="40" Width="40" />
+                            <Label Name="TaskEditor" Content="Task Editor" Height="40" Width="119" Margin="7,5,5,5" VerticalContentAlignment="Center" FontSize="20"/>
+                            <Button Name="SaveTaskButton" Content="S" Height="40" Width="40" Margin="450,5,10,5" />
+                            <Button Name="ResetTaskButton" Content="R" Height="40" Width="40" />
                         </StackPanel>
                     </Border>
 
                     <!-- Task name -->
                     <StackPanel Name="TaskEditorNameRow" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f5e8bc">
-                        <Label Name="TaskNameLabel" Content="Task name" Height="40" Width="100" Margin="7,5,5,5" VerticalContentAlignment="Center"/>
-                        <TextBox x:Name="TaskNameTextBox" Height="40" Width="310" Margin="260,5,5,5" VerticalContentAlignment="Center" VerticalAlignment="Center" Text="Enter a task name"/>
+                        <Label Name="TaskNameLabel" Content="Task name:" Height="40" Width="100" Margin="7,5,5,5" VerticalContentAlignment="Center" FontSize="16"/>
+                        <TextBox Name="TaskNameTextBox" Height="40" Width="310" Margin="250,5,5,5" VerticalContentAlignment="Center" VerticalAlignment="Center" Text="Enter a task name"/>
                     </StackPanel>
 
                     <!-- Task Difficulty -->
                     <StackPanel Name="TaskEditorDiffultyRow" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f5e8bc">
-                        <Label Name="TaskDifficulyLabel" Content="Task difficulty" Height="40" Width="100" Margin="7,5,5,5" VerticalContentAlignment="Center"/>
-                        <RadioButton x:Name="SetMediumDifficultyRB" Content="Easy" VerticalContentAlignment="Center" Margin="378,5,10,5" />
-                        <RadioButton x:Name="SetEasyDifficultyRB" Content="Medium" VerticalContentAlignment="Center" Margin="10,5,10,5"/>
-                        <RadioButton x:Name="SetHardDifficultyRB" Content="Hard" VerticalContentAlignment="Center" Margin="10,5,10,5"/>
+                        <Label Name="TaskDifficultyLabel" Content="Task difficulty:" Height="40" Width="111" Margin="7,5,5,5" VerticalContentAlignment="Center" FontSize="16"/>
+                        <RadioButton Name="SetMediumDifficultyRB" Content="Easy" VerticalContentAlignment="Center" Margin="358,5,10,5" />
+                        <RadioButton Name="SetEasyDifficultyRB" Content="Medium" VerticalContentAlignment="Center" Margin="10,5,10,5"/>
+                        <RadioButton Name="SetHardDifficultyRB" Content="Hard" VerticalContentAlignment="Center" Margin="10,5,10,5"/>
                     </StackPanel>
+
+                    <!-- Task Timers -->
+                    <StackPanel Name="TaskEditorNotificationRow" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f5e8bc">
+                        <Label Name="TaskNotificationLabel" Content="Task notification times:" Height="40" Width="173" Margin="7,5,5,5" VerticalContentAlignment="Center" FontSize="16"/>
+                        <TextBox Name="TaskNotificationTimeTextBox1" Height="40" Width="60" Margin="277,5,5,5" 
+                                 VerticalContentAlignment="Center" 
+                                 VerticalAlignment="Center" Text="16:30" 
+                                 HorizontalContentAlignment="Center"/>
+                        <TextBox Name="TaskNotificationTimeTextBox2" Height="40" Width="60" Margin="10,5,5,5" 
+                                 VerticalContentAlignment="Center" 
+                                 VerticalAlignment="Center" Text="17:30" 
+                                 HorizontalContentAlignment="Center"/>
+                        <TextBox Name="TaskNotificationTimeTextBox3" Height="40" Width="60" Margin="10,5,5,5" 
+                                 VerticalContentAlignment="Center" 
+                                 VerticalAlignment="Center" Text="18:30" 
+                                 HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Task Note -->
+                    <Grid Name="NoteGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f5e8bc">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- Row 1 -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Row 2 -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Row 3 -->
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Column 1 -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Column 2 -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Column 3 -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Column 4 -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Column 5 -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Column 6 -->
+                            <ColumnDefinition Width="Auto"/>
+                            <!-- Column 7 -->
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Name="TaskNoteLabel" Content="Task note:" Height="40" Width="100" Margin="7,5,5,5" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" FontSize="16"/>
+                        <TextBox x:Name="NoteTextBox" Height="180" Width="550" Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="5" Grid.RowSpan="3" Margin="10,10,5,10" Text="Enter a task note:" TextWrapping="Wrap" FontSize="14"/>
+
+                    </Grid>
+
                 </StackPanel>
             </Border>
         </StackPanel>

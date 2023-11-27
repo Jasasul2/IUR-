@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IUR_macesond"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        ResizeMode="NoResize"
+        Background="LightGray"
+        Title="BeProductive!" Height="860" Width="1440">
+    <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <!-- First column -->
+            <ColumnDefinition Width="*" />
+            <!-- Second column -->
+        </Grid.ColumnDefinitions>
     </Grid>
 </Window>

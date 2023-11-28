@@ -8,9 +8,7 @@
         Title="BeProductive!" Height="860" Width="1440"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="Transparent"
-        WindowStyle="None"
-        AllowsTransparency="True">
+        AllowsTransparency="False">
 
     <!--window data context MISSING -->
 
@@ -58,15 +56,18 @@
                     <!-- Second column -->
                 </Grid.ColumnDefinitions>
 
-                <!-- Left Side of the Grid-->
-                <Border Name="LeftGridCollumnBorder" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <!-- First column -->
+                    <RowDefinition Height="*" />
+                    <!-- Second column -->
+                </Grid.RowDefinitions>
+
+            <!-- Left Side of the Grid-->
+                <Border Name="LeftGridCollumnBorder" Style="{StaticResource ForegroundBorderStyle}"
+                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+
                     <StackPanel Name="LeftMainStackPanel" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <StackPanel.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0"/>
-                                <GradientStop Color="{StaticResource ForegroundGradientColor2}" Offset="1"/>
-                            </LinearGradientBrush>
-                        </StackPanel.Background>
 
                         <!-- First Stack Panel Row = Day selection-->
                         <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
@@ -79,14 +80,7 @@
                         </StackPanel>
 
                         <!-- Inner Border which contains tasks and task slider -->
-                        <Border Name="TaskListBorder" BorderBrush="Black" BorderThickness="3" Margin="10,3,10,10" HorizontalAlignment="Stretch" Height="650">
-
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="{StaticResource DetailGradientColor1}" Offset="0"/>
-                                    <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
+                        <Border Name="TaskListBorder" Style="{StaticResource DetailBorderStyle}">
 
                             <StackPanel Name="TaskListStackPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         
@@ -129,18 +123,13 @@
                 </Border>
 
                 <!-- Right Side of the Grid-->
-                <StackPanel Name="RightMainStackPanel" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <!-- Tab Control for task library, productivity analysis and application settings -->
 
-                    <Border Name="TabSelectionBorder" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch">
+                    <Border Name="TabSelectionBorder" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" 
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        Grid.Column="1" Grid.Row="0">
+                        
                         <TabControl Height="360">
-                            <TabControl.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0"/>
-                                    <GradientStop Color="{StaticResource ForegroundGradientColor2}" Offset="1"/>
-                                </LinearGradientBrush>
-                            </TabControl.Background>
-
 
                             <TabItem Header="Task Library" Background="#e3b694" Width="225" Height="40">
                                 <Border Name="TabSelectionBorder1" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch">
@@ -155,8 +144,8 @@
 
                             <!-- Settings Menu -->
                             <TabItem Header="Settings" Background="#e3b694" Width="225" Height="40">
-                                <Border Name="TabSelectionBorder3" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch" Background="#e3b694">
-                                    <Grid Background="#f5e8bc">
+                                <Border Name="TabSelectionBorder3" Style="{StaticResource DetailBorderStyle}">
+                                    <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
@@ -218,7 +207,6 @@
                                             <ComboBoxItem IsSelected="True">Sound</ComboBoxItem >
                                             <ComboBoxItem IsSelected="False">Text</ComboBoxItem>
                                         </ComboBox>
-
                                     </Grid>
                                 </Border>
                             </TabItem>
@@ -226,93 +214,87 @@
                     </Border>
 
 
-                    <!-- Task Editor -->
-                    <Border Name="TaskEditorBorder" BorderBrush="Black" BorderThickness="3" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid Height="396" Width="690" HorizontalAlignment="Stretch">
-                            <Grid.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0"/>
-                                    <GradientStop Color="{StaticResource ForegroundGradientColor2}" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Grid.Background>
+                <!-- Task Editor -->
+                <Border Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyle}"
+                    Grid.Column="1" Grid.Row="1">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="19*"/>
-                                <RowDefinition Height="12*"/>
-                                <RowDefinition Height="7*"/>
-                                <RowDefinition Height="19*"/>
-                                <RowDefinition Height="19*"/>
-                                <RowDefinition Height="19*"/>
-                                <RowDefinition Height="19*"/>
-                                <RowDefinition Height="19*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="304*"/>
-                                <ColumnDefinition Width="36*"/>
-                                <ColumnDefinition Width="37*"/>
-                                <ColumnDefinition Width="104*"/>
-                                <ColumnDefinition Width="104*"/>
-                                <ColumnDefinition Width="104*"/>
-                            </Grid.ColumnDefinitions>
+                    <Grid Height="396" Width="690" HorizontalAlignment="Stretch">
 
-                            <!-- First row: Task editor Label and save and reset buttons -->
-                            <Label Name="TaskEditor" Content="Task Editor" Margin="7,5,1,5" VerticalContentAlignment="Center" FontSize="24" Foreground="#FF4A4A4A"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="19*"/>
+                            <RowDefinition Height="12*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="19*"/>
+                            <RowDefinition Height="19*"/>
+                            <RowDefinition Height="19*"/>
+                            <RowDefinition Height="19*"/>
+                            <RowDefinition Height="19*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="304*"/>
+                            <ColumnDefinition Width="36*"/>
+                            <ColumnDefinition Width="37*"/>
+                            <ColumnDefinition Width="104*"/>
+                            <ColumnDefinition Width="104*"/>
+                            <ColumnDefinition Width="104*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- First row: Task editor Label and save and reset buttons -->
+                        <Label Name="TaskEditor" Content="Task Editor" Margin="7,5,1,5" VerticalContentAlignment="Center" FontSize="24" Foreground="#FF4A4A4A"
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
-                            <Button Name="SaveTaskButton" Content="S" Width="50"
+                        <Button Name="SaveTaskButton" Content="S" Width="50"
                                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="65,3,0,3" Grid.ColumnSpan="2"/>
-                            <Button Name="ResetTaskButton" Content="R" Width="50" 
+                        <Button Name="ResetTaskButton" Content="R" Width="50" 
                                 Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" Margin="0,3,0,3"/>
 
-                            <!-- Second row: Task Name -->
-                            <Label Name="TaskNameLabel" Content="Task name:" Width="100" VerticalContentAlignment="Center" FontSize="16"
+                        <!-- Second row: Task Name -->
+                        <Label Name="TaskNameLabel" Content="Task name:" Width="100" VerticalContentAlignment="Center" FontSize="16"
                                 Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Grid.RowSpan="2"/>
 
-                            <TextBox Name="TaskNameTextBox" Height="40" Width="285" VerticalContentAlignment="Center" VerticalAlignment="Top" Text="Enter a task name" FontSize="16"
+                        <TextBox Name="TaskNameTextBox" Height="40" Width="285" VerticalContentAlignment="Center" VerticalAlignment="Top" Text="Enter a task name" FontSize="16"
                                 Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Margin="0,8,0,0" Grid.RowSpan="2"/>
 
-                            <!-- Third row: Task Difficulty  -->
-                            <Label Name="TaskDifficultyLabel" Content="Task difficulty:" Width="115" FontSize="16"
+                        <!-- Third row: Task Difficulty  -->
+                        <Label Name="TaskDifficultyLabel" Content="Task difficulty:" Width="115" FontSize="16"
                                 Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="189,0,0,0"/>
 
-                            <RadioButton Name="SetMediumDifficultyRB" Content="Easy" VerticalContentAlignment="Center"
+                        <RadioButton Name="SetMediumDifficultyRB" Content="Easy" VerticalContentAlignment="Center"
                                 Grid.Column="3" Grid.Row="3" Margin="0,1,3,55" Grid.RowSpan="2"/>
 
-                            <RadioButton Name="SetEasyDifficultyRB" Content="Medium" VerticalContentAlignment="Center"
+                        <RadioButton Name="SetEasyDifficultyRB" Content="Medium" VerticalContentAlignment="Center"
                                 Grid.Column="4" Grid.Row="3" Margin="0,1,3,55" Grid.RowSpan="2"/>
 
-                            <RadioButton Name="SetHardDifficultyRB" Content="Hard" VerticalContentAlignment="Center"
+                        <RadioButton Name="SetHardDifficultyRB" Content="Hard" VerticalContentAlignment="Center"
                                 Grid.Column="5" Grid.Row="3" Margin="0,1,0,55" Grid.RowSpan="2"/>
 
-                            <!-- Third row: Task Timers  -->
-                            <Label Name="TaskNotificationLabel" Content="Task notification times:" Width="173" VerticalContentAlignment="Center" FontSize="16"
+                        <!-- Third row: Task Timers  -->
+                        <Label Name="TaskNotificationLabel" Content="Task notification times:" Width="173" VerticalContentAlignment="Center" FontSize="16"
                                 Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="131,0,0,0"/>
-                            <TextBox Name="TaskNotificationTimeTextBox1" Height="40" Width="77"
+                        <TextBox Name="TaskNotificationTimeTextBox1" Height="40" Width="77"
                                 VerticalContentAlignment="Center" 
                                 VerticalAlignment="Center" Text="16:30" 
                                 HorizontalContentAlignment="Center" FontSize="16"
                                 Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left"/>
-                            <TextBox Name="TaskNotificationTimeTextBox2" Height="40" Width="77"
+                        <TextBox Name="TaskNotificationTimeTextBox2" Height="40" Width="77"
                                 VerticalContentAlignment="Center" 
                                 VerticalAlignment="Center" Text="17:30" 
                                 HorizontalContentAlignment="Center" FontSize="16"
                                 Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left"/>
-                            <TextBox Name="TaskNotificationTimeTextBox3" Height="40" Width="77"
+                        <TextBox Name="TaskNotificationTimeTextBox3" Height="40" Width="77"
                                 VerticalContentAlignment="Center" 
                                 VerticalAlignment="Center" Text="18:30" 
                                 HorizontalContentAlignment="Center" FontSize="16"                        
                                 Grid.Column="5" Grid.Row="4" HorizontalAlignment="Left"/>
 
-                            <!-- Fourth Row: Task Note -->
-                            <Label Name="TaskNoteLabel" Content="Task note:" Height="40" Width="100" VerticalContentAlignment="Center" 
+                        <!-- Fourth Row: Task Note -->
+                        <Label Name="TaskNoteLabel" Content="Task note:" Height="40" Width="100" VerticalContentAlignment="Center" 
                                    Grid.Row="5" Grid.Column="0" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
 
-                            <TextBox x:Name="NoteTextBox" Text="Enter a task note:" TextWrapping="Wrap" FontSize="16"
+                        <TextBox x:Name="NoteTextBox" Text="Enter a task note:" TextWrapping="Wrap" FontSize="16"
                                      Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,9,27,20" />
-                        </Grid>
+                    </Grid>
 
-                    </Border>
-                </StackPanel>
-
+                </Border>
             </Grid>
         </Border>
     </Border>

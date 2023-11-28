@@ -24,6 +24,5 @@ namespace IUR_macesond
         {
             InitializeComponent();
         }
-
     }
 }

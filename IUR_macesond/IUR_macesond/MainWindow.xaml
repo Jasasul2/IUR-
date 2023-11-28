@@ -86,9 +86,74 @@
                             <Grid Background="#f5e8bc"/>
                         </Border>
                     </TabItem>
+
+                    <!-- Settings Menu -->
                     <TabItem Header="Settings" Background="#e3b694" Width="225" Height="40">
                         <Border Name="TabSelectionBorder3" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch" Background="#e3b694">
-                            <Grid Background="#f5e8bc"/>
+                            <Grid Background="#f5e8bc">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="323*"/>
+                                    <ColumnDefinition Width="80*"/>
+                                    <ColumnDefinition Width="331*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Simplified mode -->
+                                <Label Name="SimplifiedModeLabel" Content="Simplified mode:" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
+                                       Grid.Column="0" HorizontalContentAlignment="Center"/>
+
+                                <CheckBox Name="SimplifiedModeCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2"/>
+
+
+                                <!-- Productive part of the day start -->
+                                <Label Name="ProductiveStartLabel" Content="Productive part of the day start:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
+                                       Grid.Column="0" Grid.Row="1"/>
+
+                                <TextBox Name="ProductiveStartTextBox" Height="40" Width="60"
+                                    VerticalContentAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Text="8:30" 
+                                    HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left"/>
+
+
+                                <!-- Productive part of the day end -->
+                                <Label Name="ProductiveEndLabel" Content="Productive part of the day end:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
+                                       Grid.Column="0" Grid.Row="2"/>
+
+
+                                <TextBox Name="ProductiveEndTextBox" Height="40" Width="60"
+                                    VerticalContentAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Text="22:30" 
+                                    HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left"/>
+
+                                <!-- Language -->
+                                <Label Name="LanguageLabel" Content="Language:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
+                                       Grid.Column="0" Grid.Row="3"/>
+
+                                <ComboBox Name="LanguageComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
+                                     Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="72,8,0,8">
+                                    <ComboBoxItem IsSelected="True">English</ComboBoxItem >
+                                    <ComboBoxItem IsSelected="False">Czech</ComboBoxItem>
+                                </ComboBox>
+
+                                <!-- Notification type -->
+                                <Label Name="NotificationTypeLabel" Content="Notification type:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
+                                       Grid.Column="0" Grid.Row="4"/>
+
+                                <ComboBox Name="NotificationComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
+                                     Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="72,8,0,8">
+                                    <ComboBoxItem IsSelected="True">Sound</ComboBoxItem >
+                                    <ComboBoxItem IsSelected="False">Text</ComboBoxItem>
+                                </ComboBox>
+
+                            </Grid>
                         </Border>
                     </TabItem>
                 </TabControl>

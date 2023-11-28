@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="BeProductive!" Height="860" Width="1440"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         ResizeMode="NoResize"
-        AllowsTransparency="False">
+        Background="Transparent"
+        AllowsTransparency="True">
 
     <!--window data context MISSING -->
 
@@ -19,7 +21,7 @@
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0"/>
                 <GradientStop Color="{StaticResource DetailGradientColor1}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource TextGradientColor1}" Offset="1"/>
+                <GradientStop Color="{StaticResource TextColor}" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
 
@@ -27,7 +29,7 @@
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0"/>
                 <GradientStop Color="{StaticResource DetailGradientColor1}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource TextGradientColor1}" Offset="1"/>
+                <GradientStop Color="{StaticResource TextColor}" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
 
@@ -63,7 +65,7 @@
                     <!-- Second column -->
                 </Grid.RowDefinitions>
 
-            <!-- Left Side of the Grid-->
+                <!-- Left Side of the Grid-->
                 <Border Name="LeftGridCollumnBorder" Style="{StaticResource ForegroundBorderStyle}"
                     Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
 
@@ -80,10 +82,10 @@
                         </StackPanel>
 
                         <!-- Inner Border which contains tasks and task slider -->
-                        <Border Name="TaskListBorder" Style="{StaticResource DetailBorderStyle}">
+                        <Border Name="TaskListBorder" Style="{StaticResource DetailBorderStyle}" Height="633">
 
                             <StackPanel Name="TaskListStackPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        
+
                                 <!-- First Stack Panel Row = List Box and scroll viewer -->
                                 <StackPanel Name="TaskListInnerHorizontalPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="575">
                                     <ListBox Name="TaskListBox" VerticalAlignment="Stretch" Width="644" Margin="8,8,8,0" Height="569" Background="Transparent" BorderBrush="Transparent">
@@ -114,7 +116,7 @@
                             </StackPanel>
                         </Border>
 
-                        <TextBlock Name="EXPTextBlock" Text="0/69 xp" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="#FF4A4A4A" Margin="0,2,0,0" FontWeight="Bold"/>
+                        <TextBlock Name="EXPTextBlock" Text="0/69 xp" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="#FF4A4A4A" Margin="0,20,0,0" FontWeight="Bold"/>
 
                         <ProgressBar Name="EXPProgressBar" Height="25" Width="670" Margin="10, 4, 10, 20" HorizontalAlignment="Center" Background="#fff9e8"/>
 
@@ -123,99 +125,99 @@
                 </Border>
 
                 <!-- Right Side of the Grid-->
-                    <!-- Tab Control for task library, productivity analysis and application settings -->
+                <!-- Tab Control for task library, productivity analysis and application settings -->
 
-                    <Border Name="TabSelectionBorder" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" 
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Grid.Column="1" Grid.Row="0">
-                        
-                        <TabControl Height="360">
+                <Border Name="TabSelectionBorder" Style="{StaticResource DetailBorderStyle}"
+                    Grid.Column="1" Grid.Row="0">
 
-                            <TabItem Header="Task Library" Background="#e3b694" Width="225" Height="40">
-                                <Border Name="TabSelectionBorder1" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch">
-                                    <Grid Background="#f5e8bc"/>
-                                </Border>
-                            </TabItem>
-                            <TabItem Header="Productivity" Background="#e3b694" Width="225" Height="40">
-                                <Border Name="TabSelectionBorder2" BorderBrush="Black" BorderThickness="3" Margin="10,16,10,10" HorizontalAlignment="Stretch">
-                                    <Grid Background="#f5e8bc"/>
-                                </Border>
-                            </TabItem>
+                    <TabControl Name="MainTabControl" Style="{StaticResource TabControlStyle}">
 
-                            <!-- Settings Menu -->
-                            <TabItem Header="Settings" Background="#e3b694" Width="225" Height="40">
-                                <Border Name="TabSelectionBorder3" Style="{StaticResource DetailBorderStyle}">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="323*"/>
-                                            <ColumnDefinition Width="80*"/>
-                                            <ColumnDefinition Width="331*"/>
-                                        </Grid.ColumnDefinitions>
+                        <TabItem Header="Task Library" Style="{StaticResource TabItemStyle}">
+                            <Border Name="TabSelectionBorder1" Style="{StaticResource DetailBorderStyle}">
+                                <Grid/>
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="Productivity" Style="{StaticResource TabItemStyle}">
+                            <Border Name="TabSelectionBorder2" Style="{StaticResource DetailBorderStyle}">
+                                <Grid/>
+                            </Border>
+                        </TabItem>
 
-                                        <!-- Simplified mode -->
-                                        <Label Name="SimplifiedModeLabel" Content="Simplified mode:" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
-                                               Grid.Column="0" HorizontalContentAlignment="Right"/>
+                        <!-- Settings Menu -->
+                        <TabItem Header="Settings" Style="{StaticResource TabItemStyle}">
+                            <Border Name="TabSelectionBorder3" Style="{StaticResource DetailBorderStyle}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="115*"/>
+                                        <ColumnDefinition Width="173*"/>
+                                        <ColumnDefinition Width="71*"/>
+                                        <ColumnDefinition Width="295*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <CheckBox Name="SimplifiedModeCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2"/>
+                                    <!-- Simplified mode -->
+                                    <Label Name="SimplifiedModeLabel" Content="Simplified mode:" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
+                                               Grid.Column="1" HorizontalContentAlignment="Right" Grid.ColumnSpan="2" Margin="44,0,0,0" FontWeight="Normal"/>
+
+                                    <CheckBox Name="SimplifiedModeCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" Margin="71,0,0,0"/>
 
 
-                                        <!-- Productive part of the day start -->
-                                        <Label Name="ProductiveStartLabel" Content="Productive part of the day start:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
-                                               Grid.Column="0" Grid.Row="1"/>
+                                    <!-- Productive part of the day start -->
+                                    <Label Name="ProductiveStartLabel" Content="Productive part of the day start:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
+                                               Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="55,0,0,0" FontWeight="Normal"/>
 
-                                        <TextBox Name="ProductiveStartTextBox" Height="40" Width="60"
+                                    <TextBox Name="ProductiveStartTextBox" Height="40" Width="60"
                                             VerticalContentAlignment="Center" 
                                             VerticalAlignment="Center" 
                                             Text="8:30" 
-                                            HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left"/>
+                                            HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="71,0,0,0" FontWeight="Normal"/>
 
 
-                                        <!-- Productive part of the day end -->
-                                        <Label Name="ProductiveEndLabel" Content="Productive part of the day end:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
-                                               Grid.Column="0" Grid.Row="2"/>
+                                    <!-- Productive part of the day end -->
+                                    <Label Name="ProductiveEndLabel" Content="Productive part of the day end:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
+                                               Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="59,0,0,0" FontWeight="Normal"/>
 
 
-                                        <TextBox Name="ProductiveEndTextBox" Height="40" Width="60"
+                                    <TextBox Name="ProductiveEndTextBox" Height="40" Width="60"
                                             VerticalContentAlignment="Center" 
                                             VerticalAlignment="Center" 
                                             Text="22:30" 
-                                            HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left"/>
+                                            HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="71,0,0,0" FontWeight="Normal"/>
 
-                                        <!-- Language -->
-                                        <Label Name="LanguageLabel" Content="Language:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
-                                               Grid.Column="0" Grid.Row="3"/>
+                                    <!-- Language -->
+                                    <Label Name="LanguageLabel" Content="Language:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
+                                               Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="90,0,0,0" FontWeight="Normal"/>
 
-                                        <ComboBox Name="LanguageComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
-                                             Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="72,8,0,8">
-                                            <ComboBoxItem IsSelected="True">English</ComboBoxItem >
-                                            <ComboBoxItem IsSelected="False">Czech</ComboBoxItem>
-                                        </ComboBox>
+                                    <ComboBox Name="LanguageComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
+                                             Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" Margin="1,13,0,14" FontWeight="Normal">
+                                        <ComboBoxItem IsSelected="True">English</ComboBoxItem >
+                                        <ComboBoxItem IsSelected="False">Czech</ComboBoxItem>
+                                    </ComboBox>
 
-                                        <!-- Notification type -->
-                                        <Label Name="NotificationTypeLabel" Content="Notification type:" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
-                                               Grid.Column="0" Grid.Row="4"/>
+                                    <!-- Notification type -->
+                                    <Label Name="NotificationTypeLabel" Content="Notification type:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
+                                               Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="42,0,0,0" FontWeight="Normal"/>
 
-                                        <ComboBox Name="NotificationComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
-                                             Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="72,8,0,8">
-                                            <ComboBoxItem IsSelected="True">Sound</ComboBoxItem >
-                                            <ComboBoxItem IsSelected="False">Text</ComboBoxItem>
-                                        </ComboBox>
-                                    </Grid>
-                                </Border>
-                            </TabItem>
-                        </TabControl>
-                    </Border>
+                                    <ComboBox Name="NotificationComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
+                                             Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" Margin="1,13,0,14" FontWeight="Normal">
+                                        <ComboBoxItem IsSelected="True">Sound</ComboBoxItem >
+                                        <ComboBoxItem IsSelected="False">Text</ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                            </Border>
+                        </TabItem>
+                    </TabControl>
+                </Border>
 
 
                 <!-- Task Editor -->
-                <Border Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyle}"
+                <Border x:Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyle}"
                     Grid.Column="1" Grid.Row="1">
 
                     <Grid Height="396" Width="690" HorizontalAlignment="Stretch">
@@ -240,11 +242,14 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- First row: Task editor Label and save and reset buttons -->
-                        <Label Name="TaskEditor" Content="Task Editor" Margin="7,5,1,5" VerticalContentAlignment="Center" FontSize="24" Foreground="#FF4A4A4A"
+                        <Border x:Name="TaskEditorLabelBorder" Style="{StaticResource HeaderBorderStyle}">
+                            <Label x:Name="TaskEditorLabel" Content="Task Editor" Margin="7,5,1,5" VerticalContentAlignment="Center" FontSize="24" Foreground="White"
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
-                        <Button Name="SaveTaskButton" Content="S" Width="50"
+                        </Border>
+                        
+                        <Button x:Name="SaveTaskButton" Content="S" Width="50"
                                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="65,3,0,3" Grid.ColumnSpan="2"/>
-                        <Button Name="ResetTaskButton" Content="R" Width="50" 
+                        <Button x:Name="ResetTaskButton" Content="R" Width="50" 
                                 Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" Margin="0,3,0,3"/>
 
                         <!-- Second row: Task Name -->

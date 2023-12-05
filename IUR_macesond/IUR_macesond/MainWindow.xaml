@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IUR_macesond"
+        xmlns:viewModels="clr-namespace:IUR_macesond.ViewModels"
+        xmlns:converters="clr-namespace:IUR_macesond.Converters"
+        xmlns:validationRules="clr-namespace:IUR_macesond.ValidationRules"
         mc:Ignorable="d"
         Title="BeProductive!" Height="860" Width="1440"
         WindowStartupLocation="CenterScreen"
@@ -12,8 +15,14 @@
         Background="Transparent"
         AllowsTransparency="True">
 
-    <!--window data context MISSING -->
+    <Window.Resources>
+        <converters:XPTextConverter x:Key="XPTextConverter"/>
+    </Window.Resources>
 
+    <!--window data context MISSING -->
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
 
     <!-- Outer Border -->
     <Border x:Name="ApplicationBorder" CornerRadius="10" BorderThickness="5">
@@ -75,7 +84,7 @@
                         <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
                             <Button Name="PrevousDayButton" Content="Previous" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
                             <ComboBox Name="DayComboBox" Height="40" Width="460" Margin="5,5,5,5" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold">
-                                <ComboBoxItem IsSelected="True">27.11.2023 - Yeah</ComboBoxItem >
+                                <ComboBoxItem IsSelected="True">27.11.2023 - Yeah... Not realy</ComboBoxItem >
                                 <ComboBoxItem IsSelected="False">28.11.2023 - Neah</ComboBoxItem>
                             </ComboBox>
                             <Button Name="NextDayButton" Content="Next" Height="40" Width="100" Margin="5,5,0,5" FontSize="18" />
@@ -116,10 +125,16 @@
                             </StackPanel>
                         </Border>
 
-                        <TextBlock Name="EXPTextBlock" Text="0/69 xp" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="#FF4A4A4A" Margin="0,20,0,0" FontWeight="Bold"/>
-
+                        <TextBlock Name="EXPTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="#FF4A4A4A" Margin="0,20,0,0" FontWeight="Bold">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource XPTextConverter}">
+                                    <Binding Path="UserSettings.CurrentXP"/>
+                                    <Binding Path="UserSettings.NextLevelXP"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                            
                         <ProgressBar Name="EXPProgressBar" Height="25" Width="670" Margin="10, 4, 10, 20" HorizontalAlignment="Center" Background="#fff9e8"/>
-
 
                     </StackPanel>
                 </Border>
@@ -146,7 +161,7 @@
                         <!-- Settings Menu -->
                         <TabItem Header="Settings" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder3" Style="{StaticResource DetailBorderStyle}">
-                                <Grid>
+                                <Grid HorizontalAlignment="Stretch">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
                                         <RowDefinition/>
@@ -243,7 +258,7 @@
 
                         <!-- First row: Task editor Label and save and reset buttons -->
                         <Border x:Name="TaskEditorLabelBorder" Style="{StaticResource HeaderBorderStyle}">
-                            <Label x:Name="TaskEditorLabel" Content="Task Editor" Margin="7,5,1,5" VerticalContentAlignment="Center" FontSize="24" Foreground="White"
+                            <Label x:Name="TaskEditorLabel" Content="Task Editor" Margin="5,5,5,5" VerticalContentAlignment="Center" FontSize="24" Foreground="White"
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
                         </Border>
                         

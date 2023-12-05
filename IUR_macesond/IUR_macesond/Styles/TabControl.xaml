@@ -20,13 +20,14 @@
 
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="Padding" Value="0,0"/>
+        <Setter Property="Margin" Value="5,5,5,-1"/>
         <Setter Property="Width" Value="140"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabItem">
@@ -35,12 +36,12 @@
                                 Background="{TemplateBinding Background}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                Margin="{TemplateBinding Margin}"/>
+                                Margin="{TemplateBinding Padding}"/>
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           SnapsToDevicePixels="True"
                                           RecognizesAccessKey="True"
-                                          Margin="{TemplateBinding Margin}"
+                                          Margin="{TemplateBinding Padding}"
                                           ContentSource="Header"
                                           Focusable="False"/>   
 
@@ -95,6 +96,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Padding" Value="0,0"/>
+        <Setter Property="Margin" Value="5,5,5,5"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
 
@@ -111,9 +113,8 @@
                                   Background="Transparent"
                                   IsItemsHost="True"
                                   VerticalAlignment="Stretch"
-                                  HorizontalAlignment="Left"/>
+                                  HorizontalAlignment="Stretch"/>
                             
-
                         <Border Grid.Row="1"
                                 CornerRadius="5"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -121,7 +122,8 @@
                                 Background="{TemplateBinding Background}">
                             <ContentPresenter ContentSource="SelectedContent"
                                               SnapsToDevicePixels="True"
-                                              Margin="{TemplateBinding Padding}"/>
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
 
                         </Border>
                     </Grid>

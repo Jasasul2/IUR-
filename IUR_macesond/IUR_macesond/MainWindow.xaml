@@ -210,7 +210,7 @@
                                                Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="90,0,0,0" FontWeight="Normal"/>
 
                                     <ComboBox Name="LanguageComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
-                                             Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" Margin="1,13,0,14" FontWeight="Normal">
+                                             Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" FontWeight="Normal">
                                         <ComboBoxItem IsSelected="True">English</ComboBoxItem >
                                         <ComboBoxItem IsSelected="False">Czech</ComboBoxItem>
                                     </ComboBox>
@@ -220,7 +220,7 @@
                                                Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="42,0,0,0" FontWeight="Normal"/>
 
                                     <ComboBox Name="NotificationComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
-                                             Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" Margin="1,13,0,14" FontWeight="Normal">
+                                             Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left"  FontWeight="Normal">
                                         <ComboBoxItem IsSelected="True">Sound</ComboBoxItem >
                                         <ComboBoxItem IsSelected="False">Text</ComboBoxItem>
                                     </ComboBox>

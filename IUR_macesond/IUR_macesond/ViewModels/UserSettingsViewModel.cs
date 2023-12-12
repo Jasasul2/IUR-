@@ -17,6 +17,7 @@ namespace IUR_macesond.ViewModels
 {
     internal class UserSettingsViewModel : ViewModelBase
     {
+        #region LevelProperties
         private int _currentLevel;
         private int _currentXP;
         private int _nextLevelXP;
@@ -38,12 +39,44 @@ namespace IUR_macesond.ViewModels
             get => _nextLevelXP;
             set => SetProperty(ref _nextLevelXP, value);
         }
+        #endregion
+
+        #region SimplifiedMode
+        private bool _simplifiedMode;
+
+        public bool SimplifiedMode
+        {
+            get => _simplifiedMode;
+            set => SetProperty(ref _simplifiedMode, value);
+        }
+
+        #endregion
+
+        #region Language
+
+        public enum Language
+        {
+            Czech,
+            English
+        }
+
+        private Language _currentLanguage;
+
+        public Language CurrentLanguage
+        {
+            get => _currentLanguage;
+            set => SetProperty(ref _currentLanguage, value);
+        }
+
+        #endregion
 
         public UserSettingsViewModel()
         {
-            CurrentLevel = 0;
+            CurrentLevel = 5;
             CurrentXP = 32;
             NextLevelXP = 100;
+            SimplifiedMode = false;
+
         }
     }
 }

@@ -17,6 +17,7 @@
 
     <Window.Resources>
         <converters:XPTextConverter x:Key="XPTextConverter"/>
+        <converters:LevelConverter x:Key="LevelConverter"/>
     </Window.Resources>
 
     <!--window data context MISSING -->
@@ -125,15 +126,24 @@
                             </StackPanel>
                         </Border>
 
-                        <TextBlock Name="EXPTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="#FF4A4A4A" Margin="0,20,0,0" FontWeight="Bold">
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource XPTextConverter}">
-                                    <Binding Path="UserSettings.CurrentXP"/>
-                                    <Binding Path="UserSettings.NextLevelXP"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                            
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Name="LevelTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                                       FontSize="22" Foreground="#FF4A4A4A" Margin="12,20,260,0" FontWeight="Bold"
+                                       Text="{Binding UserSettings.CurrentLevel, Converter={StaticResource LevelConverter}}"
+                                       />
+
+                            <TextBlock Name="EXPTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="#FF4A4A4A" Margin="0,20,0,0" FontWeight="Bold">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource XPTextConverter}">
+                                        <Binding Path="UserSettings.CurrentXP"/>
+                                        <Binding Path="UserSettings.NextLevelXP"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                        </StackPanel> 
+
                         <ProgressBar Name="EXPProgressBar" Height="25" Width="670" Margin="10, 4, 10, 20" HorizontalAlignment="Center" Background="#fff9e8"/>
 
                     </StackPanel>
@@ -180,7 +190,8 @@
                                     <Label Name="SimplifiedModeLabel" Content="Simplified mode:" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
                                                Grid.Column="1" HorizontalContentAlignment="Right" Grid.ColumnSpan="2" Margin="44,0,0,0" FontWeight="Normal"/>
 
-                                    <CheckBox Name="SimplifiedModeCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" Margin="71,0,0,0"/>
+                                    <CheckBox Name="SimplifiedModeCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" Margin="71,0,0,0"
+                                              IsChecked="{Binding UserSettings.SimplifiedMode, Mode=TwoWay}"/>
 
 
                                     <!-- Productive part of the day start -->

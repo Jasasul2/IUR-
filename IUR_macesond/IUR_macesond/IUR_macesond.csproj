@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\LevelConverter.cs" />
     <Compile Include="Converters\XPtextConverter.cs" />
     <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Support\RellayCommand.cs" />

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:IUR_macesond"
         xmlns:viewModels="clr-namespace:IUR_macesond.ViewModels"
         xmlns:converters="clr-namespace:IUR_macesond.Converters"
+        xmlns:support="clr-namespace:IUR_macesond.Support"
         xmlns:validationRules="clr-namespace:IUR_macesond.ValidationRules"
         mc:Ignorable="d"
         Title="BeProductive!" Height="860" Width="1440"
@@ -221,9 +222,9 @@
                                                Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="90,0,0,0" FontWeight="Normal"/>
 
                                     <ComboBox Name="LanguageComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
-                                             Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" FontWeight="Normal">
-                                        <ComboBoxItem IsSelected="True">English</ComboBoxItem >
-                                        <ComboBoxItem IsSelected="False">Czech</ComboBoxItem>
+                                             Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" FontWeight="Normal"
+                                             ItemsSource="{Binding UserSettings.LanguageArray}"
+                                             SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay}">
                                     </ComboBox>
 
                                     <!-- Notification type -->
@@ -231,9 +232,9 @@
                                                Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="42,0,0,0" FontWeight="Normal"/>
 
                                     <ComboBox Name="NotificationComboBox" Height="40" Width="98" VerticalContentAlignment="Center" FontSize="16"
-                                             Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left"  FontWeight="Normal">
-                                        <ComboBoxItem IsSelected="True">Sound</ComboBoxItem >
-                                        <ComboBoxItem IsSelected="False">Text</ComboBoxItem>
+                                             Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" FontWeight="Normal"
+                                             ItemsSource="{Binding UserSettings.NotificationTypeArray}"
+                                             SelectedValue="{Binding UserSettings.CurrentNotificationType, Mode=TwoWay}">
                                     </ComboBox>
                                 </Grid>
                             </Border>

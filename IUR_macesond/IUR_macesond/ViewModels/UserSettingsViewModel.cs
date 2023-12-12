@@ -59,6 +59,10 @@ namespace IUR_macesond.ViewModels
             Czech,
             English
         }
+        public Array LanguageArray
+        {
+            get { return Enum.GetValues(typeof(Language)); }
+        }
 
         private Language _currentLanguage;
 
@@ -70,13 +74,36 @@ namespace IUR_macesond.ViewModels
 
         #endregion
 
+        #region Notifications
+        public enum NotificationType
+        {
+            Sound,
+            Text,
+            Both,
+            None
+        }
+        public Array NotificationTypeArray
+        {
+            get { return Enum.GetValues(typeof(NotificationType)); }
+        }
+
+        private NotificationType _currentNotificationType;
+
+        public NotificationType CurrentNotificationType
+        {
+            get => _currentNotificationType;
+            set => SetProperty(ref _currentNotificationType, value);
+        }
+        #endregion
+
         public UserSettingsViewModel()
         {
             CurrentLevel = 5;
             CurrentXP = 32;
             NextLevelXP = 100;
             SimplifiedMode = false;
-
+            CurrentLanguage = Language.English;
+            CurrentNotificationType = NotificationType.Sound;
         }
     }
 }

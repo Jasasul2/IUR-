@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,14 +8,18 @@ using System.Windows.Controls;
 
 namespace IUR_macesond.ValidationRules
 {
-    internal class TimeValidationRule : ValidationRule
+    public class TimeValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
+            string input = value as string;
 
-            if (((string)value).Length < 2)
+            if (!string.IsNullOrWhiteSpace(input))
             {
-                return new ValidationResult(false, "Location name must be at least two characters");
+                string[] numbers = input.Split(' ');
+
+                if (numbers.Length != 2 || !double.TryParse(numbers[0], out _) || !double.TryParse(numbers[1], out _))
+                    return new ValidationResult(false, "Please enter two valid numbers separated by space.");
             }
 
             return ValidationResult.ValidResult;

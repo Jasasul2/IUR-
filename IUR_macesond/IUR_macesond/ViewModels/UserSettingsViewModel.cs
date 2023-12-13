@@ -96,6 +96,25 @@ namespace IUR_macesond.ViewModels
         }
         #endregion
 
+        #region Time
+
+        DateTime _productivityStartTime = new DateTime();
+        DateTime _productivityEndTime = new DateTime();
+
+        public DateTime ProductivityStartTime
+        {
+            get => _productivityStartTime;
+            set => SetProperty(ref _productivityStartTime, value);
+        }
+
+        public DateTime ProductivityEndTime
+        {
+            get => _productivityEndTime;
+            set => SetProperty(ref _productivityEndTime, value);
+        }
+
+        #endregion
+
         public UserSettingsViewModel()
         {
             CurrentLevel = 5;

@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="IUR_macesond.UserControls.TimeInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:validationRules="clr-namespace:IUR_macesond.ValidationRules"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="77">
+    <StackPanel Orientation="Horizontal" Width="77" Height="40" Background="White">
+        <TextBox x:Name="firstTextBox" Width="37">
+            <TextBox.Text>
+                <Binding Path="FirstValue" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:TimeValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock x:Name="TextBlockName" Text=":" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox x:Name="secondTextBox" Width="37">
+            <TextBox.Text>
+                <Binding Path="SecondValue" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:TimeValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+    </StackPanel>
+</UserControl>

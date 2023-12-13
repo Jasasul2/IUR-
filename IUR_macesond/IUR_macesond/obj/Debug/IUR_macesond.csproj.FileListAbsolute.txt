@@ -18,3 +18,5 @@ C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_maces
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond\IUR_macesond\obj\Debug\IUR_macesond.Properties.Resources.resources
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond\IUR_macesond\obj\Debug\IUR_macesond.csproj.GenerateResource.cache
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond\IUR_macesond\obj\Debug\IUR_macesond.csproj.CoreCompileInputs.cache
+C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond\IUR_macesond\obj\Debug\UserControls\TimeInput.g.cs
+C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond\IUR_macesond\obj\Debug\UserControls\TimeInput.baml

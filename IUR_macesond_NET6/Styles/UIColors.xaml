@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Theme 1--> 
+
+    <!--Background Gradient Colors--> 
+    <Color x:Key="BackgroundGradientColor1">#9A3B3B</Color>
+    <Color x:Key="BackgroundGradientColor2">#AE4F4F</Color>
+
+    <!--Foreground Gradient Colors--> 
+    <Color x:Key="ForegroundGradientColor1">#C08261</Color>
+    <Color x:Key="ForegroundGradientColor2">#D49675</Color>
+
+    <!--Detail Gradient Colors-->
+    <Color x:Key="DetailGradientColor1">#E2C799</Color>
+    <Color x:Key="DetailGradientColor2">#F6DBAD</Color>
+
+    <!--Text Gradient Colors-->
+    <Color x:Key="TextColor">#fcfbed</Color>
+
+</ResourceDictionary>

@@ -16,13 +16,32 @@ using System.Windows.Shapes;
 namespace IUR_macesond_NET6.UserControls
 {
     /// <summary>
-    /// Interakční logika pro UserControl1.xaml
+    /// Interakční logika pro TimeInput.xaml
     /// </summary>
     public partial class TimeInput : UserControl
     {
         public TimeInput()
         {
             InitializeComponent();
+        }
+
+        // Dependency properties for binding
+        public static readonly DependencyProperty HoursProperty =
+            DependencyProperty.Register("FirstValue", typeof(string), typeof(TimeInput));
+
+        public static readonly DependencyProperty MinutesProperty =
+            DependencyProperty.Register("SecondValue", typeof(string), typeof(TimeInput));
+
+        public string Hours
+        {
+            get { return (string)GetValue(HoursProperty); }
+            set { SetValue(HoursProperty, value); }
+        }
+
+        public string Minutes
+        {
+            get { return (string)GetValue(MinutesProperty); }
+            set { SetValue(MinutesProperty, value); }
         }
     }
 }

@@ -6,19 +6,20 @@
              xmlns:validationRules="clr-namespace:IUR_macesond_NET6.ValidationRules"
              xmlns:local="clr-namespace:IUR_macesond_NET6.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Orientation="Horizontal" Width="77" Height="40" Background="White">
-        <TextBox x:Name="firstTextBox" Width="37">
-            <TextBox.Text>
-                <Binding Path="FirstValue" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validationRules:TimeValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBlock x:Name="TextBlockName" Text=":" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="secondTextBox" Width="37">
+             d:DesignHeight="40" d:DesignWidth="77">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/TimeTextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <StackPanel Orientation="Horizontal" Width="77" Height="40" Background="Transparent">
+        
+        <TextBox x:Name="HoursTextBox" Style="{StaticResource TimeTextBoxLeftStyle}">
             <TextBox.Text>
                 <Binding Path="SecondValue" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -27,5 +28,19 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        
+        <TextBlock x:Name="DoublePointTextBlock" Text=":" Background="White" 
+            VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Padding="0,10"/>
+
+        <TextBox x:Name="MinutesTextBox" Style="{StaticResource TimeTextBoxRightStyle}">
+            <TextBox.Text>
+                <Binding Path="SecondValue" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:TimeValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        
     </StackPanel>
 </UserControl>

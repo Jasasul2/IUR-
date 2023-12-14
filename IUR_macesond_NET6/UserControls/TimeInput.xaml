@@ -6,37 +6,28 @@
              xmlns:validationRules="clr-namespace:IUR_macesond_NET6.ValidationRules"
              xmlns:local="clr-namespace:IUR_macesond_NET6.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="77">
+             d:DesignHeight="40" d:DesignWidth="77" x:Name="root">
 
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/TimeTextBox.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
-
-    <StackPanel Orientation="Horizontal" Width="77" Height="40" Background="Transparent">
+    <StackPanel Orientation="Horizontal" Width="80" Height="40" Background="Transparent" HorizontalAlignment="Left">
         
         <TextBox x:Name="HoursTextBox" Style="{StaticResource TimeTextBoxLeftStyle}">
             <TextBox.Text>
-                <Binding Path="SecondValue" UpdateSourceTrigger="PropertyChanged">
+                <Binding ElementName="root" Path="Hour" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validationRules:TimeValidationRule/>
+                        <validationRules:HourValidationRule/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
         
-        <TextBlock x:Name="DoublePointTextBlock" Text=":" Background="White" 
-            VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Padding="0,10"/>
+        <TextBlock x:Name="DoublePointTextBlock" Text=":" Background="White" Margin="-1,0,-1,0"
+            VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="7" Padding="0,7"/>
 
         <TextBox x:Name="MinutesTextBox" Style="{StaticResource TimeTextBoxRightStyle}">
             <TextBox.Text>
-                <Binding Path="SecondValue" UpdateSourceTrigger="PropertyChanged">
+                <Binding ElementName="root" Path="Minute" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <validationRules:TimeValidationRule/>
+                        <validationRules:MinuteValidationRule/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>

@@ -98,19 +98,81 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region Time
 
-        DateTime _productivityStartTime = new DateTime();
-        DateTime _productivityEndTime = new DateTime();
+        TimeOnly _productivityStartTime = new TimeOnly();
+        TimeOnly _productivityEndTime = new TimeOnly();
 
-        public DateTime ProductivityStartTime
+        public TimeOnly ProductivityStartTime
         {
             get => _productivityStartTime;
             set => SetProperty(ref _productivityStartTime, value);
         }
-
-        public DateTime ProductivityEndTime
+        public TimeOnly ProductivityEndTime
         {
             get => _productivityEndTime;
             set => SetProperty(ref _productivityEndTime, value);
+        }
+
+        public string ProductivityStartTimeStringHour
+        {
+            get => ProductivityStartTime.Hour.ToString();
+            set
+            {
+                if (int.TryParse(value, out int hour))
+                {
+                    ProductivityStartTime = new TimeOnly(hour, ProductivityStartTime.Minute);
+                }
+            }
+        }
+
+        public string ProductivityStartTimeStringMinute
+        {
+            get => ProductivityStartTime.Minute.ToString();
+            set
+            {
+                if (int.TryParse(value, out int minute))
+                {
+                    ProductivityStartTime = new TimeOnly(ProductivityStartTime.Hour, minute);
+                }
+            }
+        }   
+
+        public string ProductivityEndTimeStringHour
+        {
+            get => ProductivityEndTime.Hour.ToString();
+            set
+            {
+                if (int.TryParse(value, out int hour))
+                {
+                    TimeOnly tmp = new TimeOnly(hour, ProductivityEndTime.Minute);
+                    if (tmp > ProductivityStartTime)
+                    {
+                        ProductivityEndTime = tmp;
+                    } else
+                    {
+                        ProductivityEndTime = ProductivityStartTime;
+                    }
+                }
+            }
+        }
+
+        public string ProductivityEndTimeStringMinute
+        {
+            get => ProductivityEndTime.Minute.ToString();
+            set
+            {
+                if (int.TryParse(value, out int minute))
+                {
+                    TimeOnly tmp = new TimeOnly(ProductivityEndTime.Hour, minute);
+                    if (tmp > ProductivityStartTime)
+                    {
+                        ProductivityEndTime = tmp;
+                    }
+                    else
+                    {
+                        ProductivityEndTime = ProductivityStartTime;
+                    }
+                }
+            }
         }
 
         #endregion
@@ -123,6 +185,8 @@ namespace IUR_macesond_NET6.ViewModels
             SimplifiedMode = false;
             CurrentLanguage = Language.English;
             CurrentNotificationType = NotificationType.Sound;
+            ProductivityStartTime = new TimeOnly(8, 45);
+            ProductivityEndTime = new TimeOnly(22, 30);
         }
     }
 }

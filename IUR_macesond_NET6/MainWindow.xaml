@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:IUR_macesond_NET6"
         xmlns:viewModels="clr-namespace:IUR_macesond_NET6.ViewModels"
         xmlns:converters="clr-namespace:IUR_macesond_NET6.Converters"
+        xmlns:userControls="clr-namespace:IUR_macesond_NET6.UserControls"
         xmlns:support="clr-namespace:IUR_macesond_NET6.Support"
         xmlns:validationRules="clr-namespace:IUR_macesond_NET6.ValidationRules"
         mc:Ignorable="d"
@@ -197,23 +198,19 @@
                                     <Label Name="ProductiveStartLabel" Content="Productive part of the day start:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
                                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="55,0,0,0" FontWeight="Normal"/>
 
-                                    <TextBox Name="ProductiveStartTextBox" Height="40" Width="60"
-                                            VerticalContentAlignment="Center" 
-                                            VerticalAlignment="Center" 
-                                            Text="8:30" 
-                                            HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="71,0,0,0" FontWeight="Normal"/>
-
-
+                                    <userControls:TimeInput x:Name="ProductiveDayStartTimeInput"
+                                        Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="72,0,0,0"
+                                        Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                          
                                     <!-- Productive part of the day end -->
                                     <Label Name="ProductiveEndLabel" Content="Productive part of the day end:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
                                                Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="59,0,0,0" FontWeight="Normal"/>
 
-
-                                    <TextBox Name="ProductiveEndTextBox" Height="40" Width="60"
-                                            VerticalContentAlignment="Center" 
-                                            VerticalAlignment="Center" 
-                                            Text="22:30" 
-                                            HorizontalContentAlignment="Center" FontSize="16" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="71,0,0,0" FontWeight="Normal"/>
+                                    <userControls:TimeInput x:Name="ProductiveDayEndTimeInput"
+                                        Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="72,0,0,0"
+                                        Hour="{Binding UserSettings.ProductivityEndTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Minute="{Binding UserSettings.ProductivityEndTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <!-- Language -->
                                     <Label Name="LanguageLabel" Content="Language:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 

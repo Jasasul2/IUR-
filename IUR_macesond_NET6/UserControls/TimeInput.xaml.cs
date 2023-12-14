@@ -26,22 +26,22 @@ namespace IUR_macesond_NET6.UserControls
         }
 
         // Dependency properties for binding
-        public static readonly DependencyProperty HoursProperty =
-            DependencyProperty.Register("FirstValue", typeof(string), typeof(TimeInput));
+        public static readonly DependencyProperty HourProperty =
+            DependencyProperty.Register("Hour", typeof(string), typeof(TimeInput));
 
-        public static readonly DependencyProperty MinutesProperty =
-            DependencyProperty.Register("SecondValue", typeof(string), typeof(TimeInput));
+        public static readonly DependencyProperty MinuteProperty =
+            DependencyProperty.Register("Minute", typeof(string), typeof(TimeInput));
 
-        public string Hours
+        public string Hour
         {
-            get { return (string)GetValue(HoursProperty); }
-            set { SetValue(HoursProperty, value); }
+            get { return (string)GetValue(HourProperty); }
+            set { SetValue(HourProperty, value); }
         }
 
-        public string Minutes
+        public string Minute
         {
-            get { return (string)GetValue(MinutesProperty); }
-            set { SetValue(MinutesProperty, value); }
+            get { return (string)GetValue(MinuteProperty); }
+            set { SetValue(MinuteProperty, value); }
         }
     }
 }

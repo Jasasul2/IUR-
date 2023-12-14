@@ -17,5 +17,16 @@
 
     <!--Text Gradient Colors-->
     <Color x:Key="TextColor">#fcfbed</Color>
+    
+    <!--Button Colors-->
+    <Color x:Key="ButtonNormalGC1">#BD5E5E</Color>
+    <Color x:Key="ButtonNormalGC2">#BD5E5E</Color>
+
+    <Color x:Key="ButtonHoveredOverGC1">#C08261</Color>
+    <Color x:Key="ButtonHoveredOverGC2">#C08261</Color>
+
+    <Color x:Key="ButtonSelectedGC1">#E2C799</Color>
+    <Color x:Key="ButtonSelectedGC2">#E2C799</Color>
+
 
 </ResourceDictionary>

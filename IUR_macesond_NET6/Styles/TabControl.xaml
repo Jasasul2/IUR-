@@ -6,8 +6,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource BackgroundGradientColor1}" Offset="0"/>
-                    <GradientStop Color="{StaticResource BackgroundGradientColor2}" Offset="1"/>
+                    <GradientStop Color="{StaticResource ButtonNormalGC1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource ButtonNormalGC2}" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -53,8 +53,8 @@
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                        <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0"/>
-                                        <GradientStop Color="{StaticResource ForegroundGradientColor2}" Offset="1"/>
+                                        <GradientStop Color="{StaticResource ButtonHoveredOverGC1}" Offset="0"/>
+                                        <GradientStop Color="{StaticResource ButtonHoveredOverGC2}" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -71,8 +71,8 @@
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                        <GradientStop Color="{StaticResource DetailGradientColor1}" Offset="0"/>
-                                        <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="1"/>
+                                        <GradientStop Color="{StaticResource ButtonSelectedGC1}" Offset="0"/>
+                                        <GradientStop Color="{StaticResource ButtonSelectedGC2}" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>

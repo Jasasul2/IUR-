@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/Styles/Borders.xaml"/>
                 <ResourceDictionary Source="/Styles/TimeTextBox.xaml"/>
                 <ResourceDictionary Source="/Styles/TabControl.xaml"/>
+                <ResourceDictionary Source="/Styles/ComboBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

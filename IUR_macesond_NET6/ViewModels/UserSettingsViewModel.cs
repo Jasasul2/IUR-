@@ -143,14 +143,7 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 if (int.TryParse(value, out int hour))
                 {
-                    TimeOnly tmp = new TimeOnly(hour, ProductivityEndTime.Minute);
-                    if (tmp > ProductivityStartTime)
-                    {
-                        ProductivityEndTime = tmp;
-                    } else
-                    {
-                        ProductivityEndTime = ProductivityStartTime;
-                    }
+                    ProductivityEndTime = new TimeOnly(hour, ProductivityEndTime.Minute);
                 }
             }
         }
@@ -162,15 +155,7 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 if (int.TryParse(value, out int minute))
                 {
-                    TimeOnly tmp = new TimeOnly(ProductivityEndTime.Hour, minute);
-                    if (tmp > ProductivityStartTime)
-                    {
-                        ProductivityEndTime = tmp;
-                    }
-                    else
-                    {
-                        ProductivityEndTime = ProductivityStartTime;
-                    }
+                    ProductivityEndTime = new TimeOnly(ProductivityEndTime.Hour, minute);
                 }
             }
         }

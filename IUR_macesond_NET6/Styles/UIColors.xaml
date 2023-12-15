@@ -7,9 +7,9 @@
     <Color x:Key="BackgroundGradientColor1">#9A3B3B</Color>
     <Color x:Key="BackgroundGradientColor2">#AE4F4F</Color>
 
-    <!--Foreground Gradient Colors--> 
-    <Color x:Key="ForegroundGradientColor1">#C08261</Color>
-    <Color x:Key="ForegroundGradientColor2">#D49675</Color>
+    <!--Foreground Gradient Colors-->
+    <Color x:Key="ForegroundGradientColor1">#ffb273</Color>
+    <Color x:Key="ForegroundGradientColor2">#AE4F4F</Color>
 
     <!--Detail Gradient Colors-->
     <Color x:Key="DetailGradientColor1">#E2C799</Color>

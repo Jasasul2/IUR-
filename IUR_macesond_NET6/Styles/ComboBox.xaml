@@ -180,11 +180,8 @@
                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                 <Border x:Name="DropDownBorder"
                       BorderThickness="0">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource ButtonNormalGC1}" />
-                                    </Border.BorderBrush>
                                     <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource BackgroundGradientColor1}" />
+                                        <SolidColorBrush Color="White" />
                                     </Border.Background>
                                 </Border>
                                 <ScrollViewer Margin="4,6,4,6"
@@ -238,16 +235,38 @@
                 SnapsToDevicePixels="true"
                 Background="Transparent">
                         <VisualStateManager.VisualStateGroups>
+
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                       Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" 
+                                       Value="White"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" 
+                                            Value="{StaticResource DetailGradientColor1}"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            
                             <VisualStateGroup x:Name="SelectionStates">
                                 <VisualState x:Name="Unselected" />
-                                
+
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                    (SolidColorBrush.Color)">
+                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource BackgroundGradientColor1}" />
+                                            Value="{StaticResource DetailGradientColor2}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -255,18 +274,18 @@
                                 <VisualState x:Name="SelectedUnfocused">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                    (SolidColorBrush.Color)">
+                                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource DetailGradientColor1}" />
+                                            Value="{StaticResource DetailGradientColor2}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                                
+
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <ContentPresenter />
                     </Border>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

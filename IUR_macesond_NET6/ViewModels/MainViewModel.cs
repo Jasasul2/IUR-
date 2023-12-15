@@ -20,32 +20,53 @@ namespace IUR_macesond_NET6.ViewModels
 
         public UserSettingsViewModel UserSettings { get; set; } = new UserSettingsViewModel();
 
+        #region LevelProperties
+        private int _currentLevel;
+        private int _currentXP;
+        private int _nextLevelXP;
 
-    //    //public ObservableCollection<WeatherCardViewModel> WeatherCards { get; set; } = new ObservableCollection<WeatherCardViewModel>();
-    //    private RelayCommand _AddTaskCommand;
-    //    public RelayCommand AddTaskCommand
-    //    {
-    //        get { return _AddTaskCommand ?? (_AddTaskCommand = new RelayCommand(AddTask, AddTaskCanExecute)); }
-    //    }
+        public int CurrentLevel
+        {
+            get => _currentLevel;
+            set => SetProperty(ref _currentLevel, value);
+        }
 
-    //    private void AddTask(object obj)
-    //    {
-    //        //WeatherCards.Add(new WeatherCardViewModel(this, CityToBeAdded));
-    //        //CityToBeAdded = "";
-    //    }
+        public int CurrentXP
+        {
+            get => _currentXP;
+            set => SetProperty(ref _currentXP, value);
+        }
 
-    //    private bool AddTaskCanExecute(object obj)
-    //    {
-    //        return true;
-    //    }
+        public int NextLevelXP
+        {
+            get => _nextLevelXP;
+            set => SetProperty(ref _nextLevelXP, value);
+        }
+        #endregion
 
-    //    public MainViewModel()
-    //    {
-    //        //WeatherCards.Add(new WeatherCardViewModel(this, "Praha"));
-    //        //WeatherCards.Add(new WeatherCardViewModel(this, "Brno"));
-    //        //WeatherCards.Add(new WeatherCardViewModel(this, "Ostrava"));
-    //        //WeatherCards.Add(new WeatherCardViewModel(this, "Jihlava"));
-    //        //WeatherCards.Add(new WeatherCardViewModel(this, "Rakovník"));
-    //    }
+        //    //public ObservableCollection<WeatherCardViewModel> WeatherCards { get; set; } = new ObservableCollection<WeatherCardViewModel>();
+        //    private RelayCommand _AddTaskCommand;
+        //    public RelayCommand AddTaskCommand
+        //    {
+        //        get { return _AddTaskCommand ?? (_AddTaskCommand = new RelayCommand(AddTask, AddTaskCanExecute)); }
+        //    }
+
+        //    private void AddTask(object obj)
+        //    {
+        //        //WeatherCards.Add(new WeatherCardViewModel(this, CityToBeAdded));
+        //        //CityToBeAdded = "";
+        //    }
+
+        //    private bool AddTaskCanExecute(object obj)
+        //    {
+        //        return true;
+        //    }
+
+        public MainViewModel()
+        {
+            CurrentLevel = 5;
+            CurrentXP = 32;
+            NextLevelXP = 100;
+        }
     }
 }

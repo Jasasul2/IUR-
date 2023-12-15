@@ -17,29 +17,6 @@ namespace IUR_macesond_NET6.ViewModels
 {
     internal class UserSettingsViewModel : ViewModelBase
     {
-        #region LevelProperties
-        private int _currentLevel;
-        private int _currentXP;
-        private int _nextLevelXP;
-
-        public int CurrentLevel
-        {
-            get => _currentLevel;
-            set => SetProperty(ref _currentLevel, value);
-        }
-
-        public int CurrentXP
-        {
-            get => _currentXP;
-            set => SetProperty(ref _currentXP, value);
-        }
-
-        public int NextLevelXP
-        {
-            get => _nextLevelXP;
-            set => SetProperty(ref _nextLevelXP, value);
-        }
-        #endregion
 
         #region SimplifiedMode
         private bool _simplifiedMode;
@@ -164,9 +141,6 @@ namespace IUR_macesond_NET6.ViewModels
 
         public UserSettingsViewModel()
         {
-            CurrentLevel = 5;
-            CurrentXP = 32;
-            NextLevelXP = 100;
             SimplifiedMode = false;
             CurrentLanguage = Language.English;
             CurrentNotificationType = NotificationType.Sound;

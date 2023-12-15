@@ -47,7 +47,7 @@
             </VisualStateManager.VisualStateGroups>
 
             <!--The Dropdown border-->
-            <Border x:Name="Border"
+            <Border x:Name="Border" Style="{StaticResource ShadowBorder}"
             Grid.ColumnSpan="2"
             CornerRadius="5"
             BorderThickness="0">
@@ -60,7 +60,8 @@
             </Border>
             
             <!--The white border-->
-            <Border Grid.Column="0"
+            <Border 
+              Grid.Column="0"
             CornerRadius="5"
             Margin="0" >
                 <Border.Background>
@@ -171,7 +172,7 @@
                                   SnapsToDevicePixels="True"
                                   MinWidth="{TemplateBinding ActualWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border x:Name="DropDownBorder"
+                                <Border x:Name="DropDownBorder" Style="{StaticResource ShadowBorder}"
                       BorderThickness="0">
                                     <Border.Background>
                                         <SolidColorBrush Color="White" />
@@ -223,7 +224,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                    <Border x:Name="Border"
+                    <Border x:Name="Border" Style="{StaticResource ShadowBorder}"
                 Padding="2"
                 CornerRadius="5"
                 SnapsToDevicePixels="true"

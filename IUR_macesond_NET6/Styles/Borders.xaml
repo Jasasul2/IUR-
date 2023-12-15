@@ -27,6 +27,12 @@
             </Setter.Value>
         </Setter>
 
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" Opacity="0.15"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="ForegroundBorderStyle" TargetType="Border">
@@ -56,6 +62,11 @@
             </Setter.Value>
         </Setter>
 
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" Opacity="0.15"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="DetailBorderStyle" TargetType="Border">
@@ -84,6 +95,47 @@
             </Setter.Value>
         </Setter>
 
+    </Style>
+
+    <Style x:Key="DetailBorderStyleShaded" TargetType="Border">
+
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="10,10,10,10"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="0"/>
+                    <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="0"/>
+                    <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" Opacity="0.15"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ShadowBorder" TargetType="Border">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" Opacity="0.15"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 

@@ -13,7 +13,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border Background="{TemplateBinding Background}"
+                    <Border Style="{StaticResource ShadowBorder}" Background="{TemplateBinding Background}"
                                 CornerRadius="5">
                         <ScrollViewer x:Name="PART_ContentHost"/>
                     </Border>

@@ -22,7 +22,7 @@
     
     <!--Button Colors-->
     <Color x:Key="ButtonNormalGC1">#BD5E5E</Color>
-    <SolidColorBrush x:Key="ButtonNormalBrush" Color="#BD5E5E"/>
+    <SolidColorBrush x:Key="ButtonNormalBrush" Color="{StaticResource ButtonNormalGC1}"/>
     
     <Color x:Key="ButtonNormalGC2">#BD5E5E</Color>
 

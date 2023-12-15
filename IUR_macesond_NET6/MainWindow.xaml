@@ -33,7 +33,7 @@
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource TextColor}" Offset="0"/>
                 <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource BackgroundGradientColor1}" Offset="1"/>
+                <GradientStop Color="{StaticResource BackgroundGradientColor2}" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
 
@@ -41,7 +41,7 @@
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource TextColor}" Offset="0"/>
                 <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource BackgroundGradientColor1}" Offset="1"/>
+                <GradientStop Color="{StaticResource BackgroundGradientColor2}" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
 
@@ -142,7 +142,8 @@
 
                                 </StackPanel>
 
-                                <ProgressBar x:Name="EXPProgressBar" Height="25" Width="662" Margin="10, 4, 10, 20" HorizontalAlignment="Center" Background="#fff9e8" Foreground="{StaticResource DarkerTextColorBrush}" Value="67"/>
+                                <ProgressBar x:Name="EXPProgressBar" Style="{StaticResource RoundProgressBarStyle}"
+                                             Height="25" Width="630" Margin="10, 4, 10, 20" Value="67"/>
                             </StackPanel>
                         </Border>
 

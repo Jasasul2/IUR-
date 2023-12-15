@@ -6,8 +6,9 @@
         <Setter Property="Foreground" Value="{StaticResource DarkerTextColorBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="5"/>
-        <Setter Property="Width" Value="285"/>
+        <Setter Property="Width" Value="287"/>
         <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
 
         <Setter Property="Template">
             <Setter.Value>

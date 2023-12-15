@@ -129,11 +129,11 @@
                         <StackPanel Orientation="Horizontal">
 
                             <TextBlock Name="LevelTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
-                                       FontSize="22" Foreground="#FF4A4A4A" Margin="12,20,195,0" FontWeight="Bold"
+                                       FontSize="22" Foreground="{StaticResource DarkerTextColorBrush}" Margin="12,20,195,0" FontWeight="Bold"
                                        Text="{Binding CurrentLevel, Converter={StaticResource LevelConverter}}"
                                        />
 
-                            <TextBlock Name="EXPTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="#FF4A4A4A" Margin="0,20,0,0" FontWeight="Bold">
+                            <TextBlock Name="EXPTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="{StaticResource DarkerTextColorBrush}" Margin="0,20,0,0" FontWeight="Bold">
                                 <TextBlock.Text>
                                     <MultiBinding Converter="{StaticResource XPTextConverter}">
                                         <Binding Path="CurrentXP"/>
@@ -216,8 +216,8 @@
                                     <Label Name="LanguageLabel" Content="Language:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" 
                                             Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="90,0,0,0" FontWeight="Normal"/>
 
-                                    <ComboBox Name="LanguageComboBox" FontSize="18" Grid.Column="3" Grid.Row="3" 
-                                            VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal"
+                                    <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="3"
+                                            VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal" VerticalContentAlignment="Center"
                                             ItemsSource="{Binding UserSettings.LanguageArray}"
                                             SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay}">
                                     </ComboBox>
@@ -320,7 +320,7 @@
                         <Label Name="TaskNoteLabel" Content="Task note:" Height="40" Width="100" VerticalContentAlignment="Center" 
                                    Grid.Row="5" Grid.Column="0" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
 
-                        <TextBox x:Name="NoteTextBox" Text="Enter a task note:" Style="{StaticResource RoundTextBoxStyle}" 
+                        <TextBox x:Name="NoteTextBox" Text="Enter a task note" Style="{StaticResource RoundTextBoxStyle}" 
                                  TextWrapping="Wrap" FontSize="16"
                                  Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,9,27,20" />
                     </Grid>

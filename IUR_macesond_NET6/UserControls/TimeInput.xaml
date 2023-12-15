@@ -19,8 +19,8 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        
-        <TextBlock x:Name="DoublePointTextBlock" Text=":" Background="White" Margin="-1,0,-1,0"
+
+        <TextBlock x:Name="DoublePointTextBlock" Text=":" Background="White" Foreground="{StaticResource DarkerTextColorBrush}" Margin="-1,0,-1,0"
             VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="7" Padding="0,7"/>
 
         <TextBox x:Name="MinutesTextBox" Style="{StaticResource TimeTextBoxRightStyle}">

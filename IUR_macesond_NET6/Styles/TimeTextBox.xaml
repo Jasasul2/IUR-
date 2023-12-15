@@ -4,7 +4,7 @@
     <!--TIME TEXT BOX LEFT STYLE-->
     <Style x:Key="TimeTextBoxLeftStyle" TargetType="TextBox">
         <Setter Property="Background" Value="White"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkerTextColorBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -35,7 +35,7 @@
     <!--TIME TEXT BOX Right STYLE-->
     <Style x:Key="TimeTextBoxRightStyle" TargetType="TextBox">
         <Setter Property="Background" Value="White"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkerTextColorBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>

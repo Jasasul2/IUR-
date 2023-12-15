@@ -16,7 +16,9 @@
     <Color x:Key="DetailGradientColor2">#F6DBAD</Color>
 
     <!--Text Gradient Colors-->
-    <Color x:Key="TextColor">#fcfbed</Color>
+    <Color x:Key="TextColor">#FCFBED</Color>
+    <Color x:Key="DarkerTextColor">#FF4A4A4A</Color>
+    <SolidColorBrush x:Key="DarkerTextColorBrush" Color="#FF4A4A4A"/>
     
     <!--Button Colors-->
     <Color x:Key="ButtonNormalGC1">#BD5E5E</Color>
@@ -27,6 +29,8 @@
 
     <Color x:Key="ButtonSelectedGC1">#E2C799</Color>
     <Color x:Key="ButtonSelectedGC2">#E2C799</Color>
+    
+    
 
 
 </ResourceDictionary>

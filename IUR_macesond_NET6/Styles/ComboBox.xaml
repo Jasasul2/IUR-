@@ -67,13 +67,13 @@
                     <SolidColorBrush Color="White"/>
                 </Border.Background>
             </Border>
-            
+
             <Path x:Name="Arrow"
-          Grid.Column="1"
-          HorizontalAlignment="Center"
-          VerticalAlignment="Center"
-          Data="M 0 0 L 4 4 L 8 0 Z" >
-          <!--Arrow Icon Drawing--> 
+                  Grid.Column="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Data="M 0 0 L 4 4 L 8 0 Z" >
+                <!--Arrow Icon Drawing--> 
                 <Path.Fill>
                     <SolidColorBrush Color="White"/>
                 </Path.Fill>
@@ -142,6 +142,7 @@
                                 <VisualState x:Name="Uneditable" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        
                         <ToggleButton x:Name="ToggleButton"
                         Template="{StaticResource ComboBoxToggleButton}"
                         Grid.Column="2"
@@ -149,35 +150,27 @@
                         ClickMode="Press"
                         IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
               RelativeSource={RelativeSource TemplatedParent}}"/>
+                        
                         <ContentPresenter x:Name="ContentSite"
                             IsHitTestVisible="False"
                             Content="{TemplateBinding SelectionBoxItem}"
                             ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                             ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                            Margin="3,3,23,3"
-                            VerticalAlignment="Stretch"
+                            Margin="10,3,3,3"
+                            VerticalAlignment="Center"
                             HorizontalAlignment="Left">
                         </ContentPresenter>
-                        <TextBox x:Name="PART_EditableTextBox"
-                   Style="{x:Null}"
-                   Template="{StaticResource ComboBoxTextBox}"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Bottom"
-                   Margin="3,3,23,3"
-                   Focusable="True"
-                   Background="Transparent"
-                   Visibility="Hidden"
-                   IsReadOnly="{TemplateBinding IsReadOnly}" />
+
                         <Popup x:Name="Popup"
-                 Placement="Bottom"
-                 IsOpen="{TemplateBinding IsDropDownOpen}"
-                 AllowsTransparency="True"
-                 Focusable="False"
-                 PopupAnimation="Slide">
+                             Placement="Bottom"
+                             IsOpen="{TemplateBinding IsDropDownOpen}"
+                             AllowsTransparency="True"
+                             Focusable="False"
+                             PopupAnimation="Fade">
                             <Grid x:Name="DropDown"
-                  SnapsToDevicePixels="True"
-                  MinWidth="{TemplateBinding ActualWidth}"
-                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                  SnapsToDevicePixels="True"
+                                  MinWidth="{TemplateBinding ActualWidth}"
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                 <Border x:Name="DropDownBorder"
                       BorderThickness="0">
                                     <Border.Background>
@@ -192,6 +185,7 @@
                             </Grid>
                         </Popup>
                     </Grid>
+                    
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasItems"
                    Value="false">

@@ -79,7 +79,7 @@
 
                             <Setter Property="Foreground">
                                 <Setter.Value>
-                                    <SolidColorBrush Color="Black"/>
+                                    <SolidColorBrush Color="{StaticResource DarkerTextColor}"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

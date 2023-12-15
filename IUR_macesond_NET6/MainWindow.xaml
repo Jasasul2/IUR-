@@ -191,7 +191,8 @@
                                     <Label Name="SimplifiedModeLabel" Content="Simplified mode:" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" 
                                             Grid.Column="1" HorizontalContentAlignment="Right" Grid.ColumnSpan="2" Margin="44,0,0,0" FontWeight="Normal"/>
 
-                                    <CheckBox Name="SimplifiedModeCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="2" Margin="71,0,0,0"
+                                    <CheckBox Name="SimplifiedModeCheckBox"
+                                            Grid.Column="2" Grid.ColumnSpan="2" Margin="71,0,0,0"
                                             IsChecked="{Binding UserSettings.SimplifiedMode, Mode=TwoWay}"/>
 
 

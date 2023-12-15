@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\App.xaml
-8-366650749
+91283262751
 
 17625053731
 194-1977528901
-MainWindow.xaml;Styles\Borders.xaml;Styles\ComboBox.xaml;Styles\TabControl.xaml;Styles\TextBox.xaml;Styles\TimeTextBox.xaml;Styles\UIColors.xaml;UserControls\TimeInput.xaml;
+MainWindow.xaml;Styles\Borders.xaml;Styles\Button.xaml;Styles\ComboBox.xaml;Styles\TabControl.xaml;Styles\TextBox.xaml;Styles\TimeTextBox.xaml;Styles\UIColors.xaml;UserControls\TimeInput.xaml;
 
-True
+False
 

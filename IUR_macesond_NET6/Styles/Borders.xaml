@@ -69,7 +69,7 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource DetailGradientColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="0"/>
                     <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
@@ -78,7 +78,7 @@
         <Setter Property="BorderBrush">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource DetailGradientColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="0"/>
                     <GradientStop Color="{StaticResource DetailGradientColor2}" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>

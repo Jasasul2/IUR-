@@ -69,6 +69,12 @@
                                 </Setter.Value>
                             </Setter>
 
+                            <Setter TargetName="Border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black" Opacity="0.0"/>
+                                </Setter.Value>
+                            </Setter>
+                            
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>

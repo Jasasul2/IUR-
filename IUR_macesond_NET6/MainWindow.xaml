@@ -116,7 +116,7 @@
 
                             <!-- Second Stack Panel Row = Sorting buttons -->
                             <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0">
-                                <Label Name="SortLabel" Content="Sort by:" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
+                                <Label Name="SortLabel" Content="{Binding LocalizedText.SortByLabel}" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
                                 <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5" Command="{Binding AddXPCommand}"/>
                                 <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5"/>
                                 <Button Name="RandomSortButton" Content="{Binding LocalizedText.RandomButton}" Margin="5,5,5,5"/>
@@ -193,8 +193,8 @@
                                     <Label Name="SimplifiedModeLabel" Content="{Binding LocalizedText.LanguageLabel, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="59,0,0,0" FontWeight="Normal" Width="231" Grid.ColumnSpan="2"/>
 
                                     <CheckBox Name="SimplifiedModeCheckBox"
-                                            Grid.Column="2" Grid.ColumnSpan="2" Margin="71,0,0,0"
-                                            IsChecked="{Binding UserSettings.SimplifiedMode, Mode=TwoWay}"/>
+                                            Grid.Column="3" Margin="0,0,0,0"
+                                            IsChecked="{Binding UserSettings.SimplifiedMode, Mode=TwoWay}" Width="30"/>
 
 
                                     <!-- Productive part of the day start -->
@@ -267,19 +267,19 @@
 
                         <!-- First row: Task editor Label and save and reset buttons -->
                         <Border x:Name="TaskEditorLabelBorder" Style="{StaticResource ForegroundBorderStyle}" Padding="0" Margin="5,0,5,0" VerticalAlignment="Center" Height="50" HorizontalAlignment="Stretch">
-                            <Label x:Name="TaskEditorLabel" Content="Task Editor" Margin="0" 
+                            <Label x:Name="TaskEditorLabel" Content="{Binding LocalizedText.TaskEditorTitle}" Margin="0" 
                                 VerticalContentAlignment="Center" FontSize="24" Foreground="White"
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
                         </Border>
 
-                        <Button x:Name="SaveTaskButton" Content="Save" Width="80"
+                        <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80"
                                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
-                        <Button x:Name="ResetTaskButton" Content="Reset" Width="80" 
+                        <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80" 
                                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3"/>
 
                         <!-- Second row: Task Name -->
-                        <Label Name="TaskNameLabel" Content="Task name:" Width="120" VerticalContentAlignment="Center"
-                                Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Grid.RowSpan="2" Margin="184,0,0,0"/>
+                        <Label Name="TaskNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="251" VerticalContentAlignment="Center"
+                                Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Grid.RowSpan="2" Margin="53,0,0,0"/>
 
                         <TextBox Name="TaskNameTextBox" Style="{StaticResource RoundTextBoxStyle}" 
                                  Height="40" Text="Enter a task name"
@@ -288,8 +288,8 @@
                                  Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2"/>
 
                         <!-- Third row: Task Difficulty  -->
-                        <Label Name="TaskDifficultyLabel" Content="Task difficulty:" Width="152"
-                                Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="152,0,0,0"/>
+                        <Label Name="TaskDifficultyLabel" Content="{Binding LocalizedText.TaskEditorDifficultyLabel}" Width="251"
+                                Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="53,0,0,0"/>
 
                         <RadioButton Name="SetMediumDifficultyRB" Content="Easy" 
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource EasyColorBrush}"
@@ -304,8 +304,8 @@
                                 Grid.Column="5" Grid.Row="3" Margin="-100,0,0,0" Grid.ColumnSpan="2"/>
 
                         <!-- Third row: Task Timers  -->
-                        <Label Name="TaskNotificationLabel" Content="Task notification times:" Width="234" VerticalContentAlignment="Center"
-                                Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="70,0,0,0"/>
+                        <Label Name="TaskNotificationLabel" Content="{Binding LocalizedText.TaskEditorNotificationTimesLabel}" Width="270" VerticalContentAlignment="Center"
+                                Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="34,0,0,0"/>
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput1"
                                             Grid.Column="3" Grid.Row="4"
@@ -323,8 +323,8 @@
                                             Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!-- Fourth Row: Task Note -->
-                        <Label Name="TaskNoteLabel" Content="Task note:" Height="40" Width="133" VerticalContentAlignment="Center" 
-                                   Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="171,9,0,8"/>
+                        <Label Name="TaskNoteLabel" Content="{Binding LocalizedText.TaskEditorNoteLabel}" Height="40" Width="304" VerticalContentAlignment="Center" 
+                                   Grid.Row="5" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Margin="0,9,0,8"/>
 
                         <TextBox x:Name="NoteTextBox" Text="Enter a task note" Style="{StaticResource RoundTextBoxStyle}" 
                                  TextWrapping="Wrap" FontSize="16"

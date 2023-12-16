@@ -63,6 +63,8 @@ namespace IUR_macesond_NET6.ViewModels
         private string _alphabetButton = "Alphabet";
         private string _difficultyButton = "Difficulty";
         private string _randomButton = "Random";
+        private string _saveButton = "Save";
+        private string _resetButton = "Reset";
 
         public string TaskLibraryButton
         {
@@ -111,6 +113,73 @@ namespace IUR_macesond_NET6.ViewModels
             get => _randomButton;
             set => SetProperty(ref _randomButton, value);
         }
+
+        public string SaveButton
+        {
+            get => _saveButton;
+            set => SetProperty(ref _saveButton, value);
+        }
+
+        public string ResetButton
+        {
+            get => _resetButton;
+            set => SetProperty(ref _resetButton, value);
+        }
+
+        #endregion
+
+
+        #region TaskEditorLabels
+
+        private string _taskEditorTitle = "Task Editor";
+        private string _taskEditorNameLabel = "Task name:";
+        private string _taskEditorDifficultyLabel = "Task difficulty:";
+        private string _taskEditorNotificationTimesLabel = "Task notification times:";
+        private string _taskEditorNoteLabel = "Task note:";
+
+        
+        public string TaskEditorTitle
+        {
+            get => _taskEditorTitle;
+            set => SetProperty(ref _taskEditorTitle, value);
+        }
+
+        public string TaskEditorNameLabel
+        {
+            get => _taskEditorNameLabel;
+            set => SetProperty(ref _taskEditorNameLabel, value);
+        }
+
+        public string TaskEditorDifficultyLabel
+        {
+            get => _taskEditorDifficultyLabel;
+            set => SetProperty(ref _taskEditorDifficultyLabel, value);
+        }
+
+        public string TaskEditorNotificationTimesLabel
+        {
+            get => _taskEditorNotificationTimesLabel;
+            set => SetProperty(ref _taskEditorNotificationTimesLabel, value);
+        }
+
+        public string TaskEditorNoteLabel
+        {
+            get => _taskEditorNoteLabel;
+            set => SetProperty(ref _taskEditorNoteLabel, value);
+        }
+
+        #endregion
+
+        #region OtherLabels
+
+        private string _sortByLabel = "Sort by:";
+
+        public string SortByLabel
+        {
+            get => _sortByLabel;
+            set => SetProperty(ref _sortByLabel, value);
+        }
+
         #endregion
 
         public void SetLanguage(UserSettingsViewModel.Language newLanguage)
@@ -132,6 +201,17 @@ namespace IUR_macesond_NET6.ViewModels
                     AlphabetButton = "Alphabet";
                     DifficultyButton = "Difficulty";
                     RandomButton = "Random";
+                    SaveButton = "Save";
+                    ResetButton = "Reset";
+
+                    TaskEditorTitle = "Task Editor";
+                    TaskEditorNameLabel = "Task name:";
+                    TaskEditorDifficultyLabel = "Task difficulty:";
+                    TaskEditorNotificationTimesLabel = "Task notification times:";
+                    TaskEditorNoteLabel = "Task note:";
+
+                    SortByLabel = "Sort by:";
+
                     break;
 
                 case UserSettingsViewModel.Language.Czech:
@@ -146,9 +226,20 @@ namespace IUR_macesond_NET6.ViewModels
                     SettingsButton = "Nastavení";
                     PreviousButton = "Předchozí";
                     NextButton = "Další";
-                    AlphabetButton = "Abeceda";
-                    DifficultyButton = "Obtížnost";
+                    AlphabetButton = "Abecedy";
+                    DifficultyButton = "Obtížnosti";
                     RandomButton = "Náhodně";
+                    SaveButton = "Uložit";
+                    ResetButton = "Reset";
+
+                    TaskEditorTitle = "Editor úkolů";
+                    TaskEditorNameLabel = "Název úkolu:";
+                    TaskEditorDifficultyLabel = "Obtížnost úkolu:";
+                    TaskEditorNotificationTimesLabel = "Časy upozornění:";
+                    TaskEditorNoteLabel = "Poznámka k úkolu:";
+
+                    SortByLabel = "Řadit dle:";
+
                     break;
             }
         }

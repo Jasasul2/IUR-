@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using IUR_macesond_NET6.Converters;
 
 
 namespace IUR_macesond_NET6.ViewModels
@@ -39,23 +40,20 @@ namespace IUR_macesond_NET6.ViewModels
             English
         }
 
-        public enum LanguageCZ
+        private ObservableCollection<string> _languageComboBoxCollection;
+        public ObservableCollection<string> LanguageComboBoxCollection
         {
-            Čeština,
-            Angličtina
+            get { return _languageComboBoxCollection; }
+            set
+            {
+                _languageComboBoxCollection = value;
+                OnPropertyChanged(nameof(_languageComboBoxCollection));
+            }
         }
 
-        public Array LanguageArray
+        public string[] LanguageArray
         {
-            get
-            {
-                if (CurrentLanguage == Language.Czech)
-                {
-                    return Enum.GetValues(typeof(LanguageCZ));
-                }
-
-                return Enum.GetValues(typeof(Language)); 
-            }
+            get { return Enum.GetNames(typeof(Language)); }
         }
 
         private Language _currentLanguage;
@@ -65,10 +63,27 @@ namespace IUR_macesond_NET6.ViewModels
             get => _currentLanguage;
             set {  
                 SetProperty(ref _currentLanguage, value);
+                CurrentLanguageString = value.ToString();
+                Translator.CurrentLanguage = value;
+
+                // This is some serious spaghetti code, but it works
+                LanguageComboBoxCollection = new ObservableCollection<string>(LanguageComboBoxCollection);
+                NotificationComboBoxCollection = new ObservableCollection<string>(NotificationComboBoxCollection);
+
                 if (_mainViewModelReference.LocalizedText!= null)
                 {
                     _mainViewModelReference.LocalizedText.SetLanguage(value);
                 }
+            }
+        }
+
+        private string _currentLanguageString;
+        public string CurrentLanguageString
+        {
+            get => _currentLanguageString;
+            set
+            {
+                SetProperty(ref _currentLanguageString, value);
             }
         }
 
@@ -83,25 +98,21 @@ namespace IUR_macesond_NET6.ViewModels
             None
         }
 
-        public enum NotificationTypeCZ
+        private ObservableCollection<string> _notificationComboBoxCollection;
+
+        public ObservableCollection<string> NotificationComboBoxCollection
         {
-            Zvuk,
-            Text,
-            Oboje,
-            Žádné
+            get { return _notificationComboBoxCollection; }
+            set
+            {
+                _notificationComboBoxCollection = value;
+                OnPropertyChanged(nameof(_notificationComboBoxCollection));
+            }
         }
 
-        public Array NotificationTypeArray
+        public string[] NotificationTypeArray
         {
-            get 
-            { 
-                if(CurrentLanguage == Language.Czech)
-                {
-                    return Enum.GetValues(typeof(NotificationTypeCZ));
-                }   
-
-                return Enum.GetValues(typeof(NotificationType)); 
-            }
+            get { return Enum.GetNames(typeof(NotificationType)); }
         }
 
         private NotificationType _currentNotificationType;
@@ -182,6 +193,10 @@ namespace IUR_macesond_NET6.ViewModels
         public UserSettingsViewModel(MainViewModel mainViewModelReference)
         {
             _mainViewModelReference = mainViewModelReference;
+
+            // Setting up the comboBox collections 
+            LanguageComboBoxCollection = new ObservableCollection<string>(LanguageArray);
+            NotificationComboBoxCollection = new ObservableCollection<string>(NotificationTypeArray);
 
             SimplifiedMode = false;
             CurrentLanguage = Language.English;

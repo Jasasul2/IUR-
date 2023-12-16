@@ -19,6 +19,7 @@ namespace IUR_macesond_NET6.Converters
             return string.Empty;
         }
 
+
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

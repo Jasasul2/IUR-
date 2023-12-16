@@ -20,6 +20,9 @@
     <Window.Resources>
         <converters:XPTextConverter x:Key="XPTextConverter"/>
         <converters:LevelConverter x:Key="LevelConverter"/>
+        <converters:EnumStringsTranslationConvertor x:Key="EnumStringsTranslationConvertor"/>
+        <converters:LanguageEnumToStringConverter x:Key="LanguageEnumToStringConverter"/>
+        <converters:NotificationEnumToStringConverter x:Key="NotificationEnumToStringConverter"/>
     </Window.Resources>
 
     <!--window data context -->
@@ -225,8 +228,8 @@
 
                                     <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="3"
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal" VerticalContentAlignment="Center"
-                                            ItemsSource="{Binding UserSettings.LanguageArray, UpdateSourceTrigger=PropertyChanged}"
-                                            SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay}">
+                                            SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay, Converter={StaticResource LanguageEnumToStringConverter}}"
+                                            ItemsSource ="{Binding UserSettings.LanguageComboBoxCollection, Converter={StaticResource EnumStringsTranslationConvertor}, Mode=TwoWay}">
                                     </ComboBox>
 
                                     <!-- Notification type -->
@@ -234,8 +237,8 @@
 
                                     <ComboBox Name="NotificationComboBox" FontSize="18" Grid.Column="3" Grid.Row="4" 
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal"
-                                            ItemsSource="{Binding UserSettings.NotificationTypeArray, UpdateSourceTrigger=PropertyChanged}"
-                                            SelectedValue="{Binding UserSettings.CurrentNotificationType, Mode=TwoWay}">
+                                            SelectedValue="{Binding UserSettings.CurrentNotificationType, Mode=TwoWay, Converter={StaticResource NotificationEnumToStringConverter}}"
+                                            ItemsSource ="{Binding UserSettings.NotificationComboBoxCollection, Converter={StaticResource EnumStringsTranslationConvertor}, Mode=TwoWay}">
                                     </ComboBox>
                                 </Grid>
                             </Border>

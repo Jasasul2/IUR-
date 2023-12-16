@@ -34,8 +34,10 @@
 
     <SolidColorBrush x:Key="ButtonHoveredBrush" Color="#E2C799"/>
     <SolidColorBrush x:Key="ButtonSelectedBrush" Color="#F6DBAD"/>
-
-
-
+    
+    <!--Difficulty Colors-->
+    <SolidColorBrush x:Key="EasyColorBrush" Color="#b1ed8a"/>
+    <SolidColorBrush x:Key="MediumColorBrush" Color="#edc08a"/>
+    <SolidColorBrush x:Key="HardColorBrush" Color="#ed8a8a"/>
 
 </ResourceDictionary>

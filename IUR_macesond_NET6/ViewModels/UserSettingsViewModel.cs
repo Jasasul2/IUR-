@@ -38,9 +38,24 @@ namespace IUR_macesond_NET6.ViewModels
             Czech,
             English
         }
+
+        public enum LanguageCZ
+        {
+            Čeština,
+            Angličtina
+        }
+
         public Array LanguageArray
         {
-            get { return Enum.GetValues(typeof(Language)); }
+            get
+            {
+                if (CurrentLanguage == Language.Czech)
+                {
+                    return Enum.GetValues(typeof(LanguageCZ));
+                }
+
+                return Enum.GetValues(typeof(Language)); 
+            }
         }
 
         private Language _currentLanguage;
@@ -67,9 +82,26 @@ namespace IUR_macesond_NET6.ViewModels
             Both,
             None
         }
+
+        public enum NotificationTypeCZ
+        {
+            Zvuk,
+            Text,
+            Oboje,
+            Žádné
+        }
+
         public Array NotificationTypeArray
         {
-            get { return Enum.GetValues(typeof(NotificationType)); }
+            get 
+            { 
+                if(CurrentLanguage == Language.Czech)
+                {
+                    return Enum.GetValues(typeof(NotificationTypeCZ));
+                }   
+
+                return Enum.GetValues(typeof(NotificationType)); 
+            }
         }
 
         private NotificationType _currentNotificationType;

@@ -10,11 +10,9 @@ namespace IUR_macesond_NET6.Converters
         {
             if (values.Length == 2 && values[0] != null && values[1] != null)
             {
-                // Assuming the first value is a string and the second is a decimal
                 string currentXP = values[0].ToString();
                 string nextLevelXP = values[1].ToString();
 
-                // Format them together
                 return $"{currentXP}/{nextLevelXP} XP";
             }
 

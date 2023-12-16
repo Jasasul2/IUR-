@@ -22,7 +22,7 @@
         <converters:LevelConverter x:Key="LevelConverter"/>
     </Window.Resources>
 
-    <!--window data context MISSING -->
+    <!--window data context -->
     <Window.DataContext>
         <viewModels:MainViewModel/>
     </Window.DataContext>
@@ -128,10 +128,14 @@
                                 <StackPanel Orientation="Horizontal" Margin="0,-7,0,0">
 
                                     <TextBlock x:Name="LevelTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
-                                           FontSize="22" Foreground="{StaticResource DarkerTextColorBrush}" Margin="12,20,195,0" FontWeight="Bold"
-                                           Text="{Binding CurrentLevel, Converter={StaticResource LevelConverter}}"
-                                           />
-
+                                           FontSize="22" Foreground="{StaticResource DarkerTextColorBrush}" Margin="12,20,195,0" FontWeight="Bold">
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource LevelConverter}">
+                                                <Binding Path="CurrentLevel"/>
+                                                <Binding Path="LocalizedText.LevelLabel"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
                                     <TextBlock x:Name="EXPTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="22" Foreground="{StaticResource DarkerTextColorBrush}" Margin="0,20,0,0" FontWeight="Bold">
                                         <TextBlock.Text>
                                             <MultiBinding Converter="{StaticResource XPTextConverter}">
@@ -221,7 +225,7 @@
 
                                     <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="3"
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal" VerticalContentAlignment="Center"
-                                            ItemsSource="{Binding UserSettings.LanguageArray}"
+                                            ItemsSource="{Binding UserSettings.LanguageArray, UpdateSourceTrigger=PropertyChanged}"
                                             SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay}">
                                     </ComboBox>
 
@@ -230,7 +234,7 @@
 
                                     <ComboBox Name="NotificationComboBox" FontSize="18" Grid.Column="3" Grid.Row="4" 
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal"
-                                            ItemsSource="{Binding UserSettings.NotificationTypeArray}"
+                                            ItemsSource="{Binding UserSettings.NotificationTypeArray, UpdateSourceTrigger=PropertyChanged}"
                                             SelectedValue="{Binding UserSettings.CurrentNotificationType, Mode=TwoWay}">
                                     </ComboBox>
                                 </Grid>

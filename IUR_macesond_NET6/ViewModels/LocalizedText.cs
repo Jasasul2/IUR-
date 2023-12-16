@@ -173,11 +173,18 @@ namespace IUR_macesond_NET6.ViewModels
         #region OtherLabels
 
         private string _sortByLabel = "Sort by:";
+        private string _levelLabel = "Level";
 
         public string SortByLabel
         {
             get => _sortByLabel;
             set => SetProperty(ref _sortByLabel, value);
+        }
+
+        public string LevelLabel
+        {
+            get => _levelLabel;
+            set => SetProperty(ref _levelLabel, value);
         }
 
         #endregion
@@ -211,6 +218,7 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorNoteLabel = "Task note:";
 
                     SortByLabel = "Sort by:";
+                    LevelLabel = "Level";
 
                     break;
 
@@ -239,6 +247,7 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorNoteLabel = "Poznámka k úkolu:";
 
                     SortByLabel = "Řadit dle:";
+                    LevelLabel = "Úroveň";
 
                     break;
             }

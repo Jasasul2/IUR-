@@ -21,6 +21,33 @@ namespace IUR_macesond_NET6.ViewModels
 
         public UserSettingsViewModel UserSettings { get; set; } = new UserSettingsViewModel();
 
+        #region DateBinding
+
+        private DateOnly _selectedDate;
+        public DateOnly SelectedDate
+        {
+            get => _selectedDate;
+            set => SetProperty(ref _selectedDate, value);
+        }
+
+        public String SelectedDateString
+        {
+            get => SelectedDate.ToString();
+            set
+            {
+                if (DateOnly.TryParse(value, out DateOnly date))
+                {
+                    SelectedDate = date;
+                }
+                else
+                {
+                    SelectedDate = DateOnly.FromDateTime(DateTime.Now);
+                }
+            }
+        }
+
+        #endregion
+
         #region XPAndLevelProperties
         private readonly int XP_LEVEL_INCREASER = 5;
 
@@ -65,6 +92,10 @@ namespace IUR_macesond_NET6.ViewModels
 
         public MainViewModel()
         {
+            // Date Init
+            SelectedDate = DateOnly.FromDateTime(DateTime.Now);
+
+            // XP Init
             CurrentLevel = 1;
             CurrentXP = 5;
             NextLevelXP = 10;

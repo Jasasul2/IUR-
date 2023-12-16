@@ -116,7 +116,7 @@
                             <!-- Second Stack Panel Row = Sorting buttons -->
                             <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0">
                                 <Label Name="SortLabel" Content="Sort by:" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
-                                <Button Name="AlphabetSortButton" Content="Alphabet" Margin="0,5,5,5"/>
+                                <Button Name="AlphabetSortButton" Content="Alphabet" Margin="0,5,5,5" Command="{Binding AddXPCommand}"/>
                                 <Button Name="DifficultySortButton" Content="Difficulty" Margin="5,5,5,5"/>
                                 <Button Name="RandomSortButton" Content="Random" Margin="5,5,5,5"/>
                             </StackPanel>
@@ -143,7 +143,8 @@
                                 </StackPanel>
 
                                 <ProgressBar x:Name="EXPProgressBar" Style="{StaticResource RoundProgressBarStyle}"
-                                             Height="25" Width="630" Margin="10, 4, 10, 20" Value="67"/>
+                                             Height="25" Width="630" Margin="10, 4, 10, 20" Value="{Binding CurrentXP}"
+                                             Maximum="{Binding NextLevelXP}"/>
                             </StackPanel>
                         </Border>
 

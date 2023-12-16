@@ -247,7 +247,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="19*"/>
                             <RowDefinition Height="12*"/>
-                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="20.842"/>
                             <RowDefinition Height="19*"/>
                             <RowDefinition Height="19*"/>
                             <RowDefinition Height="19*"/>
@@ -264,8 +264,9 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- First row: Task editor Label and save and reset buttons -->
-                        <Border x:Name="TaskEditorLabelBorder" Style="{StaticResource HeaderBorderStyle}">
-                            <Label x:Name="TaskEditorLabel" Content="Task Editor" Margin="5,5,5,5" VerticalContentAlignment="Center" FontSize="24" Foreground="White"
+                        <Border x:Name="TaskEditorLabelBorder" Style="{StaticResource ForegroundBorderStyle}" Padding="0" Margin="5,0,5,0" VerticalAlignment="Center" Height="50" HorizontalAlignment="Stretch">
+                            <Label x:Name="TaskEditorLabel" Content="Task Editor" Margin="0" 
+                                VerticalContentAlignment="Center" FontSize="24" Foreground="White"
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
                         </Border>
 

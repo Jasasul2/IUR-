@@ -25,7 +25,7 @@ namespace IUR_macesond_NET6.ViewModels
             { Difficulty.Hard, 10 }
         };
 
-        public TaskViewModel(MainViewModel mainViewModelReference, string location)
+        public TaskViewModel(MainViewModel mainViewModelReference)
         {
             _mainViewModelReference = mainViewModelReference;
         }

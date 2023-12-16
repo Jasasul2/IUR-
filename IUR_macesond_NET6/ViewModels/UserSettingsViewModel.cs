@@ -18,6 +18,8 @@ namespace IUR_macesond_NET6.ViewModels
     internal class UserSettingsViewModel : ViewModelBase
     {
 
+        private MainViewModel _mainViewModelReference;
+
         #region SimplifiedMode
         private bool _simplifiedMode;
 
@@ -46,7 +48,13 @@ namespace IUR_macesond_NET6.ViewModels
         public Language CurrentLanguage
         {
             get => _currentLanguage;
-            set => SetProperty(ref _currentLanguage, value);
+            set {  
+                SetProperty(ref _currentLanguage, value);
+                if (_mainViewModelReference.LocalizedText!= null)
+                {
+                    _mainViewModelReference.LocalizedText.SetLanguage(value);
+                }
+            }
         }
 
         #endregion
@@ -139,8 +147,10 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
-        public UserSettingsViewModel()
+        public UserSettingsViewModel(MainViewModel mainViewModelReference)
         {
+            _mainViewModelReference = mainViewModelReference;
+
             SimplifiedMode = false;
             CurrentLanguage = Language.English;
             CurrentNotificationType = NotificationType.Sound;

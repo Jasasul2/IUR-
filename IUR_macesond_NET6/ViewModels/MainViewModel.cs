@@ -19,7 +19,8 @@ namespace IUR_macesond_NET6.ViewModels
     {
         // This Main View Model consists of both the user settings and the Task lists for every saved day
 
-        public UserSettingsViewModel UserSettings { get; set; } = new UserSettingsViewModel();
+        public UserSettingsViewModel UserSettings { get; set; }
+        public LocalizedText LocalizedText { get; set; }
 
         #region DateBinding
 
@@ -92,6 +93,9 @@ namespace IUR_macesond_NET6.ViewModels
 
         public MainViewModel()
         {
+            UserSettings = new UserSettingsViewModel(this);
+            LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
+
             // Date Init
             SelectedDate = DateOnly.FromDateTime(DateTime.Now);
 

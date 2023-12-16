@@ -85,11 +85,11 @@
 
                         <!-- First Stack Panel Row = Day selection-->
                         <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
-                            <Button Name="PrevousDayButton" Content="Previous" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
+                            <Button Name="PrevousDayButton" Content="{Binding LocalizedText.PreviousButton}" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
 
                             <DatePicker Name="DatePicker" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" Text="{Binding SelectedDateString}"
                                         Width="460" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            <Button Name="NextDayButton" Content="Next" Height="40" Width="100" Margin="5,5,0,5" FontSize="18" />
+                            <Button Name="NextDayButton" Content="{Binding LocalizedText.NextButton}" Height="40" Width="100" Margin="5,5,0,5" FontSize="18" />
                         </StackPanel>
 
                         <StackPanel Name="TaskListStackPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -117,9 +117,9 @@
                             <!-- Second Stack Panel Row = Sorting buttons -->
                             <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0">
                                 <Label Name="SortLabel" Content="Sort by:" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
-                                <Button Name="AlphabetSortButton" Content="Alphabet" Margin="0,5,5,5" Command="{Binding AddXPCommand}"/>
-                                <Button Name="DifficultySortButton" Content="Difficulty" Margin="5,5,5,5"/>
-                                <Button Name="RandomSortButton" Content="Random" Margin="5,5,5,5"/>
+                                <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5" Command="{Binding AddXPCommand}"/>
+                                <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5"/>
+                                <Button Name="RandomSortButton" Content="{Binding LocalizedText.RandomButton}" Margin="5,5,5,5"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -160,19 +160,19 @@
 
                     <TabControl Name="MainTabControl" Style="{StaticResource TabControlStyle}">
 
-                        <TabItem Header="Task Library" Style="{StaticResource TabItemStyle}">
+                        <TabItem Header="{Binding LocalizedText.TaskLibraryButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder1" Style="{StaticResource DetailBorderStyle}">
                                 <Grid/>
                             </Border>
                         </TabItem>
-                        <TabItem Header="Productivity" Style="{StaticResource TabItemStyle}">
+                        <TabItem Header="{Binding LocalizedText.ProductivityButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder2" Style="{StaticResource DetailBorderStyle}">
                                 <Grid/>
                             </Border>
                         </TabItem>
 
                         <!-- Settings Menu -->
-                        <TabItem Header="Settings" Style="{StaticResource TabItemStyle}">
+                        <TabItem Header="{Binding LocalizedText.SettingsButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder3" Style="{StaticResource DetailBorderStyle}">
                                 <Grid HorizontalAlignment="Stretch">
                                     <Grid.RowDefinitions>
@@ -190,7 +190,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Simplified mode -->
-                                    <Label Name="SimplifiedModeLabel" Content="Simplified mode:" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="59,0,0,0" FontWeight="Normal" Width="231" Grid.ColumnSpan="2"/>
+                                    <Label Name="SimplifiedModeLabel" Content="{Binding LocalizedText.LanguageLabel, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="59,0,0,0" FontWeight="Normal" Width="231" Grid.ColumnSpan="2"/>
 
                                     <CheckBox Name="SimplifiedModeCheckBox"
                                             Grid.Column="2" Grid.ColumnSpan="2" Margin="71,0,0,0"
@@ -198,7 +198,7 @@
 
 
                                     <!-- Productive part of the day start -->
-                                    <Label Name="ProductiveStartLabel" Content="Productive part of the day start:" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                                    <Label Name="ProductiveStartLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayStartLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
                                             Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
 
                                     <userControls:TimeInput x:Name="ProductiveDayStartTimeInput"
@@ -207,7 +207,7 @@
                                             Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <!-- Productive part of the day end -->
-                                    <Label Name="ProductiveEndLabel" Content="Productive part of the day end:" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                                    <Label Name="ProductiveEndLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayEndLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
                                             Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
 
                                     <userControls:TimeInput x:Name="ProductiveDayEndTimeInput"
@@ -216,7 +216,7 @@
                                             Minute="{Binding UserSettings.ProductivityEndTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <!-- Language -->
-                                    <Label Name="LanguageLabel" Content="Language:" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                                    <Label Name="LanguageLabel" Content="{Binding LocalizedText.LanguageLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
                                             Grid.Column="1" Grid.Row="3" FontWeight="Normal" Width="174"/>
 
                                     <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="3"
@@ -226,7 +226,7 @@
                                     </ComboBox>
 
                                     <!-- Notification type -->
-                                    <Label Name="NotificationTypeLabel" Content="Notification type:" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="4" FontWeight="Normal" Width="290" Grid.ColumnSpan="2"/>
+                                    <Label Name="NotificationTypeLabel" Content="{Binding LocalizedText.NotificationTypeLabel}" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="4" FontWeight="Normal" Width="290" Grid.ColumnSpan="2"/>
 
                                     <ComboBox Name="NotificationComboBox" FontSize="18" Grid.Column="3" Grid.Row="4" 
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal"

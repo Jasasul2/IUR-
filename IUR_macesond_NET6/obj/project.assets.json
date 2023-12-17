@@ -1,11 +1,33 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "PlaceholderTextBoxCustomControl/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PlaceholderTextBoxCustomControl.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlaceholderTextBoxCustomControl.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "PlaceholderTextBoxCustomControl/1.0.0": {
+      "type": "project",
+      "path": "../PlaceholderTextBoxCustomControl/PlaceholderTextBoxCustomControl.csproj",
+      "msbuildProject": "../PlaceholderTextBoxCustomControl/PlaceholderTextBoxCustomControl.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "PlaceholderTextBoxCustomControl >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\ondra\\.nuget\\packages\\": {},
@@ -38,7 +60,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ondra\\OneDrive\\Plocha\\FEL\\IUR\\IUR_Semestral_Work\\IUR-macesond\\PlaceholderTextBoxCustomControl\\PlaceholderTextBoxCustomControl.csproj": {
+              "projectPath": "C:\\Users\\ondra\\OneDrive\\Plocha\\FEL\\IUR\\IUR_Semestral_Work\\IUR-macesond\\PlaceholderTextBoxCustomControl\\PlaceholderTextBoxCustomControl.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

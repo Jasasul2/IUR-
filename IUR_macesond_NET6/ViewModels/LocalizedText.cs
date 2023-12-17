@@ -137,6 +137,8 @@ namespace IUR_macesond_NET6.ViewModels
         private string _taskEditorNotificationTimesLabel = "Task notification times:";
         private string _taskEditorNoteLabel = "Task note:";
 
+        private string _taskEditorPlaceholderName = "Enter a task name";
+        private string _taskEditorPlaceholderNote = "Enter a task note";
         
         public string TaskEditorTitle
         {
@@ -166,6 +168,18 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _taskEditorNoteLabel;
             set => SetProperty(ref _taskEditorNoteLabel, value);
+        }
+
+        public string TaskEditorPlaceholderName
+        {
+            get => _taskEditorPlaceholderName;
+            set => SetProperty(ref _taskEditorPlaceholderName, value);
+        }
+
+        public string TaskEditorPlaceholderNote
+        {
+            get => _taskEditorPlaceholderNote;
+            set => SetProperty(ref _taskEditorPlaceholderNote, value);
         }
 
         #endregion
@@ -217,6 +231,9 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorNotificationTimesLabel = "Task notification times:";
                     TaskEditorNoteLabel = "Task note:";
 
+                    TaskEditorPlaceholderName = "Enter a task name";
+                    TaskEditorPlaceholderNote = "Enter a task note";
+
                     SortByLabel = "Sort by:";
                     LevelLabel = "Level";
 
@@ -245,6 +262,9 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorDifficultyLabel = "Obtížnost úkolu:";
                     TaskEditorNotificationTimesLabel = "Časy upozornění:";
                     TaskEditorNoteLabel = "Poznámka k úkolu:";
+
+                    TaskEditorPlaceholderName = "Zadejte název úkolu";
+                    TaskEditorPlaceholderNote = "Zadejte poznámku k úkolu";
 
                     SortByLabel = "Řadit dle:";
                     LevelLabel = "Úroveň";

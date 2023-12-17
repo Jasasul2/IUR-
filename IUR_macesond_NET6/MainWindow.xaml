@@ -8,7 +8,8 @@
         xmlns:converters="clr-namespace:IUR_macesond_NET6.Converters"
         xmlns:userControls="clr-namespace:IUR_macesond_NET6.UserControls"
         xmlns:support="clr-namespace:IUR_macesond_NET6.Support"
-        xmlns:validationRules="clr-namespace:IUR_macesond_NET6.ValidationRules"
+        xmlns:validationRules="clr-namespace:IUR_macesond_NET6.ValidationRules" 
+        xmlns:placeholdertextboxcustomcontrol="clr-namespace:PlaceholderTextBoxCustomControl;assembly=PlaceholderTextBoxCustomControl"
         mc:Ignorable="d"
         Title="BeProductive!" Height="860" Width="1440"
         WindowStartupLocation="CenterScreen"
@@ -287,8 +288,15 @@
                         <Label Name="TaskNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="251" VerticalContentAlignment="Center"
                                 Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Grid.RowSpan="2" Margin="53,0,0,0"/>
 
-                        <TextBox Name="TaskNameTextBox" Style="{StaticResource RoundTextBoxStyle}" 
-                                 Height="40" Text="Enter a task name"
+                        <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
+                                 x:Name="TaskNameTextBox"
+                                 Width="287"
+                                 Height="40" 
+                                 Padding="5"
+                                 FontSize="16"
+                                 Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
+                                 Foreground="{StaticResource DarkerTextColorBrush}"
+                                 Text=""
                                  VerticalContentAlignment="Center"
                                  MaxLength="35"
                                  Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2"/>
@@ -332,9 +340,17 @@
                         <Label Name="TaskNoteLabel" Content="{Binding LocalizedText.TaskEditorNoteLabel}" Height="40" Width="304" VerticalContentAlignment="Center" 
                                    Grid.Row="5" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Margin="0,9,0,8"/>
 
-                        <TextBox x:Name="NoteTextBox" Text="Enter a task note" Style="{StaticResource RoundTextBoxStyle}" 
-                                 TextWrapping="Wrap" FontSize="16"
-                                 Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="0,10,0,20"/>
+
+                        <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
+                                 x:Name="NoteTExt"
+                                 Padding="5"
+                                 FontSize="16"
+                                 Placeholder="{Binding LocalizedText.TaskEditorPlaceholderNote}"
+                                 Foreground="{StaticResource DarkerTextColorBrush}"
+                                 Text=""
+                                 VerticalContentAlignment="Top"
+                                 MaxLength="35"
+                                 Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,10,25,20"/>
                     </Grid>
 
                 </Border>

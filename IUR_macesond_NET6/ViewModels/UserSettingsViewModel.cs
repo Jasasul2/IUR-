@@ -64,11 +64,11 @@ namespace IUR_macesond_NET6.ViewModels
             set {  
                 SetProperty(ref _currentLanguage, value);
                 CurrentLanguageString = value.ToString();
-                Translator.CurrentLanguage = value;
 
                 // This is some serious spaghetti code, but it works
-                LanguageComboBoxCollection = new ObservableCollection<string>(LanguageComboBoxCollection);
-                NotificationComboBoxCollection = new ObservableCollection<string>(NotificationComboBoxCollection);
+                Translator.CurrentLanguage = value;
+                LanguageComboBoxCollection = Translator.translateCollection(LanguageComboBoxCollection);
+                NotificationComboBoxCollection = Translator.translateCollection(NotificationComboBoxCollection);
 
                 if (_mainViewModelReference.LocalizedText!= null)
                 {
@@ -199,7 +199,7 @@ namespace IUR_macesond_NET6.ViewModels
             NotificationComboBoxCollection = new ObservableCollection<string>(NotificationTypeArray);
 
             SimplifiedMode = false;
-            CurrentLanguage = Language.English;
+            CurrentLanguage = Language.English ;
             CurrentNotificationType = NotificationType.Sound;
             ProductivityStartTime = new TimeOnly(8, 45);
             ProductivityEndTime = new TimeOnly(22, 30);

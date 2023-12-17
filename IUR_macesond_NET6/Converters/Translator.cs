@@ -1,6 +1,8 @@
 ﻿using IUR_macesond_NET6.ViewModels;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,17 @@ namespace IUR_macesond_NET6.Converters
         {
             get => _language;
             set => _language = value;
+        }
+
+        public static ObservableCollection<string> translateCollection(ObservableCollection<string> input)
+        {
+            ObservableCollection<string> translatedStrings = new ObservableCollection<string>();
+            foreach (string s in input)
+            {
+                string translatedS = TranslateToCzech(s);
+                translatedStrings.Add(translatedS);
+            }
+            return translatedStrings;
         }
 
         public static string TranslateToCzech(string stringToTranslate)

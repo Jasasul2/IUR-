@@ -119,7 +119,9 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="5">
 
-                                                <Button Content="X" Width="30" Height="30" Margin="0,0,8,0" IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}"/>
+                                                <Button Content="X" Width="30" Height="30" Margin="0,0,8,0" 
+                                                        IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}"
+                                                        Command="{Binding RemoveTaskCommand}"/>
 
                                                 <!-- First TextBlock -->
                                                 <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl

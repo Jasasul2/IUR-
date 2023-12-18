@@ -181,6 +181,29 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region TaskDeleteCommand
+
+        private RelayCommand _removeTaskCommand;
+
+        public RelayCommand RemoveTaskCommand
+        {
+            get { return _removeTaskCommand ?? (_removeTaskCommand = new RelayCommand(RemoveTask, RemoveTaskCommandCanExecute)); }
+        }
+
+        private bool RemoveTaskCommandCanExecute(object obj)
+        {
+            return !Completed;
+        }
+
+        private void RemoveTask(object obj)
+        {
+            _mainViewModelReference.DeleteTask(this);
+        }
+
+        #endregion
+
+
+
         public void ResetAttributes()
         {
             TaskName = "";

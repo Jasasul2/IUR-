@@ -258,6 +258,19 @@ namespace IUR_macesond_NET6.ViewModels
         }
         #endregion
 
+        #region DeleteGivenTask
+
+        public void DeleteTask(TaskViewModel taskToDelete)
+        {
+            if(SelectedTask == taskToDelete)
+            {
+                SelectedTask = null;
+            }
+            SelectedTaskList.Remove(taskToDelete);
+        }
+
+        #endregion
+
         public MainViewModel()
         {
             UserSettings = new UserSettingsViewModel(this);

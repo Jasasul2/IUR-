@@ -108,7 +108,9 @@
                             <!-- First Stack Panel Row = List Box and scroll viewer -->
                             <StackPanel Name="TaskListInnerHorizontalPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="575">
                                 <ListBox Name="TaskListBox" ItemsSource="{Binding SelectedTaskList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         VerticalAlignment="Stretch" Width="674" Margin="8,8,8,0" Height="569" Background="Transparent" BorderBrush="Transparent">
+                                         VerticalAlignment="Stretch" Width="674" Margin="8,8,8,0" Height="569" Background="Transparent" BorderBrush="Transparent"
+                                         SelectedItem="{Binding SelectedTask}"
+                                         >
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="5">

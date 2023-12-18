@@ -56,7 +56,7 @@ namespace IUR_macesond_NET6.ViewModels
                 for (int i = 0; i < value.Day; i++)
                 {
                     TaskViewModel newTask = new TaskViewModel(this);
-                    newTask.TaskName = "Task " + i;
+                    newTask.TaskName = "Task " + value.Month + " " + value.Day +" "+ (i + 1);
                     SelectedTaskList.Add(newTask);
                 }
             }

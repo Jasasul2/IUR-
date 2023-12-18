@@ -283,7 +283,7 @@
                         <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80"
                                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
                         <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80" 
-                                Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3"/>
+                                Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}"/>
 
                         <!-- Second row: Task Name -->
                         <Label Name="TaskNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="251" VerticalContentAlignment="Center"

@@ -103,6 +103,37 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region ResetCommand
+
+        private RelayCommand _resetSelectedTaskCommand;
+        private string _cityToBeAdded = "";
+
+        public RelayCommand ResetSelectedTaskCommand
+        {
+            get { return _resetSelectedTaskCommand ?? (_resetSelectedTaskCommand = new RelayCommand(ResetSelectedTask, ResetSelectedTaskCommandCanExecute)); }
+        }
+
+        private void ResetSelectedTask(object obj)
+        {
+            if (SelectedTask != null)
+            {
+                SelectedTask.ResetAttributes();
+            }
+        }
+
+        private bool ResetSelectedTaskCommandCanExecute (object obj)
+        {
+            return (SelectedTask != null);
+        }
+
+        public string CityToBeAdded
+        {
+            get => _cityToBeAdded;
+            set => SetProperty(ref _cityToBeAdded, value);
+        }
+
+        #endregion
+
 
         public MainViewModel()
         {

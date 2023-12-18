@@ -65,6 +65,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _randomButton = "Random";
         private string _saveButton = "Save";
         private string _resetButton = "Reset";
+        private string _deleteButton = "Delete";
 
         public string TaskLibraryButton
         {
@@ -124,6 +125,12 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _resetButton;
             set => SetProperty(ref _resetButton, value);
+        }
+
+        public string DeleteButton
+        {
+            get => _deleteButton;
+            set => SetProperty(ref _deleteButton, value);
         }
 
         #endregion
@@ -232,6 +239,7 @@ namespace IUR_macesond_NET6.ViewModels
                     RandomButton = "Random";
                     SaveButton = "Save";
                     ResetButton = "Reset";
+                    DeleteButton = "Delete";
 
                     InvisibleTaskEditorLabel = "Select a task to Edit";
 
@@ -255,6 +263,7 @@ namespace IUR_macesond_NET6.ViewModels
                     ProductivePartOfTheDayEndLabel = "Konec produktivní části dne:";
                     LanguageLabel = "Jazyk:";
                     NotificationTypeLabel = "Typ upozornění:";
+                    DeleteButton = "Smazat";
 
                     TaskLibraryButton = "Knihovna";
                     ProductivityButton = "Produktivita";

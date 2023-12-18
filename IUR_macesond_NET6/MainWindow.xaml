@@ -303,6 +303,8 @@
                                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
                         <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80" IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}"/>
+                        <Button x:Name="DeleteTaskButton" Content="{Binding LocalizedText.DeleteButton}" Width="80" IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
+                                Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}"/>
 
                         <!-- Second row: Task Name -->
                         <Label Name="TaskNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="251" VerticalContentAlignment="Center"

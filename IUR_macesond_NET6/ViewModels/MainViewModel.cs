@@ -208,6 +208,31 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region DeleteTaskCommand
+
+        private RelayCommand _deleteTaskCommand;
+
+        public RelayCommand DeleteTaskCommand
+        {
+            get { return _deleteTaskCommand ?? (_deleteTaskCommand = new RelayCommand(DeleteSelectedTask, DeleteTaskCommandCanExecute)); }
+        }
+
+        private void DeleteSelectedTask(object obj)
+        {
+            if (SelectedTask != null)
+            {
+                SelectedTaskList.Remove(SelectedTask);
+            }
+            SelectedTask = null;
+        }
+
+        private bool DeleteTaskCommandCanExecute(object obj)
+        {
+            return (SelectedTask != null);
+        }
+
+        #endregion
+
         #region CompleteTaskTestCommand
 
         private RelayCommand _completeTaskCommand;
@@ -247,8 +272,10 @@ namespace IUR_macesond_NET6.ViewModels
             NextLevelXP = 10;
 
             // Task Init
-            SelectedTask = null;
-            IsTaskSelected = false;
+            SelectedTask = new TaskViewModel(this);
+
+            //SelectedTask = null
+            //IsTaskSelected = false;
         }
     }
 }

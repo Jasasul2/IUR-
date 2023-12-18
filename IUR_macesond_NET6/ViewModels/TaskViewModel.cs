@@ -187,7 +187,6 @@ namespace IUR_macesond_NET6.ViewModels
             TaskDifficulty = Difficulty.Easy;
             TaskTimes = new TimeOnly[3];
             TaskNote = "Test task note";
-
         }
 
         public TaskViewModel(MainViewModel mainViewModelReference)

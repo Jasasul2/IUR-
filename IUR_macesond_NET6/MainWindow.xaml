@@ -24,6 +24,7 @@
         <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
         <converters:EnumComparisonConverter x:Key="EnumComparisonConverter"/>
+        <converters:EnumToBrushConverter x:Key="EnumToBrushConverter"/>
         <converters:XPTextConverter x:Key="XPTextConverter"/>
         <converters:LevelConverter x:Key="LevelConverter"/>
         <converters:LanguageEnumToStringConverter x:Key="LanguageEnumToStringConverter"/>
@@ -94,8 +95,9 @@
                         <!-- First Stack Panel Row = Day selection-->
                         <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
                             <Button Name="PrevousDayButton" 
-                                    IsEnabled="{Binding IsNotFirstDate, Mode=TwoWay}" Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
+                                    Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
                                     Content="{Binding LocalizedText.PreviousButton}" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
+                                    <!--IsEnabled="{Binding IsNotFirstDate, Mode=TwoWay}"--> 
 
                             <DatePicker Name="DatePicker" SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDate, Converter={StaticResource DateTimeToStringConverter}}"
                                         DisplayDateStart="{Binding FirstDate, UpdateSourceTrigger=PropertyChanged}"
@@ -117,11 +119,42 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="5">
 
-                                                <!-- First TextBlock -->
-                                                <TextBlock Text="{Binding TaskName}" VerticalAlignment="Center" Margin="5"/>
+                                                <Button x:Name="DeleteGivenTask" Content="X" Width="30" Height="30" Margin="0,0,8,0" IsEnabled="{Binding Completed, Converter={StaticResource BoolToVisibilityNegatedConverter}}"/>
+
+                                                <!-- First TextBlock --><!--
+                                                <TextBlock Text="{Binding TaskName}" VerticalAlignment="Center" Margin="5"/>-->
+                                                <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
+                                                     x:Name="TaskNameTextBoxInList"
+                                                     Width="287"
+                                                     Height="40" 
+                                                     Padding="5"
+                                                     FontSize="16"
+                                                     IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}"
+                                                     Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
+                                                     Foreground="{StaticResource DarkerTextColorBrush}"
+                                                     Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                     VerticalContentAlignment="Center"
+                                                     MaxLength="35"
+                                                     Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2"/>     
 
                                                 <!-- Image -->
-                                                <Rectangle Width="50" Height="50" Margin="5"/>
+                                                <Border x:Name="DifficultyBorder" Style="{StaticResource ShadowBorder}" 
+                                                        Width="40" Height="40" Background="White" CornerRadius="20"
+                                                        Margin="10,0,5,0">
+
+                                                    <Border x:Name="DifficultyBorderFill" Style="{StaticResource ShadowBorder}"
+                                                            Width="30" Height="30"
+                                                            CornerRadius="25">
+                                                        <Border.Background>
+                                                            <MultiBinding Converter="{StaticResource EnumToBrushConverter}">
+                                                                <Binding Path="TaskDifficulty"/>
+                                                                <Binding Source="{StaticResource EasyColorBrush}"/>
+                                                                <Binding Source="{StaticResource MediumColorBrush}"/>
+                                                                <Binding Source="{StaticResource HardColorBrush}"/>
+                                                            </MultiBinding>
+                                                        </Border.Background>
+                                                    </Border>
+                                                </Border>
 
                                                 <!-- Second TextBlock -->
                                                 <TextBlock Text="{Binding TaskNote}" VerticalAlignment="Center" Margin="5"/>

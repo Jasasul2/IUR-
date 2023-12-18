@@ -183,10 +183,10 @@ namespace IUR_macesond_NET6.ViewModels
 
         public void ResetAttributes()
         {
-            TaskName = "Test task name";
+            TaskName = "";
             TaskDifficulty = Difficulty.Easy;
             TaskTimes = new TimeOnly[3];
-            TaskNote = "Test task note";
+            TaskNote = "";
         }
 
         public TaskViewModel(MainViewModel mainViewModelReference)

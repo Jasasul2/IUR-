@@ -50,13 +50,18 @@ namespace IUR_macesond_NET6.ViewModels
                 } 
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
 
-                // TEST LINES
+                // TEST LINES === Generating random tasks
                 if (SelectedTaskList.Count != 0) return;
 
                 for (int i = 0; i < value.Day; i++)
                 {
                     TaskViewModel newTask = new TaskViewModel(this);
                     newTask.TaskName = "Task " + value.Month + " " + value.Day +" "+ (i + 1);
+
+                    Array values = Enum.GetValues(typeof(Difficulty));
+                    Random random = new Random();
+                    newTask.TaskDifficulty = (Difficulty)values.GetValue(random.Next(values.Length));
+
                     SelectedTaskList.Add(newTask);
                 }
             }
@@ -79,6 +84,7 @@ namespace IUR_macesond_NET6.ViewModels
         private void PreviousDay(object obj)
         {
             SelectedDate = SelectedDate.AddDays(-1);
+            PreviousDayCommand.RaiseCanExecuteChanged();
         }
 
         private bool PreviousDayCommandCanExecute(object obj)
@@ -101,7 +107,8 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void NextDay(object obj)
         {
-            SelectedDate = SelectedDate.AddDays(1); 
+            SelectedDate = SelectedDate.AddDays(1);
+            PreviousDayCommand.RaiseCanExecuteChanged();
         }
 
         #endregion
@@ -195,15 +202,12 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void ResetSelectedTask(object obj)
         {
-            if (SelectedTask != null)
-            {
-                SelectedTask.ResetAttributes();
-            }
+            SelectedTask.ResetAttributes();
         }
 
         private bool ResetSelectedTaskCommandCanExecute (object obj)
         {
-            return (SelectedTask != null);
+            return (SelectedTask != null && !SelectedTask.Completed);
         }
 
         #endregion
@@ -219,16 +223,13 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void DeleteSelectedTask(object obj)
         {
-            if (SelectedTask != null)
-            {
-                SelectedTaskList.Remove(SelectedTask);
-            }
+            SelectedTaskList.Remove(SelectedTask);
             SelectedTask = null;
         }
 
         private bool DeleteTaskCommandCanExecute(object obj)
         {
-            return (SelectedTask != null);
+            return (SelectedTask != null && !SelectedTask.Completed);
         }
 
         #endregion
@@ -248,11 +249,12 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 SelectedTask.Complete();
             }
+            ResetSelectedTaskCommand.RaiseCanExecuteChanged();
         }
 
         private bool CompleteTaskCommandCanExecute(object obj)
         {
-            return (SelectedTask != null);
+            return (SelectedTask != null && !SelectedTask.Completed);
         }
         #endregion
 
@@ -272,7 +274,7 @@ namespace IUR_macesond_NET6.ViewModels
             NextLevelXP = 10;
 
             // Task Init
-            SelectedTask = new TaskViewModel(this);
+            SelectedTask = SelectedTaskList[0];
 
             //SelectedTask = null
             //IsTaskSelected = false;

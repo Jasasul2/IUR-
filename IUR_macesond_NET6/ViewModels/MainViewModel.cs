@@ -22,29 +22,64 @@ namespace IUR_macesond_NET6.ViewModels
         public UserSettingsViewModel UserSettings { get; set; }
         public LocalizedText LocalizedText { get; set; }
 
-        #region DateBinding
+        #region DateBindingAndCommands
 
-        private DateOnly _selectedDate;
-        public DateOnly SelectedDate
+        // The first date user launched this application. He cannot go past it.
+        private DateOnly _firstDate;
+
+        public DateTime FirstDate
         {
-            get => _selectedDate;
-            set => SetProperty(ref _selectedDate, value);
+            get => _firstDate.ToDateTime(new TimeOnly());
+            set => SetProperty(ref _firstDate, DateOnly.FromDateTime(value));
         }
 
-        public String SelectedDateString
+        private DateOnly _selectedDate;
+        public DateTime SelectedDate
         {
-            get => SelectedDate.ToString();
-            set
-            {
-                if (DateOnly.TryParse(value, out DateOnly date))
-                {
-                    SelectedDate = date;
-                }
-                else
-                {
-                    SelectedDate = DateOnly.FromDateTime(DateTime.Now);
-                }
-            }
+            get => _selectedDate.ToDateTime(new TimeOnly());
+            set => SetProperty(ref _selectedDate, DateOnly.FromDateTime(value));
+        }
+
+        private bool _isNotFirstDate;
+        public bool IsNotFirstDate
+        {
+            get => (_isNotFirstDate);
+            set => SetProperty(ref _isNotFirstDate, value);
+        }
+
+        private RelayCommand _previousDayCommand;
+
+        public RelayCommand PreviousDayCommand
+        {
+            get { return _previousDayCommand ?? (_previousDayCommand = new RelayCommand(PreviousDay, PreviousDayCommandCanExecute)); }
+        }
+
+        private void PreviousDay(object obj)
+        {
+            SelectedDate = SelectedDate.AddDays(-1);
+        }
+
+        private bool PreviousDayCommandCanExecute(object obj)
+        {
+            IsNotFirstDate = (SelectedDate.Date > FirstDate.Date);
+            return IsNotFirstDate;
+        }
+
+        private RelayCommand _nextDayCommand;
+
+        public RelayCommand NextDayCommand
+        {
+            get { return _nextDayCommand ?? (_nextDayCommand = new RelayCommand(NextDay, NextDayCommandCanExecute)); }
+        }
+
+        private bool NextDayCommandCanExecute(object obj)
+        {
+            return true;
+        }
+
+        private void NextDay(object obj)
+        {
+            SelectedDate = SelectedDate.AddDays(1);
         }
 
         #endregion
@@ -156,7 +191,9 @@ namespace IUR_macesond_NET6.ViewModels
             LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
 
             // Date Init
-            SelectedDate = DateOnly.FromDateTime(DateTime.Now);
+            FirstDate = DateTime.Now;
+
+            SelectedDate = DateTime.Now;
 
             // XP Init
             CurrentLevel = 1;

@@ -136,6 +136,12 @@
                 <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" Opacity="0.15"/>
             </Setter.Value>
         </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 

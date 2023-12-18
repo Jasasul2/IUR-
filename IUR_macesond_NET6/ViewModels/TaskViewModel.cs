@@ -28,6 +28,7 @@ namespace IUR_macesond_NET6.ViewModels
         };
 
         #region NotificationTimesAttributes
+
         TimeOnly _notificationTime1 = new TimeOnly();
         TimeOnly _notificationTime2 = new TimeOnly();
         TimeOnly _notificationTime3 = new TimeOnly();
@@ -133,7 +134,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private string _taskNote;
 
-        private bool _taskCompleted;
+
 
         public string TaskName
         {
@@ -158,11 +159,24 @@ namespace IUR_macesond_NET6.ViewModels
             get => _taskNote;
             set => SetProperty(ref _taskNote, value);
         }
+        #endregion
 
-        public bool TaskCompleted
+        #region TaskCompletion
+
+        private bool _completed;
+
+        public bool Completed
         {
-            get => _taskCompleted;
-            set => SetProperty(ref _taskCompleted, value);
+            get => _completed;
+            set => SetProperty(ref _completed, value);
+        }
+
+        public void Complete()
+        {
+            if (Completed) return; 
+
+            Completed = true;
+            _mainViewModelReference.AddEXP(DifficultyToExp[TaskDifficulty]);
         }
 
         #endregion
@@ -180,7 +194,7 @@ namespace IUR_macesond_NET6.ViewModels
         {
             _mainViewModelReference = mainViewModelReference;
 
-            TaskCompleted = false;
+            Completed = false;
             ResetAttributes();
         }
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlaceholderTextBoxCustomControl")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04ccbc9584b8690f9520b30ab860db28903dfe22")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlaceholderTextBoxCustomControl")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlaceholderTextBoxCustomControl")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

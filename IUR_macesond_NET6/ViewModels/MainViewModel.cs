@@ -106,7 +106,6 @@ namespace IUR_macesond_NET6.ViewModels
         #region ResetCommand
 
         private RelayCommand _resetSelectedTaskCommand;
-        private string _cityToBeAdded = "";
 
         public RelayCommand ResetSelectedTaskCommand
         {
@@ -126,14 +125,30 @@ namespace IUR_macesond_NET6.ViewModels
             return (SelectedTask != null);
         }
 
-        public string CityToBeAdded
-        {
-            get => _cityToBeAdded;
-            set => SetProperty(ref _cityToBeAdded, value);
-        }
-
         #endregion
 
+        #region CompleteTaskTestCommand
+
+        private RelayCommand _completeTaskCommand;
+
+        public RelayCommand CompleteTaskCommand
+        {
+            get { return _completeTaskCommand ?? (_completeTaskCommand = new RelayCommand(CompleteSelectedTask, CompleteTaskCommandCanExecute)); }
+        }
+
+        private void CompleteSelectedTask(object obj)
+        {
+            if (SelectedTask != null)
+            {
+                SelectedTask.Complete();
+            }
+        }
+
+        private bool CompleteTaskCommandCanExecute(object obj)
+        {
+            return (SelectedTask != null);
+        }
+        #endregion
 
         public MainViewModel()
         {

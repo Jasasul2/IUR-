@@ -19,6 +19,7 @@
         AllowsTransparency="True">
 
     <Window.Resources>
+        <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <converters:EnumComparisonConverter x:Key="EnumComparisonConverter"/>
         <converters:XPTextConverter x:Key="XPTextConverter"/>
         <converters:LevelConverter x:Key="LevelConverter"/>
@@ -280,9 +281,9 @@
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
                         </Border>
 
-                        <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80"
+                        <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80" Command="{Binding CompleteTaskCommand}"
                                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
-                        <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80" 
+                        <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80" IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}"/>
 
                         <!-- Second row: Task Name -->
@@ -295,6 +296,7 @@
                                  Height="40" 
                                  Padding="5"
                                  FontSize="16"
+                                 IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                  Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
                                  Foreground="{StaticResource DarkerTextColorBrush}"
                                  Text="{Binding SelectedTask.TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -307,16 +309,19 @@
                                 Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="53,0,0,0"/>
 
                         <RadioButton Name="SetMediumDifficultyRB"
+                                     IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Easy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource EasyColorBrush}"
                                 Grid.Column="3" Grid.Row="3" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
 
                         <RadioButton Name="SetEasyDifficultyRB"
+                                     IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Medium}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource MediumColorBrush}"
                                 Grid.Column="4" Grid.Row="3" Margin="-50,0,0,0" Grid.ColumnSpan="2"/>
 
                         <RadioButton Name="SetHardDifficultyRB" 
+                                     IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Hard}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource HardColorBrush}"
                                 Grid.Column="5" Grid.Row="3" Margin="-100,0,0,0" Grid.ColumnSpan="2"/>
@@ -327,16 +332,19 @@
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput1"
                                             Grid.Column="3" Grid.Row="4"
+                                            IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                             Hour="{Binding SelectedTask.NotificationTime1StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Minute="{Binding SelectedTask.NotificationTime1StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput2"
                                             Grid.Column="4" Grid.Row="4"
+                                            IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                             Hour="{Binding SelectedTask.NotificationTime2StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Minute="{Binding SelectedTask.NotificiationTime2StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput3"
                                             Grid.Column="5" Grid.Row="4"
+                                            IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                             Hour="{Binding SelectedTask.NotificationTime3StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Minute="{Binding SelectedTask.NotificationTime3StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -347,6 +355,7 @@
 
                         <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
                                  x:Name="NoteTExt"
+                                 IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                  Padding="5"
                                  FontSize="16"
                                  Placeholder="{Binding LocalizedText.TaskEditorPlaceholderNote}"

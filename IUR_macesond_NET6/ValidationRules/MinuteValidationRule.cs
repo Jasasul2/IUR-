@@ -19,13 +19,13 @@ namespace IUR_macesond_NET6.ValidationRules
             if (int.TryParse(input, out int integerValue))
             {
                 // Conversion successful, check if the integer value is between 0 and 24
-                if (integerValue >= 0 && integerValue < 59)
+                if (integerValue >= 0 && integerValue <= 59)
                 {
                     return ValidationResult.ValidResult;
                 }
             }
 
-            return new ValidationResult(false, Translator.TranslateToCzech("Please enter a valid number from 0 to 60."));
+            return new ValidationResult(false, Translator.TranslateToCzech("Please enter a valid number from 0 to 59."));
         }
     }
 }

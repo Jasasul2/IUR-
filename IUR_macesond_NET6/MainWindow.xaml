@@ -167,8 +167,8 @@
                             <!-- Second Stack Panel Row = Sorting buttons -->
                             <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0">
                                 <Label Name="SortLabel" Content="{Binding LocalizedText.SortByLabel}" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
-                                <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5"/>
-                                <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5"/>
+                                <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5" Command="{Binding SortTasksByNameCommand}"/>
+                                <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5" Command="{Binding SortTasksByDifficultyCommand}"/>
                                 <Button Name="RandomSortButton" Content="{Binding LocalizedText.RandomButton}" Margin="5,5,5,5"/>
                             </StackPanel>
                         </StackPanel>

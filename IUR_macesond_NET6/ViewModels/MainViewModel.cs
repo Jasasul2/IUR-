@@ -271,6 +271,61 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region SortingMethods
+
+        private bool ascendingName = true;
+        private RelayCommand _sortTasksByNameCommand;
+
+        public RelayCommand SortTasksByNameCommand
+        {
+            get { return _sortTasksByNameCommand ?? (_sortTasksByNameCommand = new RelayCommand(SortTasksByName, SortTasksByNameCommandCanExecute)); }
+        }
+
+        private bool SortTasksByNameCommandCanExecute(object obj)
+        {
+            return (SelectedTaskList.Count > 0);
+        }
+        public void SortTasksByName(object obj)
+        {
+            if (ascendingName)
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskName));
+            }
+            else
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskName));
+            }
+            ascendingName = !ascendingName;
+        }
+
+        private bool ascendingDiff = true;  
+        private RelayCommand _sortTasksByDifficultyCommand;
+
+        public RelayCommand SortTasksByDifficultyCommand
+        {
+            get { return _sortTasksByDifficultyCommand ?? (_sortTasksByDifficultyCommand = new RelayCommand(SortTasksByDifficulty, SortTasksByDifficultyCommandCanExecute)); }
+        }
+
+        private bool SortTasksByDifficultyCommandCanExecute(object obj)
+        {
+            return (SelectedTaskList.Count > 0);
+        }
+
+        public void SortTasksByDifficulty(object obj)
+        {
+            if (ascendingDiff)
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskDifficulty));
+            }
+            else
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskDifficulty));
+            }
+            ascendingDiff = !ascendingDiff;
+        }
+
+        #endregion
+
         public MainViewModel()
         {
             UserSettings = new UserSettingsViewModel(this);

@@ -55,8 +55,8 @@ namespace IUR_macesond_NET6.Converters
                     case "None":
                         return "Žádné";
 
-                    case "Please enter a valid number from 0 to 60.":
-                        return "Prosím zadejte platné číslo od 0 do 60.";
+                    case "Please enter a valid number from 0 to 59.":
+                        return "Prosím zadejte platné číslo od 0 do 59.";
 
                     case "Please enter a valid number from 0 to 23.":
                         return "Prosím zadejte platné číslo od 0 do 23.";

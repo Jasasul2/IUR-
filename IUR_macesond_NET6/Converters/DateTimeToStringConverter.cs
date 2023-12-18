@@ -16,7 +16,7 @@ namespace IUR_macesond_NET6.Converters
         {
             if (value is DateTime dateTime)
             {
-                return dateTime.ToString("yyyy-dd-MM", CultureInfo.InvariantCulture);
+                return dateTime.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             }
 
             return string.Empty; 

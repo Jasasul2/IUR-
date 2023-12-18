@@ -92,7 +92,7 @@
                         <!-- First Stack Panel Row = Day selection-->
                         <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
                             <Button Name="PrevousDayButton" 
-                                    IsEnabled="{Binding IsNotFirstDate}" Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
+                                    IsEnabled="{Binding IsNotFirstDate, Mode=TwoWay}" Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
                                     Content="{Binding LocalizedText.PreviousButton}" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
 
                             <DatePicker Name="DatePicker" SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDate, Converter={StaticResource DateTimeToStringConverter}}"
@@ -107,18 +107,20 @@
 
                             <!-- First Stack Panel Row = List Box and scroll viewer -->
                             <StackPanel Name="TaskListInnerHorizontalPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="575">
-                                <ListBox Name="TaskListBox" VerticalAlignment="Stretch" Width="674" Margin="8,8,8,0" Height="569" Background="Transparent" BorderBrush="Transparent">
+                                <ListBox Name="TaskListBox" ItemsSource="{Binding SelectedTaskList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalAlignment="Stretch" Width="674" Margin="8,8,8,0" Height="569" Background="Transparent" BorderBrush="Transparent">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="5">
+
                                                 <!-- First TextBlock -->
-                                                <TextBlock Text="Task name" VerticalAlignment="Center" Margin="5"/>
+                                                <TextBlock Text="{Binding TaskName}" VerticalAlignment="Center" Margin="5"/>
 
                                                 <!-- Image -->
                                                 <Rectangle Width="50" Height="50" Margin="5"/>
 
                                                 <!-- Second TextBlock -->
-                                                <TextBlock Text="20:30" VerticalAlignment="Center" Margin="5"/>
+                                                <TextBlock Text="{Binding TaskNote}" VerticalAlignment="Center" Margin="5"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>

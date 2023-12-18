@@ -40,16 +40,7 @@ namespace IUR_macesond_NET6.ViewModels
             English
         }
 
-        private ObservableCollection<string> _languageComboBoxCollection;
-        public ObservableCollection<string> LanguageComboBoxCollection
-        {
-            get { return _languageComboBoxCollection; }
-            set
-            {
-                _languageComboBoxCollection = value;
-                OnPropertyChanged(nameof(_languageComboBoxCollection));
-            }
-        }
+        public ObservableCollection<string> LanguageComboBoxCollection { get; set; } 
 
         public string[] LanguageArray
         {
@@ -98,17 +89,7 @@ namespace IUR_macesond_NET6.ViewModels
             None
         }
 
-        private ObservableCollection<string> _notificationComboBoxCollection;
-
-        public ObservableCollection<string> NotificationComboBoxCollection
-        {
-            get { return _notificationComboBoxCollection; }
-            set
-            {
-                _notificationComboBoxCollection = value;
-                OnPropertyChanged(nameof(_notificationComboBoxCollection));
-            }
-        }
+        public ObservableCollection<string> NotificationComboBoxCollection { get; set; }
 
         public string[] NotificationTypeArray
         {

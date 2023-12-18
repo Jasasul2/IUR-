@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using System.Printing;
 
 namespace IUR_macesond_NET6.ViewModels
 {
@@ -37,7 +38,28 @@ namespace IUR_macesond_NET6.ViewModels
         public DateTime SelectedDate
         {
             get => _selectedDate.ToDateTime(new TimeOnly());
-            set => SetProperty(ref _selectedDate, DateOnly.FromDateTime(value));
+            set
+            {
+                SetProperty(ref _selectedDate, DateOnly.FromDateTime(value));
+
+                // Updating the task list
+                DateOnly dateOnly = DateOnly.FromDateTime(value);
+                if (!DateToTaskListDictionary.ContainsKey(dateOnly))
+                {
+                    DateToTaskListDictionary.Add(dateOnly, new ObservableCollection<TaskViewModel>());
+                } 
+                SelectedTaskList = DateToTaskListDictionary[dateOnly];
+
+                // TEST LINES
+                if (SelectedTaskList.Count != 0) return;
+
+                for (int i = 0; i < value.Day; i++)
+                {
+                    TaskViewModel newTask = new TaskViewModel(this);
+                    newTask.TaskName = "Task " + i;
+                    SelectedTaskList.Add(newTask);
+                }
+            }
         }
 
         private bool _isNotFirstDate;
@@ -79,7 +101,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void NextDay(object obj)
         {
-            SelectedDate = SelectedDate.AddDays(1);
+            SelectedDate = SelectedDate.AddDays(1); 
         }
 
         #endregion
@@ -135,6 +157,18 @@ namespace IUR_macesond_NET6.ViewModels
             get => _selectedTask;
             set => SetProperty(ref _selectedTask, value);
         }
+
+        // The currently selected visible task list in the left window 
+
+        private ObservableCollection<TaskViewModel> _selectedTaskList;
+        public ObservableCollection<TaskViewModel> SelectedTaskList
+        {
+            get => _selectedTaskList;
+            set => SetProperty(ref _selectedTaskList, value);
+        }
+
+        private Dictionary<DateOnly, ObservableCollection<TaskViewModel>> DateToTaskListDictionary = new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
+
 
         #endregion
 

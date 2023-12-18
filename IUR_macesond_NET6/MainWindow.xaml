@@ -19,6 +19,8 @@
         AllowsTransparency="True">
 
     <Window.Resources>
+        <converters:BoolToVisibilityNegatedConverter x:Key="BoolToVisibilityNegatedConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
         <converters:EnumComparisonConverter x:Key="EnumComparisonConverter"/>
@@ -260,7 +262,13 @@
 
 
                 <!-- Task Editor -->
-                <Border x:Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyleShaded}"
+                
+                <Label Content="{Binding LocalizedText.InvisibleTaskEditorLabel}" Foreground="White" VerticalAlignment="Center" 
+                       HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
+                       Visibility="{Binding IsTaskSelected, Converter={StaticResource BoolToVisibilityNegatedConverter}}"
+                       Grid.Column="1" Grid.Row="1"/>
+                
+                <Border x:Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyleShaded}" Visibility="{Binding IsTaskSelected, Converter={StaticResource BoolToVisibilityConverter}}"
                     Grid.Column="1" Grid.Row="1">
 
                     <Grid Height="396" Width="690" HorizontalAlignment="Stretch">

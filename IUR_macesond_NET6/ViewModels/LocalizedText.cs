@@ -131,6 +131,8 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region TaskEditorLabels
 
+        private string _invisibleTaskEditorLabel = "Select a task to Edit";
+
         private string _taskEditorTitle = "Task Editor";
         private string _taskEditorNameLabel = "Task name:";
         private string _taskEditorDifficultyLabel = "Task difficulty:";
@@ -139,6 +141,12 @@ namespace IUR_macesond_NET6.ViewModels
 
         private string _taskEditorPlaceholderName = "Enter a task name";
         private string _taskEditorPlaceholderNote = "Enter a task note";
+
+        public string InvisibleTaskEditorLabel
+        {
+            get => _invisibleTaskEditorLabel;
+            set => SetProperty(ref _invisibleTaskEditorLabel, value);
+        }
         
         public string TaskEditorTitle
         {
@@ -225,6 +233,8 @@ namespace IUR_macesond_NET6.ViewModels
                     SaveButton = "Save";
                     ResetButton = "Reset";
 
+                    InvisibleTaskEditorLabel = "Select a task to Edit";
+
                     TaskEditorTitle = "Task Editor";
                     TaskEditorNameLabel = "Task name:";
                     TaskEditorDifficultyLabel = "Task difficulty:";
@@ -256,6 +266,8 @@ namespace IUR_macesond_NET6.ViewModels
                     RandomButton = "Náhodně";
                     SaveButton = "Uložit";
                     ResetButton = "Reset";
+
+                    InvisibleTaskEditorLabel = "Vyberte úkol k úpravě";
 
                     TaskEditorTitle = "Editor úkolů";
                     TaskEditorNameLabel = "Název úkolu:";

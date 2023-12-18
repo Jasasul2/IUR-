@@ -150,12 +150,24 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region TaskLists 
 
+        private bool _isTaskSelected;
+
+        public bool IsTaskSelected
+        {
+            get => _isTaskSelected;
+            set => SetProperty(ref _isTaskSelected, value);
+        }
+
         private TaskViewModel _selectedTask;
 
         public TaskViewModel SelectedTask
         {
             get => _selectedTask;
-            set => SetProperty(ref _selectedTask, value);
+            set 
+            { 
+                SetProperty(ref _selectedTask, value);
+                IsTaskSelected = (value != null);
+            }
         }
 
         // The currently selected visible task list in the left window 
@@ -235,7 +247,8 @@ namespace IUR_macesond_NET6.ViewModels
             NextLevelXP = 10;
 
             // Task Init
-            SelectedTask = new TaskViewModel(this);
+            SelectedTask = null;
+            IsTaskSelected = false;
         }
     }
 }

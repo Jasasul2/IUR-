@@ -327,18 +327,18 @@
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput1"
                                             Grid.Column="3" Grid.Row="4"
-                                            Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Hour="{Binding SelectedTask.NotificationTime1StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Minute="{Binding SelectedTask.NotificationTime1StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput2"
                                             Grid.Column="4" Grid.Row="4"
-                                            Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Hour="{Binding SelectedTask.NotificationTime2StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Minute="{Binding SelectedTask.NotificiationTime2StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput3"
                                             Grid.Column="5" Grid.Row="4"
-                                            Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Hour="{Binding SelectedTask.NotificationTime3StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Minute="{Binding SelectedTask.NotificationTime3StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!-- Fourth Row: Task Note -->
                         <Label Name="TaskNoteLabel" Content="{Binding LocalizedText.TaskEditorNoteLabel}" Height="40" Width="304" VerticalContentAlignment="Center" 

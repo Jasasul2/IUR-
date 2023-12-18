@@ -27,6 +27,104 @@ namespace IUR_macesond_NET6.ViewModels
             { Difficulty.Hard, 10 }
         };
 
+        #region NotificationTimesAttributes
+        TimeOnly _notificationTime1 = new TimeOnly();
+        TimeOnly _notificationTime2 = new TimeOnly();
+        TimeOnly _notificationTime3 = new TimeOnly();
+
+        public TimeOnly NotificationTime1
+        {
+            get => _notificationTime1;
+            set => SetProperty(ref _notificationTime1, value);
+        }
+        public TimeOnly NotificationTime2
+        {
+            get => _notificationTime2;
+            set => SetProperty(ref _notificationTime2, value);
+        }
+
+        public TimeOnly NotificationTime3
+        {
+            get => _notificationTime3;
+            set => SetProperty(ref _notificationTime3, value);
+        }
+
+        public string NotificationTime1StringHour
+        {
+            get => NotificationTime1.Hour.ToString();
+            set
+            {
+                if (int.TryParse(value, out int hour))
+                {
+                    NotificationTime1 = new TimeOnly(hour, NotificationTime1.Minute);
+                }
+            }
+        }
+ 
+
+        public string NotificationTime1StringMinute 
+        {
+            get => NotificationTime1.Minute.ToString();
+            set
+            {
+                if (int.TryParse(value, out int minute))
+                {
+                    NotificationTime1 = new TimeOnly(NotificationTime1.Hour, minute);
+                }
+            }
+        }
+
+        public string NotificationTime2StringHour
+        {
+            get => NotificationTime2.Hour.ToString();
+            set
+            {
+                if (int.TryParse(value, out int hour))
+                {
+                    NotificationTime2 = new TimeOnly(hour, NotificationTime2.Minute);
+                }
+            }
+        }
+
+        public string NotificiationTime2StringMinute
+        {
+            get => NotificationTime2.Minute.ToString();
+            set
+            {
+                if (int.TryParse(value, out int minute))
+                {
+                    NotificationTime2 = new TimeOnly(NotificationTime2.Hour, minute);
+                }
+            }
+        }
+
+        public string NotificationTime3StringHour
+        {
+            get => NotificationTime3.Hour.ToString();
+            set
+            {
+                if (int.TryParse(value, out int hour))
+                {
+                    NotificationTime3 = new TimeOnly(hour, NotificationTime3.Minute);
+                }
+            }
+        }
+
+        public string NotificationTime3StringMinute
+        {
+            get => NotificationTime3.Minute.ToString();
+            set
+            {
+                if (int.TryParse(value, out int minute))
+                {
+                    NotificationTime3 = new TimeOnly(NotificationTime3.Hour, minute);
+                }
+            }
+        }
+        #endregion
+
+        #region OtherAttributes
+
         private string _taskName;
 
         private Difficulty _taskDifficulty;
@@ -67,15 +165,23 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _taskCompleted, value);
         }
 
+        #endregion
+
+        public void ResetAttributes()
+        {
+            TaskName = "Test task name";
+            TaskDifficulty = Difficulty.Easy;
+            TaskTimes = new TimeOnly[3];
+            TaskNote = "Test task note";
+
+        }
+
         public TaskViewModel(MainViewModel mainViewModelReference)
         {
             _mainViewModelReference = mainViewModelReference;
 
-            TaskName = "Test task name";
-            TaskDifficulty = Difficulty.Hard;
-            TaskTimes = new TimeOnly[3];
-            TaskNote = "Test task note";
             TaskCompleted = false;
+            ResetAttributes();
         }
     }
 }

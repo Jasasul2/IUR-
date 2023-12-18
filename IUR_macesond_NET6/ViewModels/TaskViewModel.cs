@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace IUR_macesond_NET6.ViewModels
 {
+    // Outside the class so its accesible from XAML
+    public enum Difficulty
+    {
+        Easy,
+        Medium,
+        Hard
+    }
+
     internal class TaskViewModel : ViewModelBase
     {
         private MainViewModel _mainViewModelReference;
 
-        public enum Difficulty
-        {
-            Easy,
-            Medium,
-            Hard
-        }
 
         private Dictionary<Difficulty, int> DifficultyToExp = new Dictionary<Difficulty, int>()
         {
@@ -70,9 +72,9 @@ namespace IUR_macesond_NET6.ViewModels
             _mainViewModelReference = mainViewModelReference;
 
             TaskName = "Test task name";
-            TaskDifficulty = Difficulty.Easy;
+            TaskDifficulty = Difficulty.Hard;
             TaskTimes = new TimeOnly[3];
-            TaskNote = "Je nacase ufiknout si penis";
+            TaskNote = "Test task note";
             TaskCompleted = false;
         }
     }

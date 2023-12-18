@@ -19,6 +19,7 @@
         AllowsTransparency="True">
 
     <Window.Resources>
+        <converters:EnumComparisonConverter x:Key="EnumComparisonConverter"/>
         <converters:XPTextConverter x:Key="XPTextConverter"/>
         <converters:LevelConverter x:Key="LevelConverter"/>
         <converters:LanguageEnumToStringConverter x:Key="LanguageEnumToStringConverter"/>
@@ -305,15 +306,18 @@
                         <Label Name="TaskDifficultyLabel" Content="{Binding LocalizedText.TaskEditorDifficultyLabel}" Width="251"
                                 Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="53,0,0,0"/>
 
-                        <RadioButton Name="SetMediumDifficultyRB" Content="Easy" 
+                        <RadioButton Name="SetMediumDifficultyRB"
+                                     IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Easy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource EasyColorBrush}"
                                 Grid.Column="3" Grid.Row="3" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
 
-                        <RadioButton Name="SetEasyDifficultyRB" Content="Hard" 
+                        <RadioButton Name="SetEasyDifficultyRB"
+                                     IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Medium}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource MediumColorBrush}"
                                 Grid.Column="4" Grid.Row="3" Margin="-50,0,0,0" Grid.ColumnSpan="2"/>
 
-                        <RadioButton Name="SetHardDifficultyRB" Content="Insane" 
+                        <RadioButton Name="SetHardDifficultyRB" 
+                                     IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Hard}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource HardColorBrush}"
                                 Grid.Column="5" Grid.Row="3" Margin="-100,0,0,0" Grid.ColumnSpan="2"/>
 

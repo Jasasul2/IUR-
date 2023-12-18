@@ -119,12 +119,10 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="5">
 
-                                                <Button x:Name="DeleteGivenTask" Content="X" Width="30" Height="30" Margin="0,0,8,0" IsEnabled="{Binding Completed, Converter={StaticResource BoolToVisibilityNegatedConverter}}"/>
+                                                <Button Content="X" Width="30" Height="30" Margin="0,0,8,0" IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}"/>
 
-                                                <!-- First TextBlock --><!--
-                                                <TextBlock Text="{Binding TaskName}" VerticalAlignment="Center" Margin="5"/>-->
+                                                <!-- First TextBlock -->
                                                 <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
-                                                     x:Name="TaskNameTextBoxInList"
                                                      Width="287"
                                                      Height="40" 
                                                      Padding="5"
@@ -138,11 +136,11 @@
                                                      Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2"/>     
 
                                                 <!-- Image -->
-                                                <Border x:Name="DifficultyBorder" Style="{StaticResource ShadowBorder}" 
+                                                <Border Style="{StaticResource ShadowBorder}" IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}" 
                                                         Width="40" Height="40" Background="White" CornerRadius="20"
                                                         Margin="10,0,5,0">
 
-                                                    <Border x:Name="DifficultyBorderFill" Style="{StaticResource ShadowBorder}"
+                                                    <Border Style="{StaticResource ShadowBorder}"
                                                             Width="30" Height="30"
                                                             CornerRadius="25">
                                                         <Border.Background>
@@ -216,7 +214,9 @@
 
                         <TabItem Header="{Binding LocalizedText.TaskLibraryButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder1" Style="{StaticResource DetailBorderStyle}">
-                                <Grid/>
+                                <Grid>
+                                
+                                </Grid>
                             </Border>
                         </TabItem>
                         <TabItem Header="{Binding LocalizedText.ProductivityButton}" Style="{StaticResource TabItemStyle}">

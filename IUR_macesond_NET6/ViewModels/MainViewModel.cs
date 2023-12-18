@@ -91,6 +91,19 @@ namespace IUR_macesond_NET6.ViewModels
         }
         #endregion
 
+        #region TaskLists 
+
+        private TaskViewModel _selectedTask;
+
+        public TaskViewModel SelectedTask
+        {
+            get => _selectedTask;
+            set => SetProperty(ref _selectedTask, value);
+        }
+
+        #endregion
+
+
         public MainViewModel()
         {
             UserSettings = new UserSettingsViewModel(this);
@@ -103,6 +116,9 @@ namespace IUR_macesond_NET6.ViewModels
             CurrentLevel = 1;
             CurrentXP = 5;
             NextLevelXP = 10;
+
+            // Task Init
+            SelectedTask = new TaskViewModel(this);
         }
     }
 }

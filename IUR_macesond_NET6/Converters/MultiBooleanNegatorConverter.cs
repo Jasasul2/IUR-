@@ -12,13 +12,24 @@ namespace IUR_macesond_NET6.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values == null || values.Length != 2 || !(values[0] is bool) || !(values[1] is bool))
-                return Binding.DoNothing;
+            bool result = true;
 
-            bool param1 = (bool)values[0];
-            bool param2 = (bool)values[1];
-
-            return !(param1 || param2);
+            foreach (object value in values)
+            {
+                if (value is bool)
+                {
+                    if((bool)value == true)
+                    {
+                        result = false; 
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return result;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

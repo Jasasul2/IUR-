@@ -98,12 +98,12 @@
                             <Button Name="PrevousDayButton" 
                                     Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
                                     Content="{Binding LocalizedText.PreviousButton}" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
-                                    <!--IsEnabled="{Binding IsNotFirstDate, Mode=TwoWay}"--> 
+                            <!--IsEnabled="{Binding IsNotFirstDate, Mode=TwoWay}"-->
 
                             <DatePicker Name="DatePicker" SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDate, Converter={StaticResource DateTimeToStringConverter}}"
                                         DisplayDateStart="{Binding FirstDate, UpdateSourceTrigger=PropertyChanged}"
                                         Width="460" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            
+
                             <Button Name="NextDayButton" Command="{Binding NextDayCommand}"
                                     Content="{Binding LocalizedText.NextButton}" Height="40" Width="100" Margin="5,5,0,5" FontSize="18" />
                         </StackPanel>
@@ -177,7 +177,7 @@
                                                     </Border.IsEnabled>
                                                 </Border>
 
-                                                <!--Task finished checkbox--> 
+                                                <!--Task finished checkbox-->
                                                 <CheckBox
                                                     Grid.Column="3" Margin="15,0,0,0"
                                                     IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"
@@ -245,7 +245,7 @@
                         <TabItem Header="{Binding LocalizedText.TaskLibraryButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder1" Style="{StaticResource DetailBorderStyle}">
                                 <Grid>
-                                
+
                                 </Grid>
                             </Border>
                         </TabItem>
@@ -325,12 +325,12 @@
 
 
                 <!-- Task Editor -->
-                
+
                 <Label Content="{Binding LocalizedText.InvisibleTaskEditorLabel}" Foreground="White" VerticalAlignment="Center" 
                        HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Visibility="{Binding IsTaskSelected, Converter={StaticResource BoolToVisibilityNegatedConverter}}"
                        Grid.Column="1" Grid.Row="1"/>
-                
+
                 <Border x:Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyleShaded}" Visibility="{Binding IsTaskSelected, Converter={StaticResource BoolToVisibilityConverter}}"
                     Grid.Column="1" Grid.Row="1">
 
@@ -414,7 +414,7 @@
                         <RadioButton Name="SetEasyDifficultyRB"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Medium}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource MediumColorBrush}"
-                                Grid.Column="4" Grid.Row="3" Margin="-50,0,0,0" Grid.ColumnSpan="2">
+                                Grid.Column="4" Grid.Row="3" Margin="-52,0,0,0" Grid.ColumnSpan="2">
                             <RadioButton.IsEnabled>
                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                     <Binding Path="SelectedTask.Deprecated"/>
@@ -426,7 +426,7 @@
                         <RadioButton Name="SetHardDifficultyRB" 
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Hard}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource HardColorBrush}"
-                                Grid.Column="5" Grid.Row="3" Margin="-100,0,0,0" Grid.ColumnSpan="2">
+                                Grid.Column="5" Grid.Row="3" Margin="-104,0,0,0" Grid.ColumnSpan="2">
                             <RadioButton.IsEnabled>
                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                     <Binding Path="SelectedTask.Deprecated"/>
@@ -435,43 +435,46 @@
                             </RadioButton.IsEnabled>
                         </RadioButton>
 
-                        <!-- Third row: Task Timers  -->
+                        <!-- Third row: Task Timer  -->
                         <Label Name="TaskNotificationLabel" Content="{Binding LocalizedText.TaskEditorNotificationTimesLabel}" Width="270" VerticalContentAlignment="Center"
                                 Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="34,0,0,0"/>
 
+
+                        <!--Task finished checkbox-->
+                        <CheckBox
+                                Grid.Column="3" Grid.Row="4" Margin="0,0,0,0"
+                                IsChecked="{Binding SelectedTask.HasNotificationTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30">
+
+                            <CheckBox.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </CheckBox.IsEnabled>
+                        </CheckBox>
+
+                        <Label Name="TaskNotificationEnabledLabel" Content="{Binding LocalizedText.TaskEditorNotificationEnabledLabel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="69" VerticalContentAlignment="Center"
+                                Grid.Column="3" Grid.Row="4" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="35,0,0,0" FontSize="14" Grid.ColumnSpan="2">
+                            <Label.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </Label.IsEnabled>
+                        </Label>
+
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput1"
-                                            Grid.Column="3" Grid.Row="4"
-                                            Hour="{Binding SelectedTask.NotificationTime1StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding SelectedTask.NotificationTime1StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                Grid.Column="4" Grid.Row="4"
+                                Hour="{Binding SelectedTask.NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Minute="{Binding SelectedTask.NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                             <userControls:TimeInput.IsEnabled>
                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                     <Binding Path="SelectedTask.Deprecated"/>
                                     <Binding Path="SelectedTask.MarkedForCompletion"/>
-                                </MultiBinding>
-                            </userControls:TimeInput.IsEnabled>
-                        </userControls:TimeInput>
-
-                        <userControls:TimeInput x:Name="TaskNotificationtTimeInput2"
-                                            Grid.Column="4" Grid.Row="4"
-                                            Hour="{Binding SelectedTask.NotificationTime2StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding SelectedTask.NotificiationTime2StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                            <userControls:TimeInput.IsEnabled>
-                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
-                                    <Binding Path="SelectedTask.Deprecated"/>
-                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
-                                </MultiBinding>
-                            </userControls:TimeInput.IsEnabled>
-                        </userControls:TimeInput>
-
-                        <userControls:TimeInput x:Name="TaskNotificationtTimeInput3"
-                                            Grid.Column="5" Grid.Row="4"
-                                            Hour="{Binding SelectedTask.NotificationTime3StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding SelectedTask.NotificationTime3StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                            <userControls:TimeInput.IsEnabled>
-                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
-                                    <Binding Path="SelectedTask.Deprecated"/>
-                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                    <Binding Path="SelectedTask.DoesNotHaveNotificationTime"/>
+                                    <Binding Mode="TwoWay"/>
+                                    <Binding UpdateSourceTrigger="PropertyChanged"/>
                                 </MultiBinding>
                             </userControls:TimeInput.IsEnabled>
                         </userControls:TimeInput>

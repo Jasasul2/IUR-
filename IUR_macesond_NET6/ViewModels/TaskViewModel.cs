@@ -30,99 +30,61 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region NotificationTimesAttributes
 
-        TimeOnly _notificationTime1 = new TimeOnly();
-        TimeOnly _notificationTime2 = new TimeOnly();
-        TimeOnly _notificationTime3 = new TimeOnly();
+        private bool _hasNotificationTime = false;
+        private bool _hasNotificationTimeNegation = true;
 
-        public TimeOnly NotificationTime1
+        public bool HasNotificationTime
         {
-            get => _notificationTime1;
-            set => SetProperty(ref _notificationTime1, value);
-        }
-        public TimeOnly NotificationTime2
-        {
-            get => _notificationTime2;
-            set => SetProperty(ref _notificationTime2, value);
-        }
-
-        public TimeOnly NotificationTime3
-        {
-            get => _notificationTime3;
-            set => SetProperty(ref _notificationTime3, value);
+            get => _hasNotificationTime;
+            set {
+                SetProperty(ref _hasNotificationTime, value);
+                DoesNotHaveNotificationTime = !_hasNotificationTime;
+                if (_mainViewModelReference != null)
+                {
+                    _mainViewModelReference.LocalizedText.ToggleTaskEditorNotificationLabel(value);
+                }
+            } 
         }
 
-        public string NotificationTime1StringHour
+        public bool DoesNotHaveNotificationTime
         {
-            get => NotificationTime1.Hour.ToString();
+            get => !_hasNotificationTime;
+            set => SetProperty(ref _hasNotificationTimeNegation, value);
+        }
+        
+        TimeOnly _notificationTime = new TimeOnly();
+
+        public TimeOnly NotificationTime
+        {
+            get => _notificationTime;
+            set => SetProperty(ref _notificationTime, value);
+        }
+
+        public string NotificationTimeStringHour
+        {
+            get => NotificationTime.Hour.ToString();
             set
             {
                 if (int.TryParse(value, out int hour))
                 {
-                    NotificationTime1 = new TimeOnly(hour, NotificationTime1.Minute);
+                    NotificationTime = new TimeOnly(hour, NotificationTime.Minute);
                 }
             }
         }
  
 
-        public string NotificationTime1StringMinute 
+        public string NotificationTimeStringMinute 
         {
-            get => NotificationTime1.Minute.ToString();
+            get => NotificationTime.Minute.ToString();
             set
             {
                 if (int.TryParse(value, out int minute))
                 {
-                    NotificationTime1 = new TimeOnly(NotificationTime1.Hour, minute);
+                    NotificationTime = new TimeOnly(NotificationTime.Hour, minute);
                 }
             }
         }
 
-        public string NotificationTime2StringHour
-        {
-            get => NotificationTime2.Hour.ToString();
-            set
-            {
-                if (int.TryParse(value, out int hour))
-                {
-                    NotificationTime2 = new TimeOnly(hour, NotificationTime2.Minute);
-                }
-            }
-        }
-
-        public string NotificiationTime2StringMinute
-        {
-            get => NotificationTime2.Minute.ToString();
-            set
-            {
-                if (int.TryParse(value, out int minute))
-                {
-                    NotificationTime2 = new TimeOnly(NotificationTime2.Hour, minute);
-                }
-            }
-        }
-
-        public string NotificationTime3StringHour
-        {
-            get => NotificationTime3.Hour.ToString();
-            set
-            {
-                if (int.TryParse(value, out int hour))
-                {
-                    NotificationTime3 = new TimeOnly(hour, NotificationTime3.Minute);
-                }
-            }
-        }
-
-        public string NotificationTime3StringMinute
-        {
-            get => NotificationTime3.Minute.ToString();
-            set
-            {
-                if (int.TryParse(value, out int minute))
-                {
-                    NotificationTime3 = new TimeOnly(NotificationTime3.Hour, minute);
-                }
-            }
-        }
         #endregion
 
         #region OtherAttributes
@@ -130,8 +92,6 @@ namespace IUR_macesond_NET6.ViewModels
         private string _taskName;
 
         private Difficulty _taskDifficulty;
-
-        private TimeOnly[] _taskTimes;
 
         private string _taskNote;
 
@@ -147,12 +107,6 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _taskDifficulty;
             set => SetProperty(ref _taskDifficulty, value);
-        }
-
-        public TimeOnly[] TaskTimes
-        {
-            get => _taskTimes;
-            set => SetProperty(ref _taskTimes, value);
         }
 
         public string TaskNote
@@ -230,7 +184,6 @@ namespace IUR_macesond_NET6.ViewModels
         {
             TaskName = "";
             TaskDifficulty = Difficulty.Easy;
-            TaskTimes = new TimeOnly[3];
             TaskNote = "";
         }
 

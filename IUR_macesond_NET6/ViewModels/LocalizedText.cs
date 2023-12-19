@@ -150,7 +150,12 @@ namespace IUR_macesond_NET6.ViewModels
         private string _taskEditorTitle = "Task Editor";
         private string _taskEditorNameLabel = "Task name:";
         private string _taskEditorDifficultyLabel = "Task difficulty:";
-        private string _taskEditorNotificationTimesLabel = "Task notification times:";
+        private string _taskEditorNotificationTimesLabel = "Task notification time:";
+
+        bool _taskEditorNotificationEnabled = false;
+        private string _taskEditorNotificationEnabledLabel = "Enabled";
+        private string _taskEditorNotificationDisabledLabel = "Disabled";
+
         private string _taskEditorNoteLabel = "Task note:";
 
         private string _taskEditorPlaceholderName = "Enter a task name";
@@ -161,7 +166,7 @@ namespace IUR_macesond_NET6.ViewModels
             get => _invisibleTaskEditorLabel;
             set => SetProperty(ref _invisibleTaskEditorLabel, value);
         }
-        
+
         public string TaskEditorTitle
         {
             get => _taskEditorTitle;
@@ -184,6 +189,22 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _taskEditorNotificationTimesLabel;
             set => SetProperty(ref _taskEditorNotificationTimesLabel, value);
+        }
+
+        public string TaskEditorNotificationEnabledLabel
+        {
+            get
+            {
+                if (_taskEditorNotificationEnabled)
+                {
+                    return _taskEditorNotificationEnabledLabel;
+                }
+                else
+                {
+                    return _taskEditorNotificationDisabledLabel;
+                }   
+            }
+            set => SetProperty(ref _taskEditorNotificationEnabledLabel, value);
         }
 
         public string TaskEditorNoteLabel
@@ -254,7 +275,9 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorTitle = "Task Editor";
                     TaskEditorNameLabel = "Task name:";
                     TaskEditorDifficultyLabel = "Task difficulty:";
-                    TaskEditorNotificationTimesLabel = "Task notification times:";
+                    TaskEditorNotificationTimesLabel = "Task notification time:";
+                    _taskEditorNotificationEnabledLabel = "Enabled";
+                    _taskEditorNotificationDisabledLabel = "Disabled";
                     TaskEditorNoteLabel = "Task note:";
 
                     TaskEditorPlaceholderName = "Enter a task name";
@@ -290,7 +313,9 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorTitle = "Editor úkolů";
                     TaskEditorNameLabel = "Název úkolu:";
                     TaskEditorDifficultyLabel = "Obtížnost úkolu:";
-                    TaskEditorNotificationTimesLabel = "Časy upozornění:";
+                    TaskEditorNotificationTimesLabel = "Čas upozornění:";
+                    _taskEditorNotificationEnabledLabel = "Zapnuto";
+                    _taskEditorNotificationDisabledLabel = "Vypnuto";
                     TaskEditorNoteLabel = "Poznámka k úkolu:";
 
                     TaskEditorPlaceholderName = "Zadejte název úkolu";
@@ -301,6 +326,12 @@ namespace IUR_macesond_NET6.ViewModels
 
                     break;
             }
+        }
+
+        public void ToggleTaskEditorNotificationLabel(bool enabled)
+        {
+            _taskEditorNotificationEnabled = enabled;
+            OnPropertyChanged(nameof(TaskEditorNotificationEnabledLabel));
         }
 
         public LocalizedText(UserSettingsViewModel.Language defaultLanguage)

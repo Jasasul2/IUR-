@@ -31,7 +31,9 @@ namespace IUR_macesond_NET6.ViewModels
         #region NotificationTimesAttributes
 
         private bool _hasNotificationTime = false;
-        private bool _hasNotificationTimeNegation = true;
+
+        // This is a horrible code sorry for that 
+        private bool _hasNotificationTimeNegation = true; 
 
         public bool HasNotificationTime
         {

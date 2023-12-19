@@ -207,7 +207,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool ResetSelectedTaskCommandCanExecute (object obj)
         {
-            return (SelectedTask != null && !SelectedTask.Completed);
+            return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
         }
 
         #endregion
@@ -229,7 +229,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool DeleteTaskCommandCanExecute(object obj)
         {
-            return (SelectedTask != null && !SelectedTask.Completed);
+            return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
         }
 
         #endregion
@@ -254,7 +254,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool CompleteTaskCommandCanExecute(object obj)
         {
-            return (SelectedTask != null && !SelectedTask.Completed);
+            return (SelectedTask != null && !SelectedTask.Deprecated);
         }
         #endregion
 
@@ -347,11 +347,11 @@ namespace IUR_macesond_NET6.ViewModels
         {
             if (ascendingComp)
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.Completed));
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.Deprecated));
             }
             else
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.Completed));
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.Deprecated));
             }
             ascendingComp = !ascendingComp;
         }

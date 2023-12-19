@@ -22,6 +22,7 @@
         <converters:BoolToVisibilityNegatedConverter x:Key="BoolToVisibilityNegatedConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
+        <converters:MultiBooleanNegatorConverter x:Key="MultiBooleanNegatorConverter"/>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
         <converters:EnumComparisonConverter x:Key="EnumComparisonConverter"/>
         <converters:EnumToBrushConverter x:Key="EnumToBrushConverter"/>
@@ -119,26 +120,39 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="5">
 
+                                                <!--Delete button-->
                                                 <Button Content="X" Width="30" Height="30" Margin="0,0,8,0" 
-                                                        IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}"
-                                                        Command="{Binding RemoveTaskCommand}"/>
+                                                        Command="{Binding RemoveTaskCommand}">
+                                                    <Button.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                            <Binding Path="Deprecated"/>
+                                                            <Binding Path="MarkedForCompletion"/>
+                                                        </MultiBinding>
+                                                    </Button.IsEnabled>
+                                                </Button>
 
-                                                <!-- First TextBlock -->
+                                                <!-- Name -->
                                                 <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
                                                      Width="287"
                                                      Height="40" 
                                                      Padding="5"
                                                      FontSize="16"
-                                                     IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}"
                                                      Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
                                                      Foreground="{StaticResource DarkerTextColorBrush}"
                                                      Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                      VerticalContentAlignment="Center"
                                                      MaxLength="35"
-                                                     Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2"/>     
+                                                     Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2">
+                                                    <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                            <Binding Path="Deprecated"/>
+                                                            <Binding Path="MarkedForCompletion"/>
+                                                        </MultiBinding>
+                                                    </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
 
-                                                <!-- Image -->
-                                                <Border Style="{StaticResource ShadowBorder}" IsEnabled="{Binding Completed, Converter={StaticResource BooleanNegationConverter}}" 
+                                                </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
+                                                <!-- Difficulty -->
+                                                <Border Style="{StaticResource ShadowBorder}"
                                                         Width="40" Height="40" Background="White" CornerRadius="20"
                                                         Margin="10,0,5,0">
 
@@ -154,7 +168,20 @@
                                                             </MultiBinding>
                                                         </Border.Background>
                                                     </Border>
+
+                                                    <Border.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                            <Binding Path="Deprecated"/>
+                                                            <Binding Path="MarkedForCompletion"/>
+                                                        </MultiBinding>
+                                                    </Border.IsEnabled>
                                                 </Border>
+
+                                                <!--Task finished checkbox--> 
+                                                <CheckBox
+                                                    Grid.Column="3" Margin="15,0,0,0"
+                                                    IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"
+                                                    IsEnabled="{Binding Deprecated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanNegationConverter }}"/>
 
                                                 <!-- Second TextBlock -->
                                                 <TextBlock Text="{Binding TaskNote}" VerticalAlignment="Center" Margin="5"/>
@@ -335,11 +362,11 @@
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
                         </Border>
 
-                        <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80" Command="{Binding CompleteTaskCommand}"
+                        <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80"
                                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
-                        <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80" IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
+                        <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80"
                                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}"/>
-                        <Button x:Name="DeleteTaskButton" Content="{Binding LocalizedText.DeleteButton}" Width="80" IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
+                        <Button x:Name="DeleteTaskButton" Content="{Binding LocalizedText.DeleteButton}" Width="80"
                                 Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}"/>
 
                         <!-- Second row: Task Name -->
@@ -352,35 +379,61 @@
                                  Height="40" 
                                  Padding="5"
                                  FontSize="16"
-                                 IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                  Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
                                  Foreground="{StaticResource DarkerTextColorBrush}"
                                  Text="{Binding SelectedTask.TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalContentAlignment="Center"
                                  MaxLength="35"
-                                 Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2"/>
+                                 Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2">
+
+                            <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+                        </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
 
                         <!-- Third row: Task Difficulty  -->
                         <Label Name="TaskDifficultyLabel" Content="{Binding LocalizedText.TaskEditorDifficultyLabel}" Width="251"
                                 Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="53,0,0,0"/>
 
                         <RadioButton Name="SetMediumDifficultyRB"
-                                     IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Easy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource EasyColorBrush}"
-                                Grid.Column="3" Grid.Row="3" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
+                                Grid.Column="3" Grid.Row="3" Margin="0,0,0,0" Grid.ColumnSpan="2">
+
+                            <RadioButton.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </RadioButton.IsEnabled>
+                        </RadioButton>
 
                         <RadioButton Name="SetEasyDifficultyRB"
-                                     IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Medium}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource MediumColorBrush}"
-                                Grid.Column="4" Grid.Row="3" Margin="-50,0,0,0" Grid.ColumnSpan="2"/>
+                                Grid.Column="4" Grid.Row="3" Margin="-50,0,0,0" Grid.ColumnSpan="2">
+                            <RadioButton.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </RadioButton.IsEnabled>
+                        </RadioButton>
 
                         <RadioButton Name="SetHardDifficultyRB" 
-                                     IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Hard}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource RoundRadioButtonStyle}" Foreground="{StaticResource HardColorBrush}"
-                                Grid.Column="5" Grid.Row="3" Margin="-100,0,0,0" Grid.ColumnSpan="2"/>
+                                Grid.Column="5" Grid.Row="3" Margin="-100,0,0,0" Grid.ColumnSpan="2">
+                            <RadioButton.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </RadioButton.IsEnabled>
+                        </RadioButton>
 
                         <!-- Third row: Task Timers  -->
                         <Label Name="TaskNotificationLabel" Content="{Binding LocalizedText.TaskEditorNotificationTimesLabel}" Width="270" VerticalContentAlignment="Center"
@@ -388,21 +441,40 @@
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput1"
                                             Grid.Column="3" Grid.Row="4"
-                                            IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                             Hour="{Binding SelectedTask.NotificationTime1StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding SelectedTask.NotificationTime1StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Minute="{Binding SelectedTask.NotificationTime1StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                            <userControls:TimeInput.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </userControls:TimeInput.IsEnabled>
+                        </userControls:TimeInput>
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput2"
                                             Grid.Column="4" Grid.Row="4"
-                                            IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                             Hour="{Binding SelectedTask.NotificationTime2StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding SelectedTask.NotificiationTime2StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Minute="{Binding SelectedTask.NotificiationTime2StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <userControls:TimeInput.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </userControls:TimeInput.IsEnabled>
+                        </userControls:TimeInput>
 
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput3"
                                             Grid.Column="5" Grid.Row="4"
-                                            IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                             Hour="{Binding SelectedTask.NotificationTime3StringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding SelectedTask.NotificationTime3StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Minute="{Binding SelectedTask.NotificationTime3StringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <userControls:TimeInput.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </userControls:TimeInput.IsEnabled>
+                        </userControls:TimeInput>
 
                         <!-- Fourth Row: Task Note -->
                         <Label Name="TaskNoteLabel" Content="{Binding LocalizedText.TaskEditorNoteLabel}" Height="40" Width="304" VerticalContentAlignment="Center" 
@@ -411,7 +483,6 @@
 
                         <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
                                  x:Name="NoteTExt"
-                                 IsEnabled="{Binding SelectedTask.Completed, Converter={StaticResource BooleanNegationConverter}}"
                                  Padding="5"
                                  FontSize="16"
                                  Placeholder="{Binding LocalizedText.TaskEditorPlaceholderNote}"
@@ -419,7 +490,15 @@
                                  Text="{Binding SelectedTask.TaskNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalContentAlignment="Top"
                                  MaxLength="35"
-                                 Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,10,25,20"/>
+                                 Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,10,25,20">
+
+                            <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                    <Binding Path="SelectedTask.Deprecated"/>
+                                    <Binding Path="SelectedTask.MarkedForCompletion"/>
+                                </MultiBinding>
+                            </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+                        </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
                     </Grid>
 
                 </Border>

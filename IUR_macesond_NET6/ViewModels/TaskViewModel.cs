@@ -1,6 +1,7 @@
 ﻿using IUR_macesond_NET6.Support;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -163,19 +164,40 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region TaskCompletion
 
-        private bool _completed;
+        // This is bound to a checkbox ... after productivity part ends,
+        // Task is completed and EXP is awarded 
 
-        public bool Completed
+
+        private bool _markedForCompletion;
+        private bool _completed = false;
+
+        public bool MarkedForCompletion
         {
-            get => _completed;
-            set => SetProperty(ref _completed, value);
+            get => _markedForCompletion;
+            set => SetProperty(ref _markedForCompletion, value);
+        }
+
+        // When the task is outside the producitivty part, it can no longer be changed
+        private bool _deprecated;
+
+        public bool Deprecated
+        {
+            get => _deprecated;
+            set
+            { 
+                SetProperty(ref _deprecated, value);
+                if(MarkedForCompletion && Deprecated)
+                {
+                    Complete();
+                }
+            }
         }
 
         public void Complete()
         {
-            if (Completed) return; 
-
-            Completed = true;
+            if (_completed) return;
+            
+            _completed = true;
             _mainViewModelReference.AddEXP(DifficultyToExp[TaskDifficulty]);
         }
 
@@ -192,7 +214,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool RemoveTaskCommandCanExecute(object obj)
         {
-            return !Completed;
+            return !Deprecated;
         }
 
         private void RemoveTask(object obj)
@@ -216,7 +238,8 @@ namespace IUR_macesond_NET6.ViewModels
         {
             _mainViewModelReference = mainViewModelReference;
 
-            Completed = false;
+            MarkedForCompletion = false;
+            Deprecated = false;
             ResetAttributes();
         }
     }

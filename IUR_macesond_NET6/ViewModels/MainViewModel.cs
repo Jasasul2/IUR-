@@ -271,7 +271,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
-        #region SortingMethods
+        #region NameSorting
 
         private bool ascendingName = true;
         private RelayCommand _sortTasksByNameCommand;
@@ -297,6 +297,9 @@ namespace IUR_macesond_NET6.ViewModels
             }
             ascendingName = !ascendingName;
         }
+
+        #endregion
+        #region DifficultySorting
 
         private bool ascendingDiff = true;  
         private RelayCommand _sortTasksByDifficultyCommand;
@@ -325,7 +328,56 @@ namespace IUR_macesond_NET6.ViewModels
         }
 
         #endregion
+        #region CompletionSorting
 
+        private bool ascendingComp = true;
+        private RelayCommand _sortTasksByCompletionCommand;
+
+        public RelayCommand SortTasksByCompletionCommand
+        {
+            get { return _sortTasksByCompletionCommand ?? (_sortTasksByCompletionCommand = new RelayCommand(SortTasksByCompletion, SortTasksByCompletionCommandCanExecute)); }
+        }
+
+        private bool SortTasksByCompletionCommandCanExecute(object obj)
+        {
+            return (SelectedTaskList.Count > 0);
+        }
+
+        public void SortTasksByCompletion(object obj)
+        {
+            if (ascendingComp)
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.Completed));
+            }
+            else
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.Completed));
+            }
+            ascendingComp = !ascendingComp;
+        }
+
+        #endregion
+
+        #region RandomSorting   
+
+        private RelayCommand _sortTasksRandomlyCommand;
+
+        public RelayCommand SortTasksRandomlyCommand
+        {
+            get { return _sortTasksRandomlyCommand ?? (_sortTasksRandomlyCommand = new RelayCommand(SortTasksRandomly, SortTasksRandomlyCommandCanExecute)); }
+        }
+
+        private bool SortTasksRandomlyCommandCanExecute(object obj)
+        {
+            return (SelectedTaskList.Count > 0);
+        }
+
+        public void SortTasksRandomly(object obj)
+        {
+            SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => Guid.NewGuid()));
+        }
+
+        #endregion
         public MainViewModel()
         {
             UserSettings = new UserSettingsViewModel(this);

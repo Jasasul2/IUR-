@@ -62,6 +62,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _nextButtonButton = "Next";
         private string _alphabetButton = "Alphabet";
         private string _difficultyButton = "Difficulty";
+        private string _completedButton = "Completed";
         private string _randomButton = "Random";
         private string _saveButton = "Save";
         private string _resetButton = "Reset";
@@ -109,11 +110,17 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _difficultyButton, value);
         }
 
+        public string CompletedButton
+        {
+            get => _completedButton;
+            set => SetProperty(ref _completedButton, value);
+        }
         public string RandomButton
         {
             get => _randomButton;
             set => SetProperty(ref _randomButton, value);
         }
+
 
         public string SaveButton
         {
@@ -236,6 +243,7 @@ namespace IUR_macesond_NET6.ViewModels
                     NextButton = "Next";
                     AlphabetButton = "Alphabet";
                     DifficultyButton = "Difficulty";
+                    CompletedButton = "Completed";
                     RandomButton = "Random";
                     SaveButton = "Save";
                     ResetButton = "Reset";
@@ -272,6 +280,7 @@ namespace IUR_macesond_NET6.ViewModels
                     NextButton = "Další";
                     AlphabetButton = "Abecedy";
                     DifficultyButton = "Obtížnosti";
+                    CompletedButton = "Hotovo";
                     RandomButton = "Náhodně";
                     SaveButton = "Uložit";
                     ResetButton = "Reset";

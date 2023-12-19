@@ -169,7 +169,8 @@
                                 <Label Name="SortLabel" Content="{Binding LocalizedText.SortByLabel}" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
                                 <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5" Command="{Binding SortTasksByNameCommand}"/>
                                 <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5" Command="{Binding SortTasksByDifficultyCommand}"/>
-                                <Button Name="RandomSortButton" Content="{Binding LocalizedText.RandomButton}" Margin="5,5,5,5"/>
+                                <Button Name="CompletedSortButton" Content="{Binding LocalizedText.CompletedButton}" Margin="5,5,5,5" Command="{Binding SortTasksByCompletionCommand}"/>
+                                <Button Name="RandomSortButton" Content="{Binding LocalizedText.RandomButton}" Margin="5,5,5,5" Command="{Binding SortTasksRandomlyCommand}"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -246,7 +247,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Simplified mode -->
-                                    <Label Name="SimplifiedModeLabel" Content="{Binding LocalizedText.LanguageLabel, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="59,0,0,0" FontWeight="Normal" Width="231" Grid.ColumnSpan="2"/>
+                                    <Label Name="SimplifiedModeLabel" Content="{Binding LocalizedText.SimplifiedModeLabel, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="59,0,0,0" FontWeight="Normal" Width="231" Grid.ColumnSpan="2"/>
 
                                     <CheckBox Name="SimplifiedModeCheckBox"
                                             Grid.Column="3" Margin="0,0,0,0"

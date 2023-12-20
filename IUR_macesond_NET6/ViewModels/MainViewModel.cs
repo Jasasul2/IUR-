@@ -357,7 +357,35 @@ namespace IUR_macesond_NET6.ViewModels
         }
 
         #endregion
+        #region TimeSorting
 
+        private bool ascendingTime = true;
+        private RelayCommand _sortTasksByTimeCommand;
+
+        public RelayCommand SortTasksByTimeCommand
+        {
+            get { return _sortTasksByTimeCommand ?? (_sortTasksByTimeCommand = new RelayCommand(SortTasksByTime, SortTasksByTimeCommandCanExecute)); }
+        }
+
+        private bool SortTasksByTimeCommandCanExecute(object obj)
+        {
+            return (SelectedTaskList.Count > 0);
+        }
+
+        public void SortTasksByTime(object obj)
+        {
+            if (ascendingTime)
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.NotificationTime));
+            }
+            else
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.NotificationTime));
+            }
+            ascendingTime = !ascendingTime;
+        }
+
+        #endregion  
         #region RandomSorting   
 
         private RelayCommand _sortTasksRandomlyCommand;

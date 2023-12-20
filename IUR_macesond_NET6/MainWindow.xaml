@@ -216,6 +216,7 @@
                                 <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5" Command="{Binding SortTasksByNameCommand}"/>
                                 <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5" Command="{Binding SortTasksByDifficultyCommand}"/>
                                 <Button Name="CompletedSortButton" Content="{Binding LocalizedText.CompletedButton}" Margin="5,5,5,5" Command="{Binding SortTasksByCompletionCommand}"/>
+                                <Button Name="TimeSortButton" Content="{Binding LocalizedText.TimeButton}" Margin="5,5,5,5" Command="{Binding SortTasksByTimeCommand}"/>
                                 <Button Name="RandomSortButton" Content="{Binding LocalizedText.RandomButton}" Margin="5,5,5,5" Command="{Binding SortTasksRandomlyCommand}"/>
                             </StackPanel>
                         </StackPanel>

@@ -188,8 +188,6 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
-
-
         public void ResetAttributes()
         {
             TaskName = "";

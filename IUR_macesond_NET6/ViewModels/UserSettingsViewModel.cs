@@ -77,28 +77,15 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
 
         #region Notifications
-        public enum NotificationType
+        
+        private bool _notificationSoundsEnabled;
+
+        public bool NotificationSoundsEnabled
         {
-            Sound,
-            Text,
-            Both,
-            None
+            get => _notificationSoundsEnabled;
+            set => SetProperty(ref _notificationSoundsEnabled, value);
         }
 
-        public ObservableCollection<string> NotificationComboBoxCollection { get; set; }
-
-        public string[] NotificationTypeArray
-        {
-            get { return Enum.GetNames(typeof(NotificationType)); }
-        }
-
-        private NotificationType _currentNotificationType;
-
-        public NotificationType CurrentNotificationType
-        {
-            get => _currentNotificationType;
-            set => SetProperty(ref _currentNotificationType, value);
-        }
         #endregion
 
         #region Time
@@ -175,7 +162,7 @@ namespace IUR_macesond_NET6.ViewModels
 
             SimplifiedMode = false;
             CurrentLanguage = Language.EN ;
-            CurrentNotificationType = NotificationType.Sound;
+            NotificationSoundsEnabled = true;
             ProductivityStartTime = new TimeOnly(8, 45);
             ProductivityEndTime = new TimeOnly(22, 30);
         }

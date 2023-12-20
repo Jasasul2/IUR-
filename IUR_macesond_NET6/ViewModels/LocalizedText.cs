@@ -17,7 +17,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _productivePartOfTheDayStartLabel = "Productive part of the day start:";
         private string _productivePartOfTheDayEndLabel = "Productive part of the day end:";
         private string _languageLabel = "Language:";
-        private string _notificationTypeLabel = "Notification type:";
+        private string _soundNotificationLabel = "Notification sounds:";
 
 
         public string SimplifiedModeLabel
@@ -44,10 +44,10 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _languageLabel, value);
         }
 
-        public string NotificationTypeLabel
+        public string NotificationSounds
         {
-            get => _notificationTypeLabel;
-            set => SetProperty(ref _notificationTypeLabel, value);
+            get => _soundNotificationLabel;
+            set => SetProperty(ref _soundNotificationLabel, value);
         }
 
         #endregion
@@ -263,7 +263,7 @@ namespace IUR_macesond_NET6.ViewModels
                     ProductivePartOfTheDayStartLabel = "Productive part of the day start:";
                     ProductivePartOfTheDayEndLabel = "Productive part of the day end:";
                     LanguageLabel = "Language:";
-                    NotificationTypeLabel = "Notification type:";
+                    NotificationSounds = "Notification sounds:";
 
                     TaskLibraryButton = "Task Library";
                     ProductivityButton = "Productivity";
@@ -302,7 +302,7 @@ namespace IUR_macesond_NET6.ViewModels
                     ProductivePartOfTheDayStartLabel = "Začátek produktivní části dne:";
                     ProductivePartOfTheDayEndLabel = "Konec produktivní části dne:";
                     LanguageLabel = "Jazyk:";
-                    NotificationTypeLabel = "Typ upozornění:";
+                    NotificationSounds = "Zvuk upozornění:";
                     DeleteButton = "Smazat";
 
                     TaskLibraryButton = "Knihovna";

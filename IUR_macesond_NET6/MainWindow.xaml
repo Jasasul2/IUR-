@@ -30,8 +30,6 @@
         <converters:EnumToBrushConverter x:Key="EnumToBrushConverter"/>
         <converters:XPTextConverter x:Key="XPTextConverter"/>
         <converters:LevelConverter x:Key="LevelConverter"/>
-        <converters:LanguageEnumToStringConverter x:Key="LanguageEnumToStringConverter"/>
-        <converters:NotificationEnumToStringConverter x:Key="NotificationEnumToStringConverter"/>
     </Window.Resources>
 
     <!--window data context -->
@@ -209,7 +207,7 @@
                                                     <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
                                                          Margin="45,5,0,0"
                                                          Width="427"
-                                                         Height="80" 
+   
                                                          Padding="5"
                                                          FontSize="16"
                                                          TextWrapping="Wrap"
@@ -319,13 +317,21 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Simplified mode -->
-                                    <Label Name="SimplifiedModeLabel" Content="{Binding LocalizedText.SimplifiedModeLabel, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="59,0,0,0" FontWeight="Normal" Width="231" Grid.ColumnSpan="2"/>
+                                    <Label Name="SimplifiedModeLabel" Content="{Binding LocalizedText.SimplifiedModeLabel, Mode=TwoWay}" 
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Normal" Width="290" Grid.ColumnSpan="2"/>
 
                                     <CheckBox Name="SimplifiedModeCheckBox"
-                                            Grid.Column="3" Margin="0,0,0,0"
+                                            Grid.Column="3" Margin="0,0,0,0" Grid.Row="0"
                                             IsChecked="{Binding UserSettings.SimplifiedMode, Mode=TwoWay}" Width="30"/>
 
+                                    <!--Notification Sounds-->
+                                    <Label Name="NotificationSoundLabel" Content="{Binding LocalizedText.NotificationSounds, Mode=TwoWay}" 
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Normal" Width="290" Grid.Row="1" Grid.ColumnSpan="2"/>
 
+                                    <CheckBox Name="NotificationSoundsCheckbox"
+                                            Grid.Column="3" Margin="0,0,0,0" Grid.Row="1"
+                                            IsChecked="{Binding UserSettings.NotificationSoundsEnabled, Mode=TwoWay}" Width="30"/>
+                                    
                                     <!-- Productive part of the day start -->
                                     <Label Name="ProductiveStartLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayStartLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
                                             Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
@@ -345,23 +351,14 @@
                                             Minute="{Binding UserSettings.ProductivityEndTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <!-- Language -->
-                                    <Label Name="LanguageLabel" Content="{Binding LocalizedText.LanguageLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                                            Grid.Column="1" Grid.Row="4" FontWeight="Normal" Width="174"/>
+                                    <Label Name="LanguageLabel" Content="{Binding LocalizedText.LanguageLabel, Mode=TwoWay}" 
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Normal" Width="290" Grid.Row="4" Grid.ColumnSpan="2"/>
 
                                     <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="4"
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal" VerticalContentAlignment="Center"
                                             SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay}"
                                             ItemsSource ="{Binding UserSettings.LanguageArray}">
                                     </ComboBox>
-
-                                    <!-- Notification type -->
-                                    <!--<Label Name="NotificationTypeLabel" Content="{Binding LocalizedText.NotificationTypeLabel}" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="4" FontWeight="Normal" Width="290" Grid.ColumnSpan="2"/>-->
-
-                                    <!--<ComboBox Name="NotificationComboBox" FontSize="18" Grid.Column="3" Grid.Row="4" 
-                                            VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal"
-                                            SelectedValue="{Binding UserSettings.CurrentNotificationType, Mode=TwoWay, Converter={StaticResource NotificationEnumToStringConverter}}"
-                                            ItemsSource ="{Binding UserSettings.NotificationComboBoxCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </ComboBox>-->
                                 </Grid>
                             </Border>
                         </TabItem>

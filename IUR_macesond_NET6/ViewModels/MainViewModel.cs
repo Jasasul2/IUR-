@@ -330,7 +330,7 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
         #region CompletionSorting
 
-        private bool ascendingComp = true;
+        private bool ascendingComp = false;
         private RelayCommand _sortTasksByCompletionCommand;
 
         public RelayCommand SortTasksByCompletionCommand
@@ -347,11 +347,11 @@ namespace IUR_macesond_NET6.ViewModels
         {
             if (ascendingComp)
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.Deprecated));
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.MarkedForCompletion));
             }
             else
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.Deprecated));
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.MarkedForCompletion));
             }
             ascendingComp = !ascendingComp;
         }

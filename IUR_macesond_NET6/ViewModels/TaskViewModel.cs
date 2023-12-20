@@ -55,20 +55,27 @@ namespace IUR_macesond_NET6.ViewModels
         }
         
         TimeOnly _notificationTime = new TimeOnly();
+        private int _notificationTimeHours;
+        private int _notificationTimeMinutes;
 
         public TimeOnly NotificationTime
         {
             get => _notificationTime;
-            set => SetProperty(ref _notificationTime, value);
+            set { 
+                SetProperty(ref _notificationTime, value);
+                SetProperty(ref _notificationTimeHours, value.Hour);
+                SetProperty(ref _notificationTimeMinutes, value.Minute);
+            }
         }
 
         public string NotificationTimeStringHour
         {
-            get => NotificationTime.Hour.ToString();
+            get => _notificationTimeHours.ToString();
             set
             {
                 if (int.TryParse(value, out int hour))
                 {
+                    SetProperty(ref _notificationTimeHours, hour);
                     NotificationTime = new TimeOnly(hour, NotificationTime.Minute);
                 }
             }
@@ -77,11 +84,12 @@ namespace IUR_macesond_NET6.ViewModels
 
         public string NotificationTimeStringMinute 
         {
-            get => NotificationTime.Minute.ToString();
+            get => _notificationTimeMinutes.ToString();
             set
             {
                 if (int.TryParse(value, out int minute))
                 {
+                    SetProperty(ref _notificationTimeMinutes, minute);
                     NotificationTime = new TimeOnly(NotificationTime.Hour, minute);
                 }
             }
@@ -186,6 +194,7 @@ namespace IUR_macesond_NET6.ViewModels
         {
             TaskName = "";
             TaskDifficulty = Difficulty.Easy;
+            NotificationTime = new TimeOnly(15, 30);
             TaskNote = "";
         }
 

@@ -328,40 +328,40 @@
 
                                     <!-- Productive part of the day start -->
                                     <Label Name="ProductiveStartLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayStartLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                                            Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
+                                            Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
 
                                     <userControls:TimeInput x:Name="ProductiveDayStartTimeInput"
-                                            Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="69,0,0,0"
+                                            Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="71,0,0,0"
                                             Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <!-- Productive part of the day end -->
                                     <Label Name="ProductiveEndLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayEndLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                                            Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
+                                            Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
 
                                     <userControls:TimeInput x:Name="ProductiveDayEndTimeInput"
-                                            Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="69,0,0,0"
+                                            Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Margin="71,0,0,0"
                                             Hour="{Binding UserSettings.ProductivityEndTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Minute="{Binding UserSettings.ProductivityEndTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <!-- Language -->
                                     <Label Name="LanguageLabel" Content="{Binding LocalizedText.LanguageLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                                            Grid.Column="1" Grid.Row="3" FontWeight="Normal" Width="174"/>
+                                            Grid.Column="1" Grid.Row="4" FontWeight="Normal" Width="174"/>
 
-                                    <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="3"
+                                    <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="4"
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal" VerticalContentAlignment="Center"
-                                            SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay, Converter={StaticResource LanguageEnumToStringConverter}}"
-                                            ItemsSource ="{Binding UserSettings.LanguageComboBoxCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay}"
+                                            ItemsSource ="{Binding UserSettings.LanguageArray}">
                                     </ComboBox>
 
                                     <!-- Notification type -->
-                                    <Label Name="NotificationTypeLabel" Content="{Binding LocalizedText.NotificationTypeLabel}" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="4" FontWeight="Normal" Width="290" Grid.ColumnSpan="2"/>
+                                    <!--<Label Name="NotificationTypeLabel" Content="{Binding LocalizedText.NotificationTypeLabel}" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="4" FontWeight="Normal" Width="290" Grid.ColumnSpan="2"/>-->
 
-                                    <ComboBox Name="NotificationComboBox" FontSize="18" Grid.Column="3" Grid.Row="4" 
+                                    <!--<ComboBox Name="NotificationComboBox" FontSize="18" Grid.Column="3" Grid.Row="4" 
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal"
                                             SelectedValue="{Binding UserSettings.CurrentNotificationType, Mode=TwoWay, Converter={StaticResource NotificationEnumToStringConverter}}"
                                             ItemsSource ="{Binding UserSettings.NotificationComboBoxCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </ComboBox>
+                                    </ComboBox>-->
                                 </Grid>
                             </Border>
                         </TabItem>

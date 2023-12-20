@@ -36,21 +36,13 @@ namespace IUR_macesond_NET6.ViewModels
 
         public enum Language
         {
-            Czech,
-            English
+            CZ,
+            EN
         }
 
-        private ObservableCollection<string> _languageComboBoxCollection;
-
-        public ObservableCollection<string> LanguageComboBoxCollection
+        public Array LanguageArray
         {
-            get => _languageComboBoxCollection;
-            set => SetProperty(ref _languageComboBoxCollection, value);
-        }
-
-        public string[] LanguageArray
-        {
-            get { return Enum.GetNames(typeof(Language)); }
+            get { return Enum.GetValues(typeof(Language)); }
         }
 
         private Language _currentLanguage;
@@ -64,8 +56,6 @@ namespace IUR_macesond_NET6.ViewModels
 
                 // This is some serious spaghetti code, but it works
                 Translator.CurrentLanguage = value;
-                LanguageComboBoxCollection = Translator.translateCollection(LanguageComboBoxCollection);
-                NotificationComboBoxCollection = Translator.translateCollection(NotificationComboBoxCollection);
 
                 if (_mainViewModelReference.LocalizedText!= null)
                 {
@@ -182,11 +172,9 @@ namespace IUR_macesond_NET6.ViewModels
             _mainViewModelReference = mainViewModelReference;
 
             // Setting up the comboBox collections 
-            LanguageComboBoxCollection = new ObservableCollection<string>(LanguageArray);
-            NotificationComboBoxCollection = new ObservableCollection<string>(NotificationTypeArray);
 
             SimplifiedMode = false;
-            CurrentLanguage = Language.English ;
+            CurrentLanguage = Language.EN ;
             CurrentNotificationType = NotificationType.Sound;
             ProductivityStartTime = new TimeOnly(8, 45);
             ProductivityEndTime = new TimeOnly(22, 30);

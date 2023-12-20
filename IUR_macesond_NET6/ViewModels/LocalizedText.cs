@@ -258,7 +258,7 @@ namespace IUR_macesond_NET6.ViewModels
         {
             switch (newLanguage)
             {
-                case UserSettingsViewModel.Language.English:
+                case UserSettingsViewModel.Language.EN:
                     SimplifiedModeLabel = "Simplified mode:";
                     ProductivePartOfTheDayStartLabel = "Productive part of the day start:";
                     ProductivePartOfTheDayEndLabel = "Productive part of the day end:";
@@ -297,7 +297,7 @@ namespace IUR_macesond_NET6.ViewModels
 
                     break;
 
-                case UserSettingsViewModel.Language.Czech:
+                case UserSettingsViewModel.Language.CZ:
                     SimplifiedModeLabel = "Zjednodušený režim:";
                     ProductivePartOfTheDayStartLabel = "Začátek produktivní části dne:";
                     ProductivePartOfTheDayEndLabel = "Konec produktivní části dne:";

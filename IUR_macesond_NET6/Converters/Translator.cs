@@ -10,6 +10,7 @@ using static IUR_macesond_NET6.ViewModels.UserSettingsViewModel;
 
 namespace IUR_macesond_NET6.Converters
 {
+    // This class is used for static translations during validation and/or converters
     class Translator
     {
         private static Language _language;
@@ -33,28 +34,10 @@ namespace IUR_macesond_NET6.Converters
 
         public static string TranslateToCzech(string stringToTranslate)
         {
-            if (CurrentLanguage == Language.Czech)
+            if (CurrentLanguage == Language.CZ)
             {
                 switch (stringToTranslate)
                 {
-                    case "English":
-                        return "Anglicky";
-
-                    case "Czech":
-                        return "Česky";
-
-                    case "Sound":
-                        return "Zvuk";
-
-                    case "Text":
-                        return "Text";
-
-                    case "Both":
-                        return "Obojí";
-
-                    case "None":
-                        return "Žádné";
-
                     case "Please enter a valid number from 0 to 59.":
                         return "Prosím zadejte platné číslo od 0 do 59.";
 
@@ -68,22 +51,10 @@ namespace IUR_macesond_NET6.Converters
 
         public static string TranslateToEnglish(string stringToTranslate)
         {
-            if (CurrentLanguage == Language.Czech)
+            if (CurrentLanguage == Language.CZ)
             {
                 switch (stringToTranslate)
                 {
-                    case "Anglicky":
-                        return "English";
-
-                    case "Česky":
-                        return "Czech";
-
-                    case "Zvuk":
-                        return "Sound";
-                    
-                    case "Text":
-                        return "Text";
-
                     case "Obojí":
                         return "Both";
 

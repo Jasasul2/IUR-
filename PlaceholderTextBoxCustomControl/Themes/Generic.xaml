@@ -33,6 +33,7 @@
                                     IsHitTestVisible="False"
                                     Opacity="0.5"
                             
+                                    TextWrapping="{TemplateBinding TextWrapping}"
                                     Foreground="{TemplateBinding Foreground}"
                                     FontSize="{TemplateBinding FontSize}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

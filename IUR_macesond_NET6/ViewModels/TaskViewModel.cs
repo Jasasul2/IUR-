@@ -20,6 +20,13 @@ namespace IUR_macesond_NET6.ViewModels
     {
         private MainViewModel _mainViewModelReference;
 
+        public MainViewModel MainViewModelReference
+        {
+            get => _mainViewModelReference;
+            set => SetProperty(ref _mainViewModelReference, value);
+        }
+
+
 
         private Dictionary<Difficulty, int> DifficultyToExp = new Dictionary<Difficulty, int>()
         {
@@ -193,7 +200,7 @@ namespace IUR_macesond_NET6.ViewModels
             TaskName = "";
             TaskDifficulty = Difficulty.Easy;
             NotificationTime = new TimeOnly(15, 30);
-            TaskNote = "";
+            TaskNote = "Test Test Test Test Test Test Test Test Test Test Test";
         }
 
         public TaskViewModel(MainViewModel mainViewModelReference)

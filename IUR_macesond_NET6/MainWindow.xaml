@@ -16,9 +16,11 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        x:Name="root">
 
     <Window.Resources>
+        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
         <converters:BoolToVisibilityNegatedConverter x:Key="BoolToVisibilityNegatedConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
@@ -139,11 +141,11 @@
                                                              Height="40" 
                                                              Padding="5"
                                                              FontSize="16"
-                                                             Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
+                                                             Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorPlaceholderName}"
                                                              Foreground="{StaticResource DarkerTextColorBrush}"
                                                              Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                              VerticalContentAlignment="Center"
-                                                             MaxLength="200"
+                                                             MaxLength="35"
                                                              Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2">
                                                             <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
                                                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
@@ -210,13 +212,14 @@
                                                          Height="80" 
                                                          Padding="5"
                                                          FontSize="16"
-                                                         Visibility="Collapsed"
-                                                         Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
+                                                         TextWrapping="Wrap"
+                                                         Visibility="{Binding TaskNote, Converter={StaticResource StringToVisibilityConverter}}"
+                                                         Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorPlaceholderNote}"
                                                          Foreground="{StaticResource DarkerTextColorBrush}"
                                                          Text="{Binding TaskNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                          HorizontalAlignment="Left" 
                                                          VerticalContentAlignment="Top"
-                                                         MaxLength="35">
+                                                         MaxLength="200">
                                                         <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
                                                             <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                 <Binding Path="Deprecated"/>
@@ -532,6 +535,7 @@
                                  FontSize="16"
                                  Placeholder="{Binding LocalizedText.TaskEditorPlaceholderNote}"
                                  Foreground="{StaticResource DarkerTextColorBrush}"
+                                 TextWrapping="Wrap"
                                  Text="{Binding SelectedTask.TaskNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalContentAlignment="Top"
                                  MaxLength="200"

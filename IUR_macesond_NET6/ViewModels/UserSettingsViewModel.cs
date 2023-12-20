@@ -40,7 +40,13 @@ namespace IUR_macesond_NET6.ViewModels
             English
         }
 
-        public ObservableCollection<string> LanguageComboBoxCollection { get; set; } 
+        private ObservableCollection<string> _languageComboBoxCollection;
+
+        public ObservableCollection<string> LanguageComboBoxCollection
+        {
+            get => _languageComboBoxCollection;
+            set => SetProperty(ref _languageComboBoxCollection, value);
+        }
 
         public string[] LanguageArray
         {

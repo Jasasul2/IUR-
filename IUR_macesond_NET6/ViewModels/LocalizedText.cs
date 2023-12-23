@@ -169,6 +169,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _invisibleTaskEditorLabel = "Select a task to Edit";
 
         private string _taskEditorTitle = "Task Editor";
+        private string _taskTemplateEditorTitle = "Task Template Editor";
         private string _taskEditorNameLabel = "Task name:";
         private string _taskEditorDifficultyLabel = "Task difficulty:";
         private string _taskEditorNotificationTimesLabel = "Task notification time:";
@@ -192,6 +193,12 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _taskEditorTitle;
             set => SetProperty(ref _taskEditorTitle, value);
+        }
+
+        public string TaskTemplateEditorTitle
+        {
+            get => _taskTemplateEditorTitle;
+            set => SetProperty(ref _taskTemplateEditorTitle, value);
         }
 
         public string TaskEditorNameLabel
@@ -298,6 +305,7 @@ namespace IUR_macesond_NET6.ViewModels
                     InvisibleTaskEditorLabel = "Select a task to Edit";
 
                     TaskEditorTitle = "Task Editor";
+                    TaskTemplateEditorTitle = "Task Template Editor";
                     TaskEditorNameLabel = "Task name:";
                     TaskEditorDifficultyLabel = "Task difficulty:";
                     TaskEditorNotificationTimesLabel = "Task notification time:";
@@ -341,6 +349,7 @@ namespace IUR_macesond_NET6.ViewModels
                     InvisibleTaskEditorLabel = "Vyberte úkol k úpravě";
 
                     TaskEditorTitle = "Editor úkolů";
+                    TaskTemplateEditorTitle = "Editor šablon úkolů";
                     TaskEditorNameLabel = "Název úkolu:";
                     TaskEditorDifficultyLabel = "Obtížnost úkolu:";
                     TaskEditorNotificationTimesLabel = "Čas upozornění:";

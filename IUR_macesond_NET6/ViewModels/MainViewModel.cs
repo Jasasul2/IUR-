@@ -148,6 +148,8 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region TaskLists 
 
+
+        // Selected Task 
         private bool _isTaskSelected;
 
         public bool IsTaskSelected
@@ -165,8 +167,35 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 SetProperty(ref _selectedTask, value);
                 IsTaskSelected = (value != null);
+                SetProperty(ref _selectedTemplate, null);
+                IsTemplateSelected = false;
             }
         }
+
+        // Selected Task Template
+
+        private bool _isTemplateSelected;
+
+        public bool IsTemplateSelected
+        {
+            get => _isTemplateSelected;
+            set => SetProperty(ref _isTemplateSelected, value);
+        }
+
+        private TaskViewModel _selectedTemplate;
+
+        public TaskViewModel SelectedTemplate
+        {
+            get => _selectedTemplate;
+            set
+            {
+                SetProperty(ref _selectedTemplate, value);
+                IsTemplateSelected = (value != null);
+                SetProperty(ref _selectedTask, null);
+                IsTaskSelected = false;
+            }
+        }
+
 
         // The currently selected visible task list in the left window 
 
@@ -549,11 +578,11 @@ namespace IUR_macesond_NET6.ViewModels
             UserSettings = new UserSettingsViewModel(this);
             LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
 
-            // Load User Data (eg xp, level and date)
-            LoadMainModel(); 
-
             // Load Tasks 
             LoadTaskDictionary();
+
+            // Load User Data (eg xp, level and date)
+            LoadMainModel(); 
 
             // Load Task Library
             LoadTaskLibrary();

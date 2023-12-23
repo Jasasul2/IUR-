@@ -69,6 +69,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _saveButton = "Save";
         private string _resetButton = "Reset";
         private string _deleteButton = "Delete";
+        private string _addTaskTemplateButton = "Add New Task Template";    
 
         public string TaskLibraryButton
         {
@@ -152,6 +153,12 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _deleteButton;
             set => SetProperty(ref _deleteButton, value);
+        }
+
+        public string AddTaskTemplateButton
+        {
+            get => _addTaskTemplateButton;
+            set => SetProperty(ref _addTaskTemplateButton, value);
         }
 
         #endregion
@@ -286,6 +293,8 @@ namespace IUR_macesond_NET6.ViewModels
                     ResetButton = "Reset";
                     DeleteButton = "Delete";
 
+                    AddTaskTemplateButton = "Add New Task Template";
+
                     InvisibleTaskEditorLabel = "Select a task to Edit";
 
                     TaskEditorTitle = "Task Editor";
@@ -326,6 +335,8 @@ namespace IUR_macesond_NET6.ViewModels
 
                     SaveButton = "Uložit";
                     ResetButton = "Reset";
+
+                    AddTaskTemplateButton = "Přidat šablonu úkolu";
 
                     InvisibleTaskEditorLabel = "Vyberte úkol k úpravě";
 

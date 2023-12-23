@@ -90,7 +90,6 @@ namespace IUR_macesond_NET6.Models
 
         #endregion
 
-        private const string _saveDataTaskLibrary = "TaskLibrary.json";
 
         #region TaskDictionary
         private const string _saveDataTaskDictionary = "TaskDictionary.json";
@@ -130,6 +129,44 @@ namespace IUR_macesond_NET6.Models
 
         #endregion
 
+        #region TaskLibrary
+        private const string _saveDataTaskLibrary = "TaskLibrary.json";
+
+        public ObservableCollection<TaskModel> LoadTaskLibrary()
+        {
+            string filePath = Path.Combine(appDataFolder, _saveDataTaskLibrary);
+
+            // Nothing saved
+            if (!File.Exists(filePath))
+            {
+                return new ObservableCollection<TaskModel>();
+            }
+
+            ObservableCollection<TaskModel> loadedTaskLibrary = JsonConvert.DeserializeObject<ObservableCollection<TaskModel>>(File.ReadAllText(filePath));
+            // Loading failed 
+            if (loadedTaskLibrary == null)
+            {
+                return new ObservableCollection<TaskModel>();
+            }
+
+            return loadedTaskLibrary;
+        }
+
+        public void SaveTaskLibrary(ObservableCollection<TaskModel> taskLibraryToSave)
+        {
+            string filePath = Path.Combine(appDataFolder, _saveDataTaskLibrary);
+
+            string json = JsonConvert.SerializeObject(taskLibraryToSave);
+            if (json == null)
+            {
+                return;
+            }
+
+            File.WriteAllText(filePath, json);
+        }
+
+
+        #endregion
 
         #region Constructor
 

@@ -22,6 +22,7 @@ namespace IUR_macesond_NET6.ViewModels
         // This Main View Model consists of both the user settings and the Task lists for every saved day
 
         private const int MAX_TASK_LIST_LENGTH = 10;
+        private const int MAX_TASK_LIBRARY_LENGTH = 40;
 
         public ModelDataLoader ModelDataLoader { get; set; }
         public UserSettingsViewModel UserSettings { get; set; }
@@ -52,7 +53,7 @@ namespace IUR_macesond_NET6.ViewModels
                 if (!DateToTaskListDictionary.ContainsKey(dateOnly))
                 {
                     DateToTaskListDictionary.Add(dateOnly, new ObservableCollection<TaskViewModel>());
-                } 
+                }
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
             }
         }
@@ -80,7 +81,7 @@ namespace IUR_macesond_NET6.ViewModels
         private bool PreviousDayCommandCanExecute(object obj)
         {
             IsNotFirstDate = (SelectedDate.Date > FirstDate.Date);
-            return IsNotFirstDate; 
+            return IsNotFirstDate;
         }
 
         private RelayCommand _nextDayCommand;
@@ -160,8 +161,8 @@ namespace IUR_macesond_NET6.ViewModels
         public TaskViewModel SelectedTask
         {
             get => _selectedTask;
-            set 
-            { 
+            set
+            {
                 SetProperty(ref _selectedTask, value);
                 IsTaskSelected = (value != null);
             }
@@ -178,6 +179,15 @@ namespace IUR_macesond_NET6.ViewModels
 
         private Dictionary<DateOnly, ObservableCollection<TaskViewModel>> DateToTaskListDictionary = new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
 
+        // Task Library
+
+        private ObservableCollection<TaskViewModel> _taskLibrary;
+
+        public ObservableCollection<TaskViewModel> TaskLibrary
+        {
+            get => _taskLibrary;
+            set => SetProperty(ref _taskLibrary, value);
+        }
 
         #endregion
 
@@ -204,6 +214,29 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region AddTaskTemplateCommand
+
+        private RelayCommand _addTaskTemplateCommand;
+
+        public RelayCommand AddTaskTemplateCommand
+        {
+            get { return _addTaskTemplateCommand ?? (_addTaskTemplateCommand = new RelayCommand(AddTaskTemplate, AddTaskTemplateCommandCanExecute)); }
+        }
+
+        private void AddTaskTemplate(object obj)
+        {
+            TaskViewModel newTask = new TaskViewModel(this, new TaskModel());
+            TaskLibrary.Add(newTask);
+            SelectedTask = newTask;
+        }
+
+        private bool AddTaskTemplateCommandCanExecute(object obj)
+        {
+            return TaskLibrary.Count < MAX_TASK_LIBRARY_LENGTH;
+        }
+
+        #endregion
+
         #region ResetCommand
 
         private RelayCommand _resetSelectedTaskCommand;
@@ -218,7 +251,7 @@ namespace IUR_macesond_NET6.ViewModels
             SelectedTask.SetAttributes(new TaskModel());
         }
 
-        private bool ResetSelectedTaskCommandCanExecute (object obj)
+        private bool ResetSelectedTaskCommandCanExecute(object obj)
         {
             return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
         }
@@ -275,7 +308,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         public void DeleteTask(TaskViewModel taskToDelete)
         {
-            if(SelectedTask == taskToDelete)
+            if (SelectedTask == taskToDelete)
             {
                 SelectedTask = null;
             }
@@ -314,7 +347,7 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
         #region DifficultySorting
 
-        private bool ascendingDiff = true;  
+        private bool ascendingDiff = true;
         private RelayCommand _sortTasksByDifficultyCommand;
 
         public RelayCommand SortTasksByDifficultyCommand
@@ -482,13 +515,37 @@ namespace IUR_macesond_NET6.ViewModels
             ModelDataLoader.SaveMainModel(mainModelToSave);
         }
 
+        private void LoadTaskLibrary()
+        {
+            TaskLibrary = new ObservableCollection<TaskViewModel>();
+            ObservableCollection<TaskModel> loadedTaskLibrary = ModelDataLoader.LoadTaskLibrary();
+
+            foreach (TaskModel taskModel in loadedTaskLibrary) {
+                TaskViewModel taskViewModel = new TaskViewModel(this, taskModel);
+                TaskLibrary.Add(taskViewModel);
+            }
+        }
+
+        private void SaveTaskLibrary()
+        {
+            ObservableCollection<TaskModel> taskLibraryToSave = new ObservableCollection<TaskModel>();
+
+            foreach (TaskViewModel taskViewModel in TaskLibrary)
+            {
+                TaskModel taskModel = new TaskModel();
+                taskModel.SetAttributes(taskViewModel);
+                taskLibraryToSave.Add(taskModel);
+            }
+
+            ModelDataLoader.SaveTaskLibrary(taskLibraryToSave);
+        }
+
         public MainViewModel()
         {
-            // Data Loade Instantiation
+            // Data Loader Instantiation
             ModelDataLoader = new ModelDataLoader(this);
 
             // Load User Settings 
-
             UserSettings = new UserSettingsViewModel(this);
             LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
 
@@ -499,7 +556,7 @@ namespace IUR_macesond_NET6.ViewModels
             LoadTaskDictionary();
 
             // Load Task Library
-            // TO DO
+            LoadTaskLibrary();
         }
 
         public void ExitApplication()
@@ -521,6 +578,7 @@ namespace IUR_macesond_NET6.ViewModels
             ModelDataLoader.SaveUserSettings(UserSettings.GetUserSettingsToSave());
             SaveTaskDictionary();
             SaveMainModel();
+            SaveTaskLibrary();
         }
 
         #endregion

@@ -224,7 +224,7 @@
 
                                                         <!-- Note -->
                                                         <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
-                                                                 Margin="45,5,0,0"
+                                                                 Margin="45,5,0,5"
                                                                  Width="427"
    
                                                                  Padding="5"
@@ -317,7 +317,144 @@
                         <TabItem Header="{Binding LocalizedText.TaskLibraryButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder1" Style="{StaticResource DetailBorderStyle}">
                                 <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" MinHeight="0" MaxHeight="450" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
+                                    <ListBox x:Name="TaskLibrary" ItemsSource="{Binding TaskLibrary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Margin="8,8,0,8" Background="Transparent" BorderBrush="Transparent"
+                                      SelectedItem="{Binding SelectedTask}"
+                                      ScrollViewer.CanContentScroll="True">     
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Vertical">
+                                                    <StackPanel Orientation="Horizontal" Margin="5">
+
+                                                        <!--Delete button-->
+                                                        <Button Content="X" Width="30" Height="30" Margin="0,0,10,0" 
+                                                            Command="{Binding RemoveTaskCommand}">
+                                                            <Button.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="Deprecated"/>
+                                                                    <Binding Path="MarkedForCompletion"/>
+                                                                </MultiBinding>
+                                                            </Button.IsEnabled>
+                                                        </Button>
+
+                                                        <!-- Name -->
+                                                        <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
+                                                              Width="287"
+                                                              Height="40" 
+                                                              Padding="5"
+                                                              FontSize="16"
+                                                              Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorPlaceholderName}"
+                                                              Foreground="{StaticResource DarkerTextColorBrush}"
+                                                              FontWeight="Normal"
+                                                              Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                              VerticalContentAlignment="Center"
+                                                              MaxLength="35"
+                                                              Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2">
+                                                            <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="Deprecated"/>
+                                                                    <Binding Path="MarkedForCompletion"/>
+                                                                </MultiBinding>
+                                                            </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+
+                                                        </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
+                                                        <!-- Difficulty -->
+                                                        <Border Style="{StaticResource ShadowBorder}"
+                                                             Width="40" Height="40" Background="White" CornerRadius="20"
+                                                             Margin="10,0,5,0">     
+
+                                                            <Border Style="{StaticResource ShadowBorder}"
+                                                             Width="30" Height="30"
+                                                             CornerRadius="25">
+                                                                <Border.Background>
+                                                                    <MultiBinding Converter="{StaticResource EnumToBrushConverter}">
+                                                                        <Binding Path="TaskDifficulty"/>
+                                                                        <Binding Source="{StaticResource EasyColorBrush}"/>
+                                                                        <Binding Source="{StaticResource MediumColorBrush}"/>
+                                                                        <Binding Source="{StaticResource HardColorBrush}"/>
+                                                                    </MultiBinding>
+                                                                </Border.Background>
+                                                            </Border>
+
+                                                            <Border.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="Deprecated"/>
+                                                                    <Binding Path="MarkedForCompletion"/>
+                                                                </MultiBinding>
+                                                            </Border.IsEnabled>
+                                                        </Border>
+
+                                                        <userControls:TimeInput
+                                                         Margin="5,0,0,0"
+                                                         Grid.Column="4" Grid.Row="4"
+                                                         Hour="{Binding NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                                                            <userControls:TimeInput.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="Deprecated"/>
+                                                                    <Binding Path="MarkedForCompletion"/>
+                                                                    <Binding Path="DoesNotHaveNotificationTime"/>
+                                                                    <Binding Mode="TwoWay"/>
+                                                                    <Binding UpdateSourceTrigger="PropertyChanged"/>
+                                                                </MultiBinding>
+                                                            </userControls:TimeInput.IsEnabled>
+                                                        </userControls:TimeInput>
+
+                                                        <!--Note Collapser-->
+                                                        <Button x:Name="NoteCollapserButton" Content="..." Width="30" Height="30" Margin="10,0,0,0" 
+                                                             Command="{Binding ToggleTaskNoteVisibilityCommand}">
+                                                            <Button.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="Deprecated"/>
+                                                                    <Binding Path="MarkedForCompletion"/>
+                                                                </MultiBinding>
+                                                            </Button.IsEnabled>
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                    <!-- Note -->
+                                                    <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
+                                                      Margin="45,5,0,5"
+                                                      Width="427"
+   
+                                                      Padding="5"
+                                                      FontSize="16"
+                                                      TextWrapping="Wrap"
+                                                      Visibility="{Binding TaskNoteVisibility, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                                                      Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorPlaceholderNote}"
+                                                      Foreground="{StaticResource DarkerTextColorBrush}"
+                                                      Text="{Binding TaskNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      FontWeight="Normal"
+                                                      HorizontalAlignment="Left" 
+                                                      VerticalContentAlignment="Top"
+                                                      MaxLength="500">
+                                                        <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+                                                            <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                <Binding Path="Deprecated"/>
+                                                                <Binding Path="MarkedForCompletion"/>
+                                                            </MultiBinding>
+                                                        </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
+
+                                                    </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
+                                                </StackPanel>
+
+
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <Button x:Name="AddTaskTemplateButton" Content="{Binding LocalizedText.AddTaskTemplateButton}" 
+                                         Grid.Row="1"
+                                         VerticalAlignment="Bottom"
+                                         Width="240" Margin="20,0,0,20" HorizontalAlignment="Left"
+                                         Command="{Binding AddTaskTemplateCommand}">
+
+                                    </Button>
                                 </Grid>
                             </Border>
                         </TabItem>

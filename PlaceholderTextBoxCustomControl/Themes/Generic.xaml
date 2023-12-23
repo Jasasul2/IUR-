@@ -36,6 +36,7 @@
                                     TextWrapping="{TemplateBinding TextWrapping}"
                                     Foreground="{TemplateBinding Foreground}"
                                     FontSize="{TemplateBinding FontSize}"
+                                    FontWeight="{TemplateBinding FontWeight}"   
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     Padding="{TemplateBinding Padding}" 

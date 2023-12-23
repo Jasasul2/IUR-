@@ -18,7 +18,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         x:Name="root">
-    
+
     <Window.Resources>
         <converters:BoolToVisibilityNegatedConverter x:Key="BoolToVisibilityNegatedConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
@@ -131,7 +131,7 @@
 
                                                             <!--Delete button-->
                                                             <Button Content="X" Width="30" Height="30" Margin="0,0,10,0" 
-                                                                        Command="{Binding RemoveTaskCommand}">
+                                                                        Command="{Binding RemoveTaskCommand}" CommandParameter="Task">
                                                                 <Button.IsEnabled>
                                                                     <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                         <Binding Path="Deprecated"/>
@@ -247,7 +247,7 @@
                                                         </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
                                                     </StackPanel>
 
-                                               
+
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
                                         </ListBox>
@@ -325,7 +325,7 @@
                                     <ListBox x:Name="TaskLibrary" ItemsSource="{Binding TaskLibrary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                       Margin="8,8,0,8" Background="Transparent" BorderBrush="Transparent"
                                       SelectedItem="{Binding SelectedTemplate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      ScrollViewer.CanContentScroll="True">     
+                                      ScrollViewer.CanContentScroll="True">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Vertical">
@@ -333,7 +333,7 @@
 
                                                         <!--Delete button-->
                                                         <Button Content="X" Width="30" Height="30" Margin="0,0,10,0" 
-                                                            Command="{Binding RemoveTaskCommand}">
+                                                            Command="{Binding RemoveTaskCommand}" CommandParameter="Template">
                                                             <Button.IsEnabled>
                                                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                     <Binding Path="Deprecated"/>
@@ -348,7 +348,7 @@
                                                               Height="40" 
                                                               Padding="5"
                                                               FontSize="16"
-                                                              Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorPlaceholderName}"
+                                                              Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorTemplatePlaceholderName}"
                                                               Foreground="{StaticResource DarkerTextColorBrush}"
                                                               FontWeight="Normal"
                                                               Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -366,7 +366,7 @@
                                                         <!-- Difficulty -->
                                                         <Border Style="{StaticResource ShadowBorder}"
                                                              Width="40" Height="40" Background="White" CornerRadius="20"
-                                                             Margin="10,0,5,0">     
+                                                             Margin="10,0,5,0">
 
                                                             <Border Style="{StaticResource ShadowBorder}"
                                                              Width="30" Height="30"
@@ -427,7 +427,7 @@
                                                       FontSize="16"
                                                       TextWrapping="Wrap"
                                                       Visibility="{Binding TaskNoteVisibility, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
-                                                      Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorPlaceholderNote}"
+                                                      Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorTemplatePlaceholderNote}"
                                                       Foreground="{StaticResource DarkerTextColorBrush}"
                                                       Text="{Binding TaskNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       FontWeight="Normal"
@@ -482,14 +482,6 @@
                                         <ColumnDefinition Width="295*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <!-- Simplified mode -->
-                                    <!--<Label Name="SimplifiedModeLabel" Content="{Binding LocalizedText.SimplifiedModeLabel, Mode=TwoWay}" 
-                                           HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Normal" Width="290" Grid.ColumnSpan="2"/>
-
-                                    <CheckBox Name="SimplifiedModeCheckBox"
-                                            Grid.Column="3" Margin="0,0,0,0" Grid.Row="0"
-                                            IsChecked="{Binding UserSettings.SimplifiedMode, Mode=TwoWay}" Width="30"/>-->
-
                                     <!--Notification Sounds-->
                                     <Label Name="NotificationSoundLabel" Content="{Binding LocalizedText.NotificationSounds, Mode=TwoWay}" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Normal" Width="290" 
@@ -498,7 +490,7 @@
                                     <CheckBox Name="NotificationSoundsCheckbox"
                                             Grid.Column="3" Margin="0,0,0,0" Grid.Row="0"
                                             IsChecked="{Binding UserSettings.NotificationSoundsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
-                                    
+
                                     <!-- Productive part of the day start -->
                                     <Label Name="ProductiveStartLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayStartLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
                                             Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Normal" Width="290"/>
@@ -538,14 +530,15 @@
                 </Border>
 
 
-                <!-- Task Editor -->
+                <!-- TASK EDITOR (NOT TEMPLATE) -->
 
                 <Label Content="{Binding LocalizedText.InvisibleTaskEditorLabel}" Foreground="White" VerticalAlignment="Center" 
                        HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Grid.Column="1" Grid.Row="1"/>
 
-                <Border x:Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyleShaded}" Visibility="{Binding IsTaskSelected, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Grid.Column="1" Grid.Row="1">
+                <Border x:Name="TaskEditorBorder" Style="{StaticResource DetailBorderStyleShaded}" 
+                        Visibility="{Binding IsTaskSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Grid.Column="1" Grid.Row="1">
 
                     <Grid Height="396" Width="690" HorizontalAlignment="Stretch">
 
@@ -578,13 +571,12 @@
                         <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80"
                                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
                         <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80"
-                                Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}"/>
+                                Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}" CommandParameter="Task"/>
                         <Button x:Name="DeleteTaskButton" Content="{Binding LocalizedText.DeleteButton}" Width="80"
-                                Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}"/>
+                                Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}" CommandParameter="Task"/>
 
                         <!-- Second row: Task Name -->
-                        <Label Name="TaskNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="251" VerticalContentAlignment="Center"
-                                Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Grid.RowSpan="2" Margin="53,0,0,0"/>
+                        <Label Name="TaskNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="304" VerticalContentAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Grid.RowSpan="2"/>
 
                         <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
                                  x:Name="TaskNameTextBox"
@@ -608,8 +600,7 @@
                         </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
 
                         <!-- Third row: Task Difficulty  -->
-                        <Label Name="TaskDifficultyLabel" Content="{Binding LocalizedText.TaskEditorDifficultyLabel}" Width="251"
-                                Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="53,0,0,0"/>
+                        <Label Name="TaskDifficultyLabel" Content="{Binding LocalizedText.TaskEditorDifficultyLabel}" Width="304" Grid.Row="3" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
 
                         <RadioButton Name="SetMediumDifficultyRB"
                                      IsChecked="{Binding SelectedTask.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Easy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -649,8 +640,7 @@
                         </RadioButton>
 
                         <!-- Third row: Task Timer  -->
-                        <Label Name="TaskNotificationLabel" Content="{Binding LocalizedText.TaskEditorNotificationTimesLabel}" Width="270" VerticalContentAlignment="Center"
-                                Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="34,0,0,0"/>
+                        <Label Name="TaskNotificationLabel" Content="{Binding LocalizedText.TaskEditorNotificationTimesLabel}" Width="304" VerticalContentAlignment="Center" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Center"/>
 
 
                         <!--Task finished checkbox-->
@@ -720,11 +710,12 @@
 
                 </Border>
 
-                
+
                 <!--TASK TEMPLATE EDITOR-->
-                
-                <Border x:Name="TaskTemplateEditorBorder" Style="{StaticResource DetailBorderStyleShaded}" Visibility="{Binding IsTemplateSelected, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Grid.Column="1" Grid.Row="1">
+
+                <Border x:Name="TaskTemplateEditorBorder" Style="{StaticResource DetailBorderStyleShaded}" 
+                        Visibility="{Binding IsTemplateSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Grid.Column="1" Grid.Row="1">
 
                     <Grid Height="396" Width="690" HorizontalAlignment="Stretch">
 
@@ -757,13 +748,12 @@
                         <Button x:Name="SaveTaskTemplateButton" Content="{Binding LocalizedText.SaveButton}" Width="80"
                  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
                         <Button x:Name="ResetTaskTemplateButton" Content="{Binding LocalizedText.ResetButton}" Width="80"
-                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}"/>
+                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}" CommandParameter="Template"/>
                         <Button x:Name="DeleteTaskTemplateButton" Content="{Binding LocalizedText.DeleteButton}" Width="80"
-                 Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}"/>
+                 Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}" CommandParameter="Template"/>
 
                         <!-- Second row: Task Name -->
-                        <Label Name="TaskTemplateNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="251" VerticalContentAlignment="Center"
-                 Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Grid.RowSpan="2" Margin="53,0,0,0"/>
+                        <Label Name="TaskTemplateNameLabel" Content="{Binding LocalizedText.TaskEditorTemplateNameLabel}" Width="304" VerticalContentAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Grid.RowSpan="2"/>
 
                         <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
                           x:Name="TaskTemplateNameTextBox"
@@ -771,7 +761,7 @@
                           Height="40" 
                           Padding="5"
                           FontSize="16"
-                          Placeholder="{Binding LocalizedText.TaskEditorPlaceholderName}"
+                          Placeholder="{Binding LocalizedText.TaskEditorTemplatePlaceholderName}"
                           Foreground="{StaticResource DarkerTextColorBrush}"
                           Text="{Binding SelectedTemplate.TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           VerticalContentAlignment="Center"
@@ -781,8 +771,8 @@
                         </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
 
                         <!-- Third row: Task Difficulty  -->
-                        <Label Name="TaskTemplateDifficultyLabel" Content="{Binding LocalizedText.TaskEditorDifficultyLabel}" Width="251"
-                 Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="53,0,0,0"/>
+                        <Label Name="TaskTemplateDifficultyLabel" Content="{Binding LocalizedText.TaskEditorTemplateDifficultyLabel}" Width="299"
+                 Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
 
                         <RadioButton Name="SetTemplateMediumDifficultyRB"
                       IsChecked="{Binding SelectedTemplate.TaskDifficulty, Converter={StaticResource EnumComparisonConverter}, ConverterParameter={x:Static viewModels:Difficulty.Easy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -803,8 +793,7 @@
                         </RadioButton>
 
                         <!-- Third row: Task Timer  -->
-                        <Label Name="TaskTemplateNotificationLabel" Content="{Binding LocalizedText.TaskEditorNotificationTimesLabel}" Width="270" VerticalContentAlignment="Center"
-                 Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="34,0,0,0"/>
+                        <Label Name="TaskTemplateNotificationLabel" Content="{Binding LocalizedText.TaskEditorTemplateNotificationTimesLabel}" Width="304" VerticalContentAlignment="Center" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Center"/>
 
 
                         <!--Task finished checkbox-->
@@ -835,7 +824,7 @@
                         </userControls:TimeInput>
 
                         <!-- Fourth Row: Task Note -->
-                        <Label Name="TaskTemplateNoteLabel" Content="{Binding LocalizedText.TaskEditorNoteLabel}" Height="40" Width="304" VerticalContentAlignment="Center" 
+                        <Label Name="TaskTemplateNoteLabel" Content="{Binding LocalizedText.TaskEditorTemplateNoteLabel}" Height="40" Width="304" VerticalContentAlignment="Center" 
                     Grid.Row="5" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Margin="0,9,0,8"/>
 
 
@@ -843,13 +832,13 @@
                               x:Name="TemplateNoteText"
                               Padding="5"
                               FontSize="16"
-                              Placeholder="{Binding LocalizedText.TaskEditorPlaceholderNote}"
+                              Placeholder="{Binding LocalizedText.TaskEditorTemplatePlaceholderNote}"
                               Foreground="{StaticResource DarkerTextColorBrush}"
                               TextWrapping="Wrap"
                               Text="{Binding SelectedTemplate.TaskNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               VerticalContentAlignment="Top"
                               MaxLength="500"
-                              Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,10,25,20">    
+                              Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="0,10,25,20">
                         </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
                     </Grid>
 

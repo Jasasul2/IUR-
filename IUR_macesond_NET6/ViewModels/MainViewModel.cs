@@ -220,6 +220,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        // This is the add button on the left (aka create new)
         #region AddTaskCommand
 
         private RelayCommand _addTaskCommand;
@@ -244,6 +245,7 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
 
         #region AddTaskTemplateCommand
+
 
         private RelayCommand _addTaskTemplateCommand;
 
@@ -277,12 +279,32 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void ResetSelectedTask(object obj)
         {
-            SelectedTask.SetAttributes(new TaskModel());
+            var type = obj as string;
+            if (type == null) return;
+
+            if(type == "Task")
+            {
+                SelectedTask.SetAttributes(new TaskModel());
+            } else if (type == "Template")
+            {
+                SelectedTemplate.SetAttributes(new TaskModel());
+            }
         }
 
         private bool ResetSelectedTaskCommandCanExecute(object obj)
         {
-            return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
+            var type = obj as string;
+            if (type == null) return false;
+
+            if (type == "Task")
+            {
+                return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
+            }
+            else if (type == "Template")
+            {
+                return (SelectedTemplate != null);
+            }
+            return false;
         }
 
         #endregion
@@ -293,18 +315,40 @@ namespace IUR_macesond_NET6.ViewModels
 
         public RelayCommand DeleteTaskCommand
         {
-            get { return _deleteTaskCommand ?? (_deleteTaskCommand = new RelayCommand(DeleteSelectedTask, DeleteTaskCommandCanExecute)); }
+            get { return _deleteTaskCommand ?? (_deleteTaskCommand = new RelayCommand(DeleteSelectedTask, DeleteSelectedTaskCommandCanExecute)); }
         }
 
         private void DeleteSelectedTask(object obj)
         {
-            SelectedTaskList.Remove(SelectedTask);
-            SelectedTask = null;
+            var type = obj as string;
+            if (type == null) return;
+
+            if (type == "Task")
+            {
+                SelectedTaskList.Remove(SelectedTask);
+                SelectedTask = null;
+            }
+            else if (type == "Template")
+            {
+                TaskLibrary.Remove(SelectedTemplate);
+                SelectedTemplate = null;
+            }
         }
 
-        private bool DeleteTaskCommandCanExecute(object obj)
+        private bool DeleteSelectedTaskCommandCanExecute(object obj)
         {
-            return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
+            var type = obj as string;
+            if (type == null) return false;
+
+            if (type == "Task")
+            {
+                return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
+            }
+            else if (type == "Template")
+            {
+                return (SelectedTemplate != null);
+            }
+            return false;
         }
 
         #endregion
@@ -335,13 +379,23 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region DeleteGivenTask
 
-        public void DeleteTask(TaskViewModel taskToDelete)
+        public void DeleteTask(TaskViewModel taskToDelete, string type)
         {
-            if (SelectedTask == taskToDelete)
+            if(type == "Task")
             {
-                SelectedTask = null;
+                if (SelectedTask == taskToDelete)
+                {
+                    SelectedTask = null;
+                }
+                SelectedTaskList.Remove(taskToDelete);
+            } else if (type == "Template")
+            {
+                if (SelectedTemplate == taskToDelete)
+                {
+                    SelectedTemplate = null;
+                }
+                TaskLibrary.Remove(taskToDelete);
             }
-            SelectedTaskList.Remove(taskToDelete);
         }
 
         #endregion
@@ -481,8 +535,7 @@ namespace IUR_macesond_NET6.ViewModels
         }
 
         #endregion
-
-        #region Constructor and Close
+        #region SaveAndLoad
 
         private void LoadTaskDictionary()
         {
@@ -568,6 +621,10 @@ namespace IUR_macesond_NET6.ViewModels
 
             ModelDataLoader.SaveTaskLibrary(taskLibraryToSave);
         }
+
+        #endregion
+
+        #region Constructor and Close
 
         public MainViewModel()
         {

@@ -170,18 +170,29 @@ namespace IUR_macesond_NET6.ViewModels
 
         private string _taskEditorTitle = "Task Editor";
         private string _taskTemplateEditorTitle = "Task Template Editor";
+
         private string _taskEditorNameLabel = "Task name:";
+        private string _taskEditorTemplateNameLabel = "Task template name:";
+
         private string _taskEditorDifficultyLabel = "Task difficulty:";
+        private string _taskEditorTemplateDifficultyLabel = "Task template difficulty:";
+
         private string _taskEditorNotificationTimesLabel = "Task notification time:";
+        private string _taskEditorTemplateNotificationTimesLabel = "Task template notification time:";
+
 
         bool _taskEditorNotificationEnabled = false;
         private string _taskEditorNotificationEnabledLabel = "Enabled";
         private string _taskEditorNotificationDisabledLabel = "Disabled";
 
         private string _taskEditorNoteLabel = "Task note:";
+        private string _taskEditorTemplateNoteLabel = "Task template note:";
 
         private string _taskEditorPlaceholderName = "Enter a task name";
         private string _taskEditorPlaceholderNote = "Enter a task note";
+
+        private string _taskEditorTemplatePlaceholderName = "Enter a task template name";
+        private string _taskeditorTemplatePlaceholderNote = "Enter a task template note";
 
         public string InvisibleTaskEditorLabel
         {
@@ -207,10 +218,22 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _taskEditorNameLabel, value);
         }
 
+        public string TaskEditorTemplateNameLabel
+        {
+            get => _taskEditorTemplateNameLabel;
+            set => SetProperty(ref _taskEditorTemplateNameLabel, value);
+        }
+
         public string TaskEditorDifficultyLabel
         {
             get => _taskEditorDifficultyLabel;
             set => SetProperty(ref _taskEditorDifficultyLabel, value);
+        }
+
+        public string TaskEditorTemplateDifficultyLabel
+        {
+            get => _taskEditorTemplateDifficultyLabel;
+            set => SetProperty(ref _taskEditorTemplateDifficultyLabel, value);
         }
 
         public string TaskEditorNotificationTimesLabel
@@ -218,6 +241,13 @@ namespace IUR_macesond_NET6.ViewModels
             get => _taskEditorNotificationTimesLabel;
             set => SetProperty(ref _taskEditorNotificationTimesLabel, value);
         }
+
+        public string TaskEditorTemplateNotificationTimesLabel
+        {
+            get => _taskEditorTemplateNotificationTimesLabel;
+            set => SetProperty(ref _taskEditorTemplateNotificationTimesLabel, value);
+        }
+
 
         public string TaskEditorNotificationEnabledLabel
         {
@@ -241,6 +271,12 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _taskEditorNoteLabel, value);
         }
 
+        public string TaskEditorTemplateNoteLabel
+        {
+            get => _taskEditorTemplateNoteLabel;
+            set => SetProperty(ref _taskEditorTemplateNoteLabel, value);
+        }
+
         public string TaskEditorPlaceholderName
         {
             get => _taskEditorPlaceholderName;
@@ -251,6 +287,18 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _taskEditorPlaceholderNote;
             set => SetProperty(ref _taskEditorPlaceholderNote, value);
+        }
+
+        public string TaskEditorTemplatePlaceholderName
+        {
+            get => _taskEditorTemplatePlaceholderName;
+            set => SetProperty(ref _taskEditorTemplatePlaceholderName, value);
+        }
+
+        public string TaskEditorTemplatePlaceholderNote
+        {
+            get => _taskeditorTemplatePlaceholderNote;
+            set => SetProperty(ref _taskeditorTemplatePlaceholderNote, value);
         }
 
         #endregion
@@ -307,14 +355,21 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorTitle = "Task Editor";
                     TaskTemplateEditorTitle = "Task Template Editor";
                     TaskEditorNameLabel = "Task name:";
+                    TaskEditorTemplateNameLabel = "Task template name:";
                     TaskEditorDifficultyLabel = "Task difficulty:";
+                    TaskEditorTemplateDifficultyLabel = "Task template difficulty:";
                     TaskEditorNotificationTimesLabel = "Task notification time:";
+                    TaskEditorTemplateNotificationTimesLabel = "Task template notification time:";
                     _taskEditorNotificationEnabledLabel = "Enabled";
                     _taskEditorNotificationDisabledLabel = "Disabled";
                     TaskEditorNoteLabel = "Task note:";
+                    TaskEditorTemplateNoteLabel = "Task template note:";
 
                     TaskEditorPlaceholderName = "Enter a task name";
                     TaskEditorPlaceholderNote = "Enter a task note";
+
+                    TaskEditorTemplatePlaceholderName = "Enter a task template name";
+                    TaskEditorTemplatePlaceholderNote = "Enter a task template note";
 
                     SortByLabel = "Sort by:";
                     LevelLabel = "Level";
@@ -351,20 +406,29 @@ namespace IUR_macesond_NET6.ViewModels
                     TaskEditorTitle = "Editor úkolů";
                     TaskTemplateEditorTitle = "Editor šablon úkolů";
                     TaskEditorNameLabel = "Název úkolu:";
+                    TaskEditorTemplateNameLabel = "Název šablony úkolu:";
                     TaskEditorDifficultyLabel = "Obtížnost úkolu:";
+                    TaskEditorTemplateDifficultyLabel = "Obtížnost šablony úkolu:";
                     TaskEditorNotificationTimesLabel = "Čas upozornění:";
+                    TaskEditorTemplateNotificationTimesLabel = "Čas upozornění šablony úkolu:";
                     _taskEditorNotificationEnabledLabel = "Zapnuto";
                     _taskEditorNotificationDisabledLabel = "Vypnuto";
                     TaskEditorNoteLabel = "Poznámka k úkolu:";
+                    TaskEditorTemplateNoteLabel = "Poznámka k šabloně úkolu:";
 
                     TaskEditorPlaceholderName = "Zadejte název úkolu";
                     TaskEditorPlaceholderNote = "Zadejte poznámku k úkolu";
+
+                    TaskEditorTemplatePlaceholderName = "Zadejte název šablony úkolu";
+                    TaskEditorTemplatePlaceholderNote = "Zadejte poznámku k šabloně úkolu";
 
                     SortByLabel = "Řadit dle:";
                     LevelLabel = "Úroveň";
 
                     break;
             }
+
+            ToggleTaskEditorNotificationLabel(_taskEditorNotificationEnabled);
         }
 
         public void ToggleTaskEditorNotificationLabel(bool enabled)

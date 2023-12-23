@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -189,7 +190,11 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void RemoveTask(object obj)
         {
-            _mainViewModelReference.DeleteTask(this);
+            var param = obj as string;
+            if (param == null) return; 
+
+            _mainViewModelReference.DeleteTask(this, param);
+
         }
 
         #endregion

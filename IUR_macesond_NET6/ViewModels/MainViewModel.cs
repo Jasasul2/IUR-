@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System.Printing;
+using Newtonsoft.Json.Linq;
 
 namespace IUR_macesond_NET6.ViewModels
 {
@@ -462,6 +463,24 @@ namespace IUR_macesond_NET6.ViewModels
 
         }
 
+        private void LoadMainModel()
+        {
+            MainModel mainModel = ModelDataLoader.LoadMainModel();
+
+            FirstDate = mainModel.FirstDate.ToDateTime(new TimeOnly());
+            SelectedDate = mainModel.SelectedDate.ToDateTime(new TimeOnly());
+            CurrentLevel = mainModel.CurrentLevel;
+            CurrentXP = mainModel.CurrentXP;
+            NextLevelXP = mainModel.NextLevelXP;
+        }
+
+        private void SaveMainModel()
+        {
+            MainModel mainModelToSave = new MainModel();
+            mainModelToSave.SetAttributes(this);
+            ModelDataLoader.SaveMainModel(mainModelToSave);
+        }
+
         public MainViewModel()
         {
             // Data Loade Instantiation
@@ -473,23 +492,13 @@ namespace IUR_macesond_NET6.ViewModels
             LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
 
             // Load User Data (eg xp, level and date)
+            LoadMainModel(); 
 
             // Load Tasks 
             LoadTaskDictionary();
 
             // Load Task Library
-
-
-            // Date Init
-            FirstDate = DateTime.Now;
-
-            SelectedDate = DateTime.Now;
-
-            // Task Init
-            // XP Init
-            CurrentLevel = 1;
-            CurrentXP = 5;
-            NextLevelXP = 10;
+            // TO DO
         }
 
         public void ExitApplication()
@@ -510,6 +519,7 @@ namespace IUR_macesond_NET6.ViewModels
 
             ModelDataLoader.SaveUserSettings(UserSettings.GetUserSettingsToSave());
             SaveTaskDictionary();
+            SaveMainModel();
         }
 
         #endregion

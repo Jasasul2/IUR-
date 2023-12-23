@@ -8,6 +8,8 @@ namespace IUR_macesond_NET6.Models
 {
     internal class ModelDataLoader
     {
+        private string appDataFolder;
+
         #region UserSettings
         private const string _saveDataUserSettingsFileName = "UserSettings.json";
 
@@ -31,11 +33,11 @@ namespace IUR_macesond_NET6.Models
             return loadedSettings;
         }
 
-        public void SaveUserSettings(UserSettingsModel userSettingsModel)
+        public void SaveUserSettings(UserSettingsModel userSettingsModelToSave)
         {
             string filePath = Path.Combine(appDataFolder, _saveDataUserSettingsFileName);
 
-            string json = JsonConvert.SerializeObject(userSettingsModel);
+            string json = JsonConvert.SerializeObject(userSettingsModelToSave);
             if (json == null)
             {
                 return;
@@ -47,11 +49,48 @@ namespace IUR_macesond_NET6.Models
 
         #endregion
 
-        private const string _saveDataUserLevel = "UserLevel.json";
-        private const string _saveDataUserXP = "UserXP.json";
-        private const string _saveDataTaskLibrary = "TaskLibrary.json";
 
-        private string appDataFolder;
+        #region MainModel   
+
+        private const string _saveDataMainModel = "MainModel.json";
+
+        public MainModel LoadMainModel()
+        {
+            string filePath = Path.Combine(appDataFolder, _saveDataMainModel);
+
+            // Nothing saved
+            if (!File.Exists(filePath))
+            {
+                return new MainModel();
+            }
+
+            MainModel loadedMainModel = JsonConvert.DeserializeObject<MainModel>(File.ReadAllText(filePath));
+            // Loading failed 
+            if (loadedMainModel == null)
+            {
+                return new MainModel();
+            }
+
+            return loadedMainModel;
+        }
+
+        public void SaveMainModel(MainModel mainModelToSave)
+        {
+            string filePath = Path.Combine(appDataFolder, _saveDataMainModel);
+
+            string json = JsonConvert.SerializeObject(mainModelToSave);
+            if (json == null)
+            {
+                return;
+            }
+
+            File.WriteAllText(filePath, json);
+        }
+
+
+        #endregion
+
+        private const string _saveDataTaskLibrary = "TaskLibrary.json";
 
         #region TaskDictionary
         private const string _saveDataTaskDictionary = "TaskDictionary.json";

@@ -433,10 +433,13 @@ namespace IUR_macesond_NET6.ViewModels
         }
 
         #endregion
-        public MainViewModel()
+
+        #region Constructor and Close
+
+        public void Reload()
         {
             // Data Loade Instantiation
-            ModelDataLoader = new ModelDataLoader(); 
+            ModelDataLoader = new ModelDataLoader(this);
 
 
             UserSettings = new UserSettingsViewModel(this);
@@ -447,15 +450,27 @@ namespace IUR_macesond_NET6.ViewModels
 
             SelectedDate = DateTime.Now;
 
+            // Task Init
+
+            DateToTaskListDictionary = ModelDataLoader.LoadTaskDictionary();
+
             // XP Init
             CurrentLevel = 1;
             CurrentXP = 5;
             NextLevelXP = 10;
         }
 
+        public MainViewModel()
+        {
+            Reload();
+        }
+
         public void OnWindowClosing()
         {
             ModelDataLoader.SaveUserSettings(UserSettings.GetUserSettingsToSave());
+            ModelDataLoader.SaveTaskDictionary(DateToTaskListDictionary);
         }
+
+        #endregion
     }
 }

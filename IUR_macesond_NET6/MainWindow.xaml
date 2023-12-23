@@ -360,7 +360,7 @@
 
                                     <CheckBox Name="NotificationSoundsCheckbox"
                                             Grid.Column="3" Margin="0,0,0,0" Grid.Row="0"
-                                            IsChecked="{Binding UserSettings.NotificationSoundsEnabled, Mode=TwoWay}" Width="30"/>
+                                            IsChecked="{Binding UserSettings.NotificationSoundsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
                                     
                                     <!-- Productive part of the day start -->
                                     <Label Name="ProductiveStartLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayStartLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
@@ -387,13 +387,13 @@
 
                                     <ComboBox Name="LanguageComboBox" Grid.Column="3" Grid.Row="3"
                                             VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Normal" VerticalContentAlignment="Center"
-                                            SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay}"
+                                            SelectedValue="{Binding UserSettings.CurrentLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ItemsSource ="{Binding UserSettings.LanguageArray}">
                                     </ComboBox>
 
                                     <Button x:Name="DeleteSaveFilesButton" Content="{Binding LocalizedText.DeleteSaveFilesLabel}" HorizontalAlignment="Left"
                                             Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="1" Width="180" Margin="0,0,0,0"
-                                            Command="{Binding DeleteSaveFilesCommand}"/>
+                                            Command="{Binding ModelDataLoader.DeleteAllSavesCommand}"/>
                                 </Grid>
                             </Border>
                         </TabItem>

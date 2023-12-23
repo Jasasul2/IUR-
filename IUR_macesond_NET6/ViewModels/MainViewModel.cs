@@ -402,13 +402,59 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region UseTaskTemplateCommand
 
-        public void UseTaskTemplate(TaskViewModel templateToAdd) {
-
-            // Creating a deep copy
+        private TaskViewModel CopyTask(TaskViewModel original)
+        {
             TaskModel newTaskModel = new TaskModel();
-            newTaskModel.SetAttributes(templateToAdd);
+            newTaskModel.SetAttributes(original);
             TaskViewModel newTask = new TaskViewModel(this, newTaskModel);
-            SelectedTaskList.Add(newTask);
+            return newTask;
+        }
+
+        public void UseTaskTemplate(TaskViewModel templateToAdd) 
+        {
+            SelectedTaskList.Add(CopyTask(templateToAdd));
+        }
+
+        #endregion
+
+        #region SaveTaskCommand 
+
+        private RelayCommand _saveTaskCommand;
+
+        public RelayCommand SaveTaskCommand
+        {
+            get { return _saveTaskCommand ?? (_saveTaskCommand = new RelayCommand(SaveTask, SaveTaskCommandCanExecute)); }
+        }
+
+        private void SaveTask(object obj)
+        {
+            var type = obj as string;
+            if (type == null) return;
+
+            if (type == "Task")
+            {
+                TaskLibrary.Add(CopyTask(SelectedTask));
+            }
+            else if (type == "Template")
+            {
+                TaskLibrary.Add(CopyTask(SelectedTemplate));
+            }
+        }
+
+        private bool SaveTaskCommandCanExecute(object obj)
+        {
+            var type = obj as string;
+            if (type == null) return false;
+
+            if (type == "Task")
+            {
+                return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
+            }
+            else if (type == "Template")
+            {
+                return (SelectedTemplate != null);
+            }
+            return false;
         }
 
         #endregion

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+0iHmEscJmh7M1vd1L5pQfwN2ATNvMPw8fj4VpTrS0Fc15/VsMNxjTxzmc+AHx5xA9vI3NprsMhWqm1qeM3HOA==",
+  "dgSpecHash": "Q11QWy39Jb+WCvVpHprIVVk+uD81eQdBhBskAOJsrDp+KmsOCXN+tIXZbT6Q+4eSWUjE2WgoitQJkh9GSCI+hw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ondra\\OneDrive\\Plocha\\FEL\\IUR\\IUR_Semestral_Work\\IUR-macesond\\IUR_macesond_NET6\\IUR_macesond_NET6.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ondra\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

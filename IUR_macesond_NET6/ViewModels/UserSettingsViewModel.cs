@@ -21,17 +21,6 @@ namespace IUR_macesond_NET6.ViewModels
 
         private MainViewModel _mainViewModelReference;
 
-        #region SimplifiedMode
-        private bool _simplifiedMode;
-
-        public bool SimplifiedMode
-        {
-            get => _simplifiedMode;
-            set => SetProperty(ref _simplifiedMode, value);
-        }
-
-        #endregion
-
         #region Language
 
         public enum Language
@@ -160,7 +149,6 @@ namespace IUR_macesond_NET6.ViewModels
 
             // Setting up the comboBox collections 
 
-            SimplifiedMode = false;
             CurrentLanguage = Language.EN ;
             NotificationSoundsEnabled = true;
             ProductivityStartTime = new TimeOnly(8, 45);

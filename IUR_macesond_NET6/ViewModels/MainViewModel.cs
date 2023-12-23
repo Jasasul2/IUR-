@@ -55,19 +55,19 @@ namespace IUR_macesond_NET6.ViewModels
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
 
                 //TEST LINES === Generating random tasks
-                if (SelectedTaskList.Count != 0) return;
+                //if (SelectedTaskList.Count != 0) return;
 
-                for (int i = 0; i < 5; i++)
-                {
-                    TaskViewModel newTask = new TaskViewModel(this);
-                    newTask.TaskName = "Task " + value.Month + " " + (i + 1);
+                //for (int i = 0; i < 7; i++)
+                //{
+                //    TaskViewModel newTask = new TaskViewModel(this);
+                //    newTask.TaskName = "Task " + value.Month + " " + (i + 1);
 
-                    Array values = Enum.GetValues(typeof(Difficulty));
-                    Random random = new Random();
-                    newTask.TaskDifficulty = (Difficulty)values.GetValue(random.Next(values.Length));
+                //    Array values = Enum.GetValues(typeof(Difficulty));
+                //    Random random = new Random();
+                //    newTask.TaskDifficulty = (Difficulty)values.GetValue(random.Next(values.Length));
 
-                    SelectedTaskList.Add(newTask);
-                }
+                //    SelectedTaskList.Add(newTask);
+                //}
             }
         }
 

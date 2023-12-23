@@ -38,3 +38,4 @@ C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_maces
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\obj\Debug\net6.0-windows\IUR_macesond_NET6.pdb
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\obj\Debug\net6.0-windows\IUR_macesond_NET6.genruntimeconfig.cache
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\obj\Debug\net6.0-windows\ref\IUR_macesond_NET6.dll
+C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

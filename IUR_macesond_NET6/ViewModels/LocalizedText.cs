@@ -13,17 +13,17 @@ namespace IUR_macesond_NET6.ViewModels
     {
         #region SettingsLabels
 
-        private string _simplifiedModeLabel = "Simplified mode:";
+        private string _deleteSaveFilesLabel = "Delete Save Files";
         private string _productivePartOfTheDayStartLabel = "Productive part of the day start:";
         private string _productivePartOfTheDayEndLabel = "Productive part of the day end:";
         private string _languageLabel = "Language:";
         private string _soundNotificationLabel = "Notification sounds:";
 
 
-        public string SimplifiedModeLabel
+        public string DeleteSaveFilesLabel
         {
-            get => _simplifiedModeLabel;
-            set => SetProperty(ref _simplifiedModeLabel, value);
+            get => _deleteSaveFilesLabel;
+            set => SetProperty(ref _deleteSaveFilesLabel, value);
         }
 
         public string ProductivePartOfTheDayStartLabel
@@ -265,7 +265,7 @@ namespace IUR_macesond_NET6.ViewModels
             switch (newLanguage)
             {
                 case UserSettingsViewModel.Language.EN:
-                    SimplifiedModeLabel = "Simplified mode:";
+                    DeleteSaveFilesLabel = "Delete Save Files";
                     ProductivePartOfTheDayStartLabel = "Productive part of the day start:";
                     ProductivePartOfTheDayEndLabel = "Productive part of the day end:";
                     LanguageLabel = "Language:";
@@ -305,7 +305,7 @@ namespace IUR_macesond_NET6.ViewModels
                     break;
 
                 case UserSettingsViewModel.Language.CZ:
-                    SimplifiedModeLabel = "Zjednodušený režim:";
+                    DeleteSaveFilesLabel = "Odstranit data";
                     ProductivePartOfTheDayStartLabel = "Začátek produktivní části dne:";
                     ProductivePartOfTheDayEndLabel = "Konec produktivní části dne:";
                     LanguageLabel = "Jazyk:";

@@ -115,6 +115,12 @@ namespace IUR_macesond_NET6.Models
 
         #region DeleteAllSaves
 
+        private bool _saveDeleted = false;
+        public bool SaveDeleted
+        {
+            get => _saveDeleted;
+        }
+
         public void DeleteAllSaves(object obj)
         {
             // Check if the directory exists
@@ -129,7 +135,8 @@ namespace IUR_macesond_NET6.Models
                     File.Delete(file);
                 }
 
-                _mainViewModelReference.Reload();
+                _saveDeleted = true;
+                _mainViewModelReference.ExitApplication();
             }
         }
 

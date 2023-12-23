@@ -13,7 +13,7 @@ namespace IUR_macesond_NET6.ViewModels
     {
         #region SettingsLabels
 
-        private string _deleteSaveFilesLabel = "Delete Save Files";
+        private string _deleteSaveFilesLabel = "Delete Save Files and Quit";
         private string _productivePartOfTheDayStartLabel = "Productive part of the day start:";
         private string _productivePartOfTheDayEndLabel = "Productive part of the day end:";
         private string _languageLabel = "Language:";
@@ -265,7 +265,7 @@ namespace IUR_macesond_NET6.ViewModels
             switch (newLanguage)
             {
                 case UserSettingsViewModel.Language.EN:
-                    DeleteSaveFilesLabel = "Delete Save Files";
+                    DeleteSaveFilesLabel = "Delete Save Files and Quit";
                     ProductivePartOfTheDayStartLabel = "Productive part of the day start:";
                     ProductivePartOfTheDayEndLabel = "Productive part of the day end:";
                     LanguageLabel = "Language:";
@@ -305,7 +305,7 @@ namespace IUR_macesond_NET6.ViewModels
                     break;
 
                 case UserSettingsViewModel.Language.CZ:
-                    DeleteSaveFilesLabel = "Odstranit data";
+                    DeleteSaveFilesLabel = "Odstranit data a vypnout";
                     ProductivePartOfTheDayStartLabel = "Začátek produktivní části dne:";
                     ProductivePartOfTheDayEndLabel = "Konec produktivní části dne:";
                     LanguageLabel = "Jazyk:";

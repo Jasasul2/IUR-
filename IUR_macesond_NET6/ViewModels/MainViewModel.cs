@@ -463,19 +463,22 @@ namespace IUR_macesond_NET6.ViewModels
 
         }
 
-
-
-        public void Reload()
+        public MainViewModel()
         {
             // Data Loade Instantiation
             ModelDataLoader = new ModelDataLoader(this);
 
+            // Load User Settings 
 
             UserSettings = new UserSettingsViewModel(this);
             LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
 
+            // Load User Data (eg xp, level and date)
+
             // Load Tasks 
             LoadTaskDictionary();
+
+            // Load Task Library
 
 
             // Date Init
@@ -490,13 +493,22 @@ namespace IUR_macesond_NET6.ViewModels
             NextLevelXP = 10;
         }
 
-        public MainViewModel()
+        public void ExitApplication()
         {
-            Reload();
+            // Get the Application's current MainWindow
+            var mainWindow = Application.Current.MainWindow;
+
+            // Check if MainWindow exists and close it
+            if (mainWindow != null)
+            {
+                mainWindow.Close();
+            }
         }
 
         public void OnWindowClosing()
         {
+            if (ModelDataLoader.SaveDeleted) return;
+
             ModelDataLoader.SaveUserSettings(UserSettings.GetUserSettingsToSave());
             SaveTaskDictionary();
         }

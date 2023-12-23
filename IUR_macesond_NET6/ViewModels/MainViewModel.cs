@@ -54,21 +54,6 @@ namespace IUR_macesond_NET6.ViewModels
                     DateToTaskListDictionary.Add(dateOnly, new ObservableCollection<TaskViewModel>());
                 } 
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
-
-                //TEST LINES === Generating random tasks
-                //if (SelectedTaskList.Count != 0) return;
-
-                //for (int i = 0; i < 7; i++)
-                //{
-                //    TaskViewModel newTask = new TaskViewModel(this);
-                //    newTask.TaskName = "Task " + value.Month + " " + (i + 1);
-
-                //    Array values = Enum.GetValues(typeof(Difficulty));
-                //    Random random = new Random();
-                //    newTask.TaskDifficulty = (Difficulty)values.GetValue(random.Next(values.Length));
-
-                //    SelectedTaskList.Add(newTask);
-                //}
             }
         }
 
@@ -207,7 +192,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void AddTask(object obj)
         {
-            TaskViewModel newTask = new TaskViewModel(this);
+            TaskViewModel newTask = new TaskViewModel(this, new TaskModel());
             SelectedTaskList.Add(newTask);
         }
 
@@ -229,7 +214,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void ResetSelectedTask(object obj)
         {
-            SelectedTask.ResetAttributes();
+            SelectedTask.SetAttributes(new TaskModel());
         }
 
         private bool ResetSelectedTaskCommandCanExecute (object obj)
@@ -436,6 +421,50 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region Constructor and Close
 
+        private void LoadTaskDictionary()
+        {
+            Dictionary<DateOnly, ObservableCollection<TaskModel>> loadedDictionary = ModelDataLoader.LoadTaskDictionary();
+
+            foreach (var pair in loadedDictionary)
+            {
+                DateOnly date = pair.Key;
+                ObservableCollection<TaskModel> taskModelList = pair.Value;
+                ObservableCollection<TaskViewModel> taskViewModelList = new ObservableCollection<TaskViewModel>();
+
+                foreach (TaskModel taskModel in taskModelList)
+                {
+                    TaskViewModel taskViewModel = new TaskViewModel(this, taskModel);
+                    taskViewModelList.Add(taskViewModel);
+                }
+                DateToTaskListDictionary[date] = taskViewModelList;
+            }
+        }
+
+        private void SaveTaskDictionary()
+        {
+            Dictionary<DateOnly, ObservableCollection<TaskModel>> dictionaryToSave = new Dictionary<DateOnly, ObservableCollection<TaskModel>>();
+
+            foreach (var pair in DateToTaskListDictionary)
+            {
+                DateOnly date = pair.Key;
+                ObservableCollection<TaskViewModel> taskList = pair.Value;
+
+                ObservableCollection<TaskModel> taskModelList = new ObservableCollection<TaskModel>();
+                foreach (TaskViewModel taskViewModel in taskList)
+                {
+                    TaskModel taskModel = new TaskModel();
+                    taskModel.SetAttributes(taskViewModel);
+                    taskModelList.Add(taskModel);
+                }
+                dictionaryToSave.Add(date, taskModelList);
+            }
+
+            ModelDataLoader.SaveTaskDictionary(dictionaryToSave);
+
+        }
+
+
+
         public void Reload()
         {
             // Data Loade Instantiation
@@ -445,15 +474,16 @@ namespace IUR_macesond_NET6.ViewModels
             UserSettings = new UserSettingsViewModel(this);
             LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
 
+            // Load Tasks 
+            LoadTaskDictionary();
+
+
             // Date Init
             FirstDate = DateTime.Now;
 
             SelectedDate = DateTime.Now;
 
             // Task Init
-
-            DateToTaskListDictionary = ModelDataLoader.LoadTaskDictionary();
-
             // XP Init
             CurrentLevel = 1;
             CurrentXP = 5;
@@ -468,7 +498,7 @@ namespace IUR_macesond_NET6.ViewModels
         public void OnWindowClosing()
         {
             ModelDataLoader.SaveUserSettings(UserSettings.GetUserSettingsToSave());
-            ModelDataLoader.SaveTaskDictionary(DateToTaskListDictionary);
+            SaveTaskDictionary();
         }
 
         #endregion

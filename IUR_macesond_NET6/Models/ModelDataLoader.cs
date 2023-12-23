@@ -56,27 +56,27 @@ namespace IUR_macesond_NET6.Models
         #region TaskDictionary
         private const string _saveDataTaskDictionary = "TaskDictionary.json";
 
-        public Dictionary<DateOnly, ObservableCollection<TaskViewModel>> LoadTaskDictionary()
+        public Dictionary<DateOnly, ObservableCollection<TaskModel>> LoadTaskDictionary()
         {
             string filePath = Path.Combine(appDataFolder, _saveDataTaskDictionary);
 
             // Nothing saved
             if (!File.Exists(filePath))
             {
-                return new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
+                return new Dictionary<DateOnly, ObservableCollection<TaskModel>>();
             }
 
-            Dictionary<DateOnly, ObservableCollection<TaskViewModel>> loadedDictionary = JsonConvert.DeserializeObject<Dictionary<DateOnly, ObservableCollection<TaskViewModel>>>(File.ReadAllText(filePath));
+            Dictionary<DateOnly, ObservableCollection<TaskModel>> loadedDictionary = JsonConvert.DeserializeObject<Dictionary<DateOnly, ObservableCollection<TaskModel>>>(File.ReadAllText(filePath));
             // Loading failed 
             if (loadedDictionary == null)
             {
-                return new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
+                return new Dictionary<DateOnly, ObservableCollection<TaskModel>>();
             }
 
             return loadedDictionary;
         }
 
-        public void SaveTaskDictionary(Dictionary<DateOnly, ObservableCollection<TaskViewModel>> dictionaryToSave)
+        public void SaveTaskDictionary(Dictionary<DateOnly, ObservableCollection<TaskModel>> dictionaryToSave)
         {
             string filePath = Path.Combine(appDataFolder, _saveDataTaskDictionary);
 

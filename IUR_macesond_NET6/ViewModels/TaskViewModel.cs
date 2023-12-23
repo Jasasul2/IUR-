@@ -1,4 +1,5 @@
-﻿using IUR_macesond_NET6.Support;
+﻿using IUR_macesond_NET6.Models;
+using IUR_macesond_NET6.Support;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices.ActiveDirectory;
@@ -222,21 +223,24 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
-        public void ResetAttributes()
+        public void SetAttributes(TaskModel taskModel)
         {
-            TaskName = "";
-            TaskDifficulty = Difficulty.Easy;
-            NotificationTime = new TimeOnly(15, 30);
-            TaskNote = "Test Test Test Test Test Test Test Test Test Test Test";
+            TaskName = taskModel.TaskName;
+            HasNotificationTime = taskModel.HasNotificationTime;
+            NotificationTime = taskModel.NotificationTime;
+            TaskDifficulty = taskModel.TaskDifficulty;
+            TaskNote= taskModel.TaskNote;
+            MarkedForCompletion = taskModel.MarkedForCompletion;
+            TaskNoteVisibility = taskModel.TaskNoteVisibility;
         }
 
-        public TaskViewModel(MainViewModel mainViewModelReference)
+        public TaskViewModel(MainViewModel mainViewModelReference, TaskModel taskModel)
         {
             _mainViewModelReference = mainViewModelReference;
 
             MarkedForCompletion = false;
             Deprecated = false;
-            ResetAttributes();
+            SetAttributes(taskModel);
         }
     }
 }

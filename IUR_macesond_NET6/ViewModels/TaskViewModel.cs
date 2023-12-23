@@ -199,6 +199,28 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region UseTaskTemplateCommand  
+
+        private RelayCommand _useTaskTemplateCommand;
+
+        public RelayCommand UseTaskTemplateCommand
+
+        {
+            get { return _useTaskTemplateCommand ?? (_useTaskTemplateCommand = new RelayCommand(UseTaskTemplate, UseTaskTemplateCommandCanExecute)); }
+        }
+
+        private bool UseTaskTemplateCommandCanExecute(object obj)
+        {
+            return true; 
+        }
+
+        private void UseTaskTemplate(object obj)
+        {
+            _mainViewModelReference.UseTaskTemplate(this);
+        }
+
+        #endregion
+
         #region TaskNoteVisibilityCommand
 
         private bool _taskNoteVisibility = false;

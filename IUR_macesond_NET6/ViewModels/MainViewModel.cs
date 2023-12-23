@@ -400,6 +400,19 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region UseTaskTemplateCommand
+
+        public void UseTaskTemplate(TaskViewModel templateToAdd) {
+
+            // Creating a deep copy
+            TaskModel newTaskModel = new TaskModel();
+            newTaskModel.SetAttributes(templateToAdd);
+            TaskViewModel newTask = new TaskViewModel(this, newTaskModel);
+            SelectedTaskList.Add(newTask);
+        }
+
+        #endregion
+
         #region NameSorting
 
         private bool ascendingName = true;

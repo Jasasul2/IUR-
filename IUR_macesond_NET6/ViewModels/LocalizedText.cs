@@ -307,6 +307,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private string _sortByLabel = "Sort by:";
         private string _levelLabel = "Level";
+        private string _useLabel = "Use";
 
         public string SortByLabel
         {
@@ -318,6 +319,12 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _levelLabel;
             set => SetProperty(ref _levelLabel, value);
+        }
+
+        public string UseLabel
+        {
+            get => _useLabel;
+            set => SetProperty(ref _useLabel, value);
         }
 
         #endregion
@@ -373,6 +380,7 @@ namespace IUR_macesond_NET6.ViewModels
 
                     SortByLabel = "Sort by:";
                     LevelLabel = "Level";
+                    UseLabel = "Use";
 
                     break;
 
@@ -424,6 +432,7 @@ namespace IUR_macesond_NET6.ViewModels
 
                     SortByLabel = "Řadit dle:";
                     LevelLabel = "Úroveň";
+                    UseLabel = "Použít";
 
                     break;
             }

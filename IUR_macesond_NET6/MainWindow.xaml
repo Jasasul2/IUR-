@@ -416,6 +416,16 @@
                                                                 </MultiBinding>
                                                             </Button.IsEnabled>
                                                         </Button>
+
+                                                        
+                                                        <!--Use Button--> 
+                                                        <Button x:Name="UseTemplateButton" Content="{Binding MainViewModelReference.LocalizedText.UseLabel}" 
+                                                                Width="70" Height="30"
+                                                                Margin="30,0,0,0" FontSize="14"
+                                                                Command="{Binding UseTaskTemplateCommand}"> 
+                                                            
+                                                        </Button>
+                                                        
                                                     </StackPanel>
 
                                                     <!-- Note -->
@@ -453,8 +463,8 @@
                                          VerticalAlignment="Bottom"
                                          Width="240" Margin="20,0,0,20" HorizontalAlignment="Left"
                                          Command="{Binding AddTaskTemplateCommand}">
-
                                     </Button>
+                                    
                                 </Grid>
                             </Border>
                         </TabItem>

@@ -20,9 +20,9 @@
         x:Name="root">
 
     <Window.Resources>
-        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
         <converters:BoolToVisibilityNegatedConverter x:Key="BoolToVisibilityNegatedConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter"/>
         <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <converters:MultiBooleanNegatorConverter x:Key="MultiBooleanNegatorConverter"/>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
@@ -196,9 +196,21 @@
                                                             </userControls:TimeInput.IsEnabled>
                                                         </userControls:TimeInput>
 
-                                                        <!--Task finished checkbox-->
+                                                        <!--Note Collapser-->
+                                                        <Button x:Name="NoteCollapserButton" Content="..." Width="30" Height="30" Margin="10,0,0,0" 
+                                                                Command="{Binding ToggleTaskNoteVisibilityCommand}">
+                                                            <Button.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="Deprecated"/>
+                                                                    <Binding Path="MarkedForCompletion"/>
+                                                                </MultiBinding>
+                                                            </Button.IsEnabled>
+                                                        </Button>
+                                                           
+
+                                                            <!--Task finished checkbox-->
                                                         <CheckBox
-                                                            Grid.Column="3" Margin="85,0,0,0"
+                                                            Grid.Column="3" Margin="55,0,0,0"
                                                             IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"
                                                             IsEnabled="{Binding Deprecated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanNegationConverter }}"/>
                                                     </StackPanel>
@@ -211,7 +223,7 @@
                                                          Padding="5"
                                                          FontSize="16"
                                                          TextWrapping="Wrap"
-                                                         Visibility="{Binding TaskNote, Converter={StaticResource StringToVisibilityConverter}}"
+                                                         Visibility="{Binding TaskNoteVisibility, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                                                          Placeholder="{Binding MainViewModelReference.LocalizedText.TaskEditorPlaceholderNote}"
                                                          Foreground="{StaticResource DarkerTextColorBrush}"
                                                          Text="{Binding TaskNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

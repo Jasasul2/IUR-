@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "IUR_macesond_NET6/1.0.0": {
+        "dependencies": {
+          "PlaceholderTextBoxCustomControl": "1.0.0"
+        },
+        "runtime": {
+          "IUR_macesond_NET6.dll": {}
+        }
+      },
+      "PlaceholderTextBoxCustomControl/1.0.0": {
+        "runtime": {
+          "PlaceholderTextBoxCustomControl.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IUR_macesond_NET6/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PlaceholderTextBoxCustomControl/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

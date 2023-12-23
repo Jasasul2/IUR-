@@ -4,21 +4,23 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
+using System.Windows;
+using System.Windows.Markup;
 
 namespace IUR_macesond_NET6.Converters
 {
-    public class StringToVisibilityConverter : IValueConverter
+    internal class BoolToVisibilityCollapsedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is string str)
+
+            if ((bool)value)
             {
-                return string.IsNullOrEmpty(str) ? Visibility.Collapsed : Visibility.Visible;
+                return Visibility.Visible;
             }
 
-            return Visibility.Collapsed; // Return collapsed if the value is not a string or null
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

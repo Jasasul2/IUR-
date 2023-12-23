@@ -41,6 +41,7 @@ namespace IUR_macesond_NET6.ViewModels
             set
             {
                 SetProperty(ref _selectedDate, DateOnly.FromDateTime(value));
+                IsNotFirstDate = (SelectedDate.Date > FirstDate.Date);
 
                 // Updating the task list
                 DateOnly dateOnly = DateOnly.FromDateTime(value);
@@ -90,7 +91,7 @@ namespace IUR_macesond_NET6.ViewModels
         private bool PreviousDayCommandCanExecute(object obj)
         {
             IsNotFirstDate = (SelectedDate.Date > FirstDate.Date);
-            return IsNotFirstDate;
+            return IsNotFirstDate; 
         }
 
         private RelayCommand _nextDayCommand;

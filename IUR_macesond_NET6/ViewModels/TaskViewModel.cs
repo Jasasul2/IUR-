@@ -195,6 +195,35 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region TaskNoteVisibilityCommand
+
+        private bool _taskNoteVisibility = false;
+
+        public bool TaskNoteVisibility
+        {
+            get => _taskNoteVisibility;
+            set => SetProperty(ref _taskNoteVisibility, value);
+        }
+
+        private RelayCommand _toggleTaskNoteVisibilityCommand;
+
+        public RelayCommand ToggleTaskNoteVisibilityCommand
+        {
+            get { return _toggleTaskNoteVisibilityCommand ?? (_toggleTaskNoteVisibilityCommand = new RelayCommand(ToggleTaskNoteVisibility, ToggleTaskNoteVisibilityCanExecute)); }
+        }
+
+        private bool ToggleTaskNoteVisibilityCanExecute(object obj)
+        {
+            return true;
+        }
+
+        private void ToggleTaskNoteVisibility(object obj)
+        {
+            TaskNoteVisibility = !TaskNoteVisibility;
+        }
+
+        #endregion
+
         public void ResetAttributes()
         {
             TaskName = "";

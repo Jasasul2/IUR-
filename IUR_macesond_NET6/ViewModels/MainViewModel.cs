@@ -22,6 +22,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private const int MAX_TASK_LIST_LENGTH = 10;
 
+        public ModelDataLoader ModelDataLoader { get; set; }
 
         public UserSettingsViewModel UserSettings { get; set; }
         public LocalizedText LocalizedText { get; set; }
@@ -434,6 +435,10 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
         public MainViewModel()
         {
+            // Data Loade Instantiation
+            ModelDataLoader = new ModelDataLoader(); 
+
+
             UserSettings = new UserSettingsViewModel(this);
             LocalizedText = new LocalizedText(UserSettings.CurrentLanguage);
 
@@ -446,12 +451,11 @@ namespace IUR_macesond_NET6.ViewModels
             CurrentLevel = 1;
             CurrentXP = 5;
             NextLevelXP = 10;
+        }
 
-            // Task Init
-            //SelectedTask = SelectedTaskList[0];
-
-            //SelectedTask = null
-            //IsTaskSelected = false;
+        public void OnWindowClosing()
+        {
+            ModelDataLoader.SaveUserSettings(UserSettings.GetUserSettingsToSave());
         }
     }
 }

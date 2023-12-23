@@ -18,6 +18,19 @@ namespace IUR_macesond_NET6.ViewModels
 {
     internal class UserSettingsViewModel : ViewModelBase
     {
+        #region Saving
+        public UserSettingsModel GetUserSettingsToSave()
+        {
+            return new UserSettingsModel()
+            {
+                CurrentLanguage = CurrentLanguage,
+                NotificationSoundsEnabled = NotificationSoundsEnabled,
+                ProductivityStartTime = ProductivityStartTime,
+                ProductivityEndTime = ProductivityEndTime
+            };
+        }
+
+        #endregion
 
         private MainViewModel _mainViewModelReference;
 
@@ -149,10 +162,12 @@ namespace IUR_macesond_NET6.ViewModels
 
             // Setting up the comboBox collections 
 
-            CurrentLanguage = Language.EN ;
-            NotificationSoundsEnabled = true;
-            ProductivityStartTime = new TimeOnly(8, 45);
-            ProductivityEndTime = new TimeOnly(22, 30);
+            UserSettingsModel savedUserSettings = mainViewModelReference.ModelDataLoader.LoadUserSettings();
+
+            CurrentLanguage = savedUserSettings.CurrentLanguage;
+            NotificationSoundsEnabled = savedUserSettings.NotificationSoundsEnabled;
+            ProductivityStartTime = savedUserSettings.ProductivityStartTime;
+            ProductivityEndTime = savedUserSettings.ProductivityEndTime;
         }
     }
 }

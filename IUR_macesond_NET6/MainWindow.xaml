@@ -18,7 +18,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         x:Name="root">
-
+    
     <Window.Resources>
         <converters:BoolToVisibilityNegatedConverter x:Key="BoolToVisibilityNegatedConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>

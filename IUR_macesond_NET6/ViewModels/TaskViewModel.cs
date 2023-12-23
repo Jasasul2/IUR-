@@ -26,8 +26,6 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _mainViewModelReference, value);
         }
 
-
-
         private Dictionary<Difficulty, int> DifficultyToExp = new Dictionary<Difficulty, int>()
         {
             { Difficulty.Easy, 3 },

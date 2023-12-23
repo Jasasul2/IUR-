@@ -65,6 +65,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _completedButton = "Completed";
         private string _timeButton = "Time";
         private string _randomButton = "Random";
+        private string _addNewTaskButton = "Add New Task";
         private string _saveButton = "Save";
         private string _resetButton = "Reset";
         private string _deleteButton = "Delete";
@@ -129,6 +130,11 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _randomButton, value);
         }
 
+        public string AddNewTaskButton
+        {
+            get => _addNewTaskButton;
+            set => SetProperty(ref _addNewTaskButton, value);
+        }
 
         public string SaveButton
         {
@@ -275,6 +281,7 @@ namespace IUR_macesond_NET6.ViewModels
                     CompletedButton = "Completed";
                     TimeButton = "Time";
                     RandomButton = "Random";
+                    AddNewTaskButton = "Add New Task";
                     SaveButton = "Save";
                     ResetButton = "Reset";
                     DeleteButton = "Delete";
@@ -315,6 +322,8 @@ namespace IUR_macesond_NET6.ViewModels
                     CompletedButton = "Hotovosti";
                     TimeButton = "Času";
                     RandomButton = "Náhodně";
+                    AddNewTaskButton = "Přidat nový úkol";
+
                     SaveButton = "Uložit";
                     ResetButton = "Reset";
 

@@ -20,6 +20,9 @@ namespace IUR_macesond_NET6.ViewModels
     {
         // This Main View Model consists of both the user settings and the Task lists for every saved day
 
+        private const int MAX_TASK_LIST_LENGTH = 10;
+
+
         public UserSettingsViewModel UserSettings { get; set; }
         public LocalizedText LocalizedText { get; set; }
 
@@ -51,13 +54,13 @@ namespace IUR_macesond_NET6.ViewModels
                 } 
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
 
-                // TEST LINES === Generating random tasks
+                //TEST LINES === Generating random tasks
                 if (SelectedTaskList.Count != 0) return;
 
-                for (int i = 0; i < value.Day; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     TaskViewModel newTask = new TaskViewModel(this);
-                    newTask.TaskName = "Task " + value.Month + " " + value.Day +" "+ (i + 1);
+                    newTask.TaskName = "Task " + value.Month + " " + (i + 1);
 
                     Array values = Enum.GetValues(typeof(Difficulty));
                     Random random = new Random();
@@ -189,6 +192,28 @@ namespace IUR_macesond_NET6.ViewModels
 
         private Dictionary<DateOnly, ObservableCollection<TaskViewModel>> DateToTaskListDictionary = new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
 
+
+        #endregion
+
+        #region AddTaskCommand
+
+        private RelayCommand _addTaskCommand;
+
+        public RelayCommand AddTaskCommand
+        {
+            get { return _addTaskCommand ?? (_addTaskCommand = new RelayCommand(AddTask, AddTaskCommandCanExecute)); }
+        }
+
+        private void AddTask(object obj)
+        {
+            TaskViewModel newTask = new TaskViewModel(this);
+            SelectedTaskList.Add(newTask);
+        }
+
+        private bool AddTaskCommandCanExecute(object obj)
+        {
+            return SelectedTaskList.Count < MAX_TASK_LIST_LENGTH;
+        }
 
         #endregion
 
@@ -423,7 +448,7 @@ namespace IUR_macesond_NET6.ViewModels
             NextLevelXP = 10;
 
             // Task Init
-            SelectedTask = SelectedTaskList[0];
+            //SelectedTask = SelectedTaskList[0];
 
             //SelectedTask = null
             //IsTaskSelected = false;

@@ -23,7 +23,6 @@ namespace IUR_macesond_NET6.ViewModels
         private const int MAX_TASK_LIST_LENGTH = 10;
 
         public ModelDataLoader ModelDataLoader { get; set; }
-
         public UserSettingsViewModel UserSettings { get; set; }
         public LocalizedText LocalizedText { get; set; }
 

@@ -194,6 +194,7 @@ namespace IUR_macesond_NET6.ViewModels
         {
             TaskViewModel newTask = new TaskViewModel(this, new TaskModel());
             SelectedTaskList.Add(newTask);
+            SelectedTask = newTask;
         }
 
         private bool AddTaskCommandCanExecute(object obj)

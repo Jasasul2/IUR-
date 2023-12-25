@@ -246,6 +246,32 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region AddRandomTaskCommand
+
+        private RelayCommand _addRandomTaskCommand;
+
+        public RelayCommand AddRandomTaskCommand
+        {
+            get { return _addRandomTaskCommand ?? (_addRandomTaskCommand = new RelayCommand(AddRandomTask, AddRandomTaskCommandCanExecute)); }
+        }
+
+        private void AddRandomTask(object obj)
+        {
+            TaskModel newTask = new TaskModel();
+            newTask.SetAttributes(TaskLibrary[new Random().Next(TaskLibrary.Count)]);
+            TaskViewModel newTaskViewModel = new TaskViewModel(this, newTask);
+            SelectedTaskList.Add(newTaskViewModel);
+            SelectedTask = newTaskViewModel;
+        }
+
+        private bool AddRandomTaskCommandCanExecute(object obj)
+        {
+            return SelectedTaskList.Count < MAX_TASK_LIST_LENGTH && TaskLibrary.Count > 0;
+        }
+
+
+        #endregion
+
         #region AddTaskTemplateCommand
 
 

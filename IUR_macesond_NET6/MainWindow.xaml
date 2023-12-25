@@ -251,13 +251,25 @@
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
                                         </ListBox>
-                                        <Button x:Name="AddTaskButton" Content="{Binding LocalizedText.AddNewTaskButton}" 
+
+                                        <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1">
+
+                                            <Button x:Name="AddTaskButton" Content="{Binding LocalizedText.AddNewTaskButton}" 
                                                 Grid.Row="1"
                                                 VerticalAlignment="Top"
                                                 Width="200" Margin="20,0,0,20" HorizontalAlignment="Left"
                                                 Command="{Binding AddTaskCommand}">
 
-                                        </Button>
+                                            </Button>
+
+                                            <Button x:Name="AddRandomTaskTemplateButton" Content="{Binding LocalizedText.AddRandomTaskButton}" 
+                                                Grid.Row="1"
+                                                VerticalAlignment="Top"
+                                                Width="390" Margin="20,0,0,20" HorizontalAlignment="Left"
+                                                Command="{Binding AddRandomTaskCommand}">
+                                            </Button>
+                                        </StackPanel>
                                     </Grid>
                                 </Border>
                             </StackPanel>

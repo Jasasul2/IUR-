@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Printing;
 using Newtonsoft.Json.Linq;
+using System.Windows.Controls.Primitives;
 
 namespace IUR_macesond_NET6.ViewModels
 {
@@ -503,13 +504,30 @@ namespace IUR_macesond_NET6.ViewModels
         }
         public void SortTasksByName(object obj)
         {
+            var type = obj as string;
+            if (type == null) return;
+
             if (ascendingName)
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskName));
+                if (type == "Task")
+                {
+                    SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskName));
+                } 
+                else if (type == "Template")
+                {
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskName));
+                }
             }
             else
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskName));
+                if (type == "Task")
+                {
+                    SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskName));
+                }
+                else if (type == "Template")
+                {
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskName));
+                }
             }
             ascendingName = !ascendingName;
         }
@@ -532,17 +550,34 @@ namespace IUR_macesond_NET6.ViewModels
 
         public void SortTasksByDifficulty(object obj)
         {
+            var type = obj as string;
+            if (type == null) return;
+
             if (ascendingDiff)
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskDifficulty));
+                if (type == "Task")
+                {
+                    SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskDifficulty));
+                }
+                else if (type == "Template")
+                {
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskDifficulty));
+                }
             }
             else
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskDifficulty));
+                if (type == "Task")
+                {
+                    SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskDifficulty));
+                }
+                else if (type == "Template")
+                {
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskDifficulty));
+                }
             }
             ascendingDiff = !ascendingDiff;
         }
-
+        
         #endregion
         #region CompletionSorting
 
@@ -590,13 +625,30 @@ namespace IUR_macesond_NET6.ViewModels
 
         public void SortTasksByTime(object obj)
         {
+            var type = obj as string;
+            if (type == null) return;
+
             if (ascendingTime)
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.NotificationTime));
+                if (type == "Task")
+                {
+                    SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.NotificationTime));
+                }
+                else if (type == "Template")
+                {
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.NotificationTime));
+                }
             }
             else
             {
-                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.NotificationTime));
+                if (type == "Task")
+                {
+                    SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.NotificationTime));
+                }
+                else if (type == "Template")
+                {
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.NotificationTime));
+                }
             }
             ascendingTime = !ascendingTime;
         }
@@ -618,7 +670,17 @@ namespace IUR_macesond_NET6.ViewModels
 
         public void SortTasksRandomly(object obj)
         {
-            SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => Guid.NewGuid()));
+            var type = obj as string;
+            if (type == null) return;
+
+            if (type == "Task")
+            {
+                SelectedTaskList = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => Guid.NewGuid()));
+            }
+            else if (type == "Template")
+            {
+                TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => Guid.NewGuid()));
+            }
         }
 
         #endregion

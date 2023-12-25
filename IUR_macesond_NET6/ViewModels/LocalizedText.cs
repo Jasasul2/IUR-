@@ -66,7 +66,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _timeButton = "Time";
         private string _randomButton = "Random";
         private string _addNewTaskButton = "Add New Task";
-        private string _addRandomTaskButton = "Add Random Task from Task Library";
+        private string _addRandomTaskButton = "Add Random Task from Library";
         private string _saveButton = "Save";
         private string _resetButton = "Reset";
         private string _deleteButton = "Delete";
@@ -357,7 +357,7 @@ namespace IUR_macesond_NET6.ViewModels
                     TimeButton = "Time";
                     RandomButton = "Random";
                     AddNewTaskButton = "Add New Task";
-                    AddRandomTaskButton = "Add Random Task from Task Library";
+                    AddRandomTaskButton = "Add Random Task from Library";
                     SaveButton = "Save";
                     ResetButton = "Reset";
                     DeleteButton = "Delete";
@@ -410,7 +410,7 @@ namespace IUR_macesond_NET6.ViewModels
                     TimeButton = "Času";
                     RandomButton = "Náhodně";
                     AddNewTaskButton = "Přidat nový úkol";
-                    AddRandomTaskButton = "Přidat náhodný úkol z knihovny úkolů";
+                    AddRandomTaskButton = "Přidat náhodný úkol z knihovny";
 
                     SaveButton = "Uložit";
                     ResetButton = "Reset";

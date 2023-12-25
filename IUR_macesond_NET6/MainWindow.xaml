@@ -95,7 +95,7 @@
                     <StackPanel Name="LeftMainStackPanel" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                         <!-- First Stack Panel Row = Day selection-->
-                        <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
+                        <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,5">
                             <Button Name="PrevousDayButton" 
                                     Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
                                     Content="{Binding LocalizedText.PreviousButton}" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
@@ -111,7 +111,12 @@
                                     Content="{Binding LocalizedText.NextButton}" Height="40" Width="100" Margin="5,5,0,5" FontSize="18" />
                         </StackPanel>
 
-                        <StackPanel Name="TaskListStackPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,0,0">
+                        <Label x:Name="Timer" Margin="10,0,10,0" Height="40" Content="Productive Part of the Day - 17:24:38" 
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               FontSize="24"/>
+
+                        <StackPanel Name="TaskListStackPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,5,0,0">
 
                             <!-- First Stack Panel Row = List Box and scroll viewer -->
                             <StackPanel x:Name="TaskListInnerHorizontalPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="545">
@@ -130,7 +135,7 @@
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Vertical">
-                                                        <StackPanel Orientation="Horizontal" Margin="5">
+                                                        <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
 
                                                             <!--Delete button-->
                                                             <Button Content="X" Width="30" Height="30" Margin="0,0,10,0" 
@@ -261,7 +266,7 @@
                                             <Button x:Name="AddTaskButton" Content="{Binding LocalizedText.AddNewTaskButton}" 
                                                 Grid.Row="1"
                                                 VerticalAlignment="Top"
-                                                Width="200" Margin="20,0,0,20" HorizontalAlignment="Left"
+                                                Width="178" Margin="20,0,0,20" HorizontalAlignment="Left"
                                                 Command="{Binding AddTaskCommand}">
 
                                             </Button>
@@ -269,7 +274,7 @@
                                             <Button x:Name="AddRandomTaskTemplateButton" Content="{Binding LocalizedText.AddRandomTaskButton}" 
                                                 Grid.Row="1"
                                                 VerticalAlignment="Top"
-                                                Width="390" Margin="20,0,0,20" HorizontalAlignment="Left"
+                                                Width="309" Margin="20,0,0,20" HorizontalAlignment="Left"
                                                 Command="{Binding AddRandomTaskCommand}">
                                             </Button>
                                         </StackPanel>
@@ -278,7 +283,7 @@
                             </StackPanel>
 
                             <!-- Second Stack Panel Row = Sorting buttons -->
-                            <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                            <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0">
                                 <Label Name="SortLabel" Content="{Binding LocalizedText.SortByLabel}" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
                                 <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5" Command="{Binding SortTasksByNameCommand}" CommandParameter="Task"/>
                                 <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5" Command="{Binding SortTasksByDifficultyCommand}" CommandParameter="Task"/>
@@ -288,7 +293,7 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Border x:Name="XPBorder" Style="{StaticResource ForegroundBorderStyle}" Height="95" Margin="10,20,10,0">
+                        <Border x:Name="XPBorder" Style="{StaticResource ForegroundBorderStyle}" Height="95" Margin="10,10,10,0">
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal" Margin="0,-7,0,0">
 
@@ -343,8 +348,8 @@
                                       ScrollViewer.CanContentScroll="True">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Vertical">
-                                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                                <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
 
                                                         <!--Delete button-->
                                                         <Button Content="X" Width="30" Height="30" Margin="0,0,10,0" 
@@ -444,7 +449,7 @@
 
                                                     <!-- Note -->
                                                     <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl
-                                                      Margin="45,5,0,5"
+                                                      Margin="45,5,0,0"
                                                       Width="427"
    
                                                       Padding="5"

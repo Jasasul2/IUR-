@@ -396,6 +396,13 @@
                                                          Grid.Column="4" Grid.Row="4"
                                                          Hour="{Binding NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                          Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}">
+                                                            <userControls:TimeInput.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="DoesNotHaveNotificationTime"/>
+                                                                    <Binding Mode="TwoWay"/>
+                                                                    <Binding UpdateSourceTrigger="PropertyChanged"/>
+                                                                </MultiBinding>
+                                                            </userControls:TimeInput.IsEnabled>
                                                         </userControls:TimeInput>
 
                                                         <!--Note Collapser-->

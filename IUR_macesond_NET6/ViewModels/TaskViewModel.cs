@@ -145,7 +145,17 @@ namespace IUR_macesond_NET6.ViewModels
         public bool MarkedForCompletion
         {
             get => _markedForCompletion;
-            set => SetProperty(ref _markedForCompletion, value);
+            set { 
+                SetProperty(ref _markedForCompletion, value);
+                if (value)
+                {
+                    Complete();
+                }
+                else 
+                {
+                    UnComplete();
+                }
+            }
         }
 
         // When the task is outside the producitivty part, it can no longer be changed
@@ -154,14 +164,8 @@ namespace IUR_macesond_NET6.ViewModels
         public bool Deprecated
         {
             get => _deprecated;
-            set
-            { 
-                SetProperty(ref _deprecated, value);
-                if(MarkedForCompletion && Deprecated)
-                {
-                    Complete();
-                }
-            }
+            set => SetProperty(ref _deprecated, value);
+
         }
 
         public void Complete()
@@ -169,7 +173,15 @@ namespace IUR_macesond_NET6.ViewModels
             if (_completed) return;
             
             _completed = true;
-            _mainViewModelReference.AddEXP(DifficultyToExp[TaskDifficulty]);
+            _mainViewModelReference.AddXP(DifficultyToExp[TaskDifficulty]);
+        }
+
+        private void UnComplete()
+        {
+            if (!_completed) return;
+
+            _completed = false;
+            _mainViewModelReference.AddXP(-DifficultyToExp[TaskDifficulty]);
         }
 
         #endregion

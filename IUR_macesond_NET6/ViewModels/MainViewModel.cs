@@ -133,17 +133,34 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void LevelUp()
         {
+            CurrentXP -= NextLevelXP;
             CurrentLevel++;
             NextLevelXP += XP_LEVEL_INCREASER;
         }
 
-        public void AddEXP(int newXP)
+        private void LevelDown()
+        {
+            if(CurrentLevel == 0)
+            {
+                CurrentXP = 0;
+                return; 
+            }
+
+            CurrentLevel--;
+            NextLevelXP = Math.Min(0, NextLevelXP - XP_LEVEL_INCREASER);
+            CurrentXP += NextLevelXP;
+        }
+
+        public void AddXP(int newXP)
         {
             CurrentXP += newXP;
             if (CurrentXP >= NextLevelXP)
             {
-                CurrentXP = CurrentXP - NextLevelXP;
                 LevelUp();
+            } 
+            else if (CurrentXP < 0)
+            {
+                LevelDown();
             }
         }
         #endregion
@@ -775,6 +792,7 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
 
         #region Timer
+
         private Timer _timer; 
 
         private DateTime _currentDateTime;
@@ -805,13 +823,26 @@ namespace IUR_macesond_NET6.ViewModels
                 if (timeOnly > UserSettings.ProductivityStartTime && timeOnly < UserSettings.ProductivityEndTime)
                 {
                     timeString += Translator.TranslateToCzech("Productive Part of the Day");
+                    MarkTasksAsDeprecated(false);
                 }
                 else
                 {
                     timeString += Translator.TranslateToCzech("Resting Part of the Day");
+                    MarkTasksAsDeprecated(true);
                 }
 
                 SetProperty(ref _currentTimeString, timeString);
+            }
+        }
+
+        private void MarkTasksAsDeprecated(bool deprecated)
+        {
+            ObservableCollection<TaskViewModel> presentTaskList = DateToTaskListDictionary[DateOnly.FromDateTime(DateTime.Now)];
+            if(presentTaskList == null) return;
+
+            foreach (TaskViewModel task in SelectedTaskList)
+            {
+                task.Deprecated = deprecated;
             }
         }
 

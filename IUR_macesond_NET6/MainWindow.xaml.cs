@@ -35,5 +35,10 @@ namespace IUR_macesond_NET6
             // Call the method in the view model
             _mainViewModelReference.OnWindowClosing();
         }
+
+        private void TaskListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

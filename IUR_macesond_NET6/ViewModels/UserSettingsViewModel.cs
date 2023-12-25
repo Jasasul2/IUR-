@@ -33,6 +33,10 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
 
         private MainViewModel _mainViewModelReference;
+        private void RefreshMainViewModelTime() {
+            if (_mainViewModelReference.UserSettings == null) return;
+            _mainViewModelReference.CurrentDateTime = DateTime.Now;
+        } 
 
         #region Language
 
@@ -56,13 +60,13 @@ namespace IUR_macesond_NET6.ViewModels
                 SetProperty(ref _currentLanguage, value);
                 CurrentLanguageString = value.ToString();
 
-                // This is some serious spaghetti code, but it works
                 Translator.CurrentLanguage = value;
 
                 if (_mainViewModelReference.LocalizedText!= null)
                 {
                     _mainViewModelReference.LocalizedText.SetLanguage(value);
                 }
+                RefreshMainViewModelTime();
             }
         }
 
@@ -106,6 +110,8 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _productivityEndTime, value);
         }
 
+
+
         public string ProductivityStartTimeStringHour
         {
             get => ProductivityStartTime.Hour.ToString();
@@ -114,6 +120,7 @@ namespace IUR_macesond_NET6.ViewModels
                 if (int.TryParse(value, out int hour))
                 {
                     ProductivityStartTime = new TimeOnly(hour, ProductivityStartTime.Minute);
+                    RefreshMainViewModelTime();
                 }
             }
         }
@@ -126,6 +133,7 @@ namespace IUR_macesond_NET6.ViewModels
                 if (int.TryParse(value, out int minute))
                 {
                     ProductivityStartTime = new TimeOnly(ProductivityStartTime.Hour, minute);
+                    RefreshMainViewModelTime();
                 }
             }
         }   
@@ -138,6 +146,7 @@ namespace IUR_macesond_NET6.ViewModels
                 if (int.TryParse(value, out int hour))
                 {
                     ProductivityEndTime = new TimeOnly(hour, ProductivityEndTime.Minute);
+                    RefreshMainViewModelTime();
                 }
             }
         }
@@ -150,6 +159,7 @@ namespace IUR_macesond_NET6.ViewModels
                 if (int.TryParse(value, out int minute))
                 {
                     ProductivityEndTime = new TimeOnly(ProductivityEndTime.Hour, minute);
+                    RefreshMainViewModelTime();
                 }
             }
         }
@@ -164,10 +174,10 @@ namespace IUR_macesond_NET6.ViewModels
 
             UserSettingsModel savedUserSettings = mainViewModelReference.ModelDataLoader.LoadUserSettings();
 
-            CurrentLanguage = savedUserSettings.CurrentLanguage;
-            NotificationSoundsEnabled = savedUserSettings.NotificationSoundsEnabled;
             ProductivityStartTime = savedUserSettings.ProductivityStartTime;
             ProductivityEndTime = savedUserSettings.ProductivityEndTime;
+            CurrentLanguage = savedUserSettings.CurrentLanguage;
+            NotificationSoundsEnabled = savedUserSettings.NotificationSoundsEnabled;
         }
     }
 }

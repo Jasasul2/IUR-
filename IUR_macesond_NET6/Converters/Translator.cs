@@ -43,6 +43,12 @@ namespace IUR_macesond_NET6.Converters
 
                     case "Please enter a valid number from 0 to 23.":
                         return "Prosím zadejte platné číslo od 0 do 23.";
+
+                    case "Productive Part of the Day":
+                        return "Produktivní část dne";
+
+                    case "Resting Part of the Day":
+                        return "Odpočinková část dne";
                 }
             }
 

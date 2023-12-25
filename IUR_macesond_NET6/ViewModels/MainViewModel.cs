@@ -15,6 +15,7 @@ using System.Windows;
 using System.Printing;
 using Newtonsoft.Json.Linq;
 using System.Windows.Controls.Primitives;
+using IUR_macesond_NET6.Converters;
 
 namespace IUR_macesond_NET6.ViewModels
 {
@@ -773,6 +774,49 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region Timer
+        private Timer _timer; 
+
+        private DateTime _currentDateTime;
+
+        public DateTime CurrentDateTime
+        {
+            get => _currentDateTime;
+            set
+            {
+                SetProperty(ref _currentDateTime, value);
+                CurrentTimeString = _currentDateTime.ToString("HH:mm");
+            }
+        }
+
+        private string _currentTimeString;
+
+        public String CurrentTimeString
+        {
+            get {
+                return _currentTimeString;
+            } 
+            set {
+                string timeString = value;
+                timeString += " - ";
+
+                TimeOnly timeOnly = TimeOnly.FromDateTime(CurrentDateTime);
+
+                if (timeOnly > UserSettings.ProductivityStartTime && timeOnly < UserSettings.ProductivityEndTime)
+                {
+                    timeString += Translator.TranslateToCzech("Productive Part of the Day");
+                }
+                else
+                {
+                    timeString += Translator.TranslateToCzech("Resting Part of the Day");
+                }
+
+                SetProperty(ref _currentTimeString, timeString);
+            }
+        }
+
+        #endregion
+
         #region Constructor and Close
 
         public MainViewModel()
@@ -792,6 +836,9 @@ namespace IUR_macesond_NET6.ViewModels
 
             // Load Task Library
             LoadTaskLibrary();
+
+            // "MainLoop"
+            Timer _timer = new Timer(this);
         }
 
         public void ExitApplication()

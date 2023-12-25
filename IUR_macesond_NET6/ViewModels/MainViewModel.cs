@@ -147,7 +147,7 @@ namespace IUR_macesond_NET6.ViewModels
             }
 
             CurrentLevel--;
-            NextLevelXP = Math.Min(0, NextLevelXP - XP_LEVEL_INCREASER);
+            NextLevelXP = Math.Max(0, NextLevelXP - XP_LEVEL_INCREASER);
             CurrentXP += NextLevelXP;
         }
 
@@ -189,6 +189,7 @@ namespace IUR_macesond_NET6.ViewModels
                 if (!IsTaskSelected) return;
                 SelectedTemplate = null;
                 IsTemplateSelected = false;
+                CurrentDateTime = DateTime.Now;
             }
         }
 

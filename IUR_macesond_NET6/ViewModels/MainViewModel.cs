@@ -515,7 +515,7 @@ namespace IUR_macesond_NET6.ViewModels
                 } 
                 else if (type == "Template")
                 {
-                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskName));
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(TaskLibrary.OrderBy(task => task.TaskName));
                 }
             }
             else
@@ -526,7 +526,7 @@ namespace IUR_macesond_NET6.ViewModels
                 }
                 else if (type == "Template")
                 {
-                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskName));
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(TaskLibrary.OrderByDescending(task => task.TaskName));
                 }
             }
             ascendingName = !ascendingName;
@@ -561,7 +561,7 @@ namespace IUR_macesond_NET6.ViewModels
                 }
                 else if (type == "Template")
                 {
-                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.TaskDifficulty));
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(TaskLibrary.OrderBy(task => task.TaskDifficulty));
                 }
             }
             else
@@ -572,7 +572,7 @@ namespace IUR_macesond_NET6.ViewModels
                 }
                 else if (type == "Template")
                 {
-                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.TaskDifficulty));
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(TaskLibrary.OrderByDescending(task => task.TaskDifficulty));
                 }
             }
             ascendingDiff = !ascendingDiff;
@@ -636,7 +636,7 @@ namespace IUR_macesond_NET6.ViewModels
                 }
                 else if (type == "Template")
                 {
-                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => task.NotificationTime));
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(TaskLibrary.OrderBy(task => task.NotificationTime));
                 }
             }
             else
@@ -647,7 +647,7 @@ namespace IUR_macesond_NET6.ViewModels
                 }
                 else if (type == "Template")
                 {
-                    TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderByDescending(task => task.NotificationTime));
+                    TaskLibrary = new ObservableCollection<TaskViewModel>(TaskLibrary.OrderByDescending(task => task.NotificationTime));
                 }
             }
             ascendingTime = !ascendingTime;
@@ -679,7 +679,7 @@ namespace IUR_macesond_NET6.ViewModels
             }
             else if (type == "Template")
             {
-                TaskLibrary = new ObservableCollection<TaskViewModel>(SelectedTaskList.OrderBy(task => Guid.NewGuid()));
+                TaskLibrary = new ObservableCollection<TaskViewModel>(TaskLibrary.OrderBy(task => Guid.NewGuid()));
             }
         }
 

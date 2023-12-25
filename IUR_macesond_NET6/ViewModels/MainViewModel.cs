@@ -167,7 +167,8 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 SetProperty(ref _selectedTask, value);
                 IsTaskSelected = (value != null);
-                SetProperty(ref _selectedTemplate, null);
+                if (!IsTaskSelected) return;
+                SelectedTemplate = null;
                 IsTemplateSelected = false;
             }
         }
@@ -191,7 +192,8 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 SetProperty(ref _selectedTemplate, value);
                 IsTemplateSelected = (value != null);
-                SetProperty(ref _selectedTask, null);
+                if (!IsTemplateSelected) return;
+                SelectedTask = null;
                 IsTaskSelected = false;
             }
         }

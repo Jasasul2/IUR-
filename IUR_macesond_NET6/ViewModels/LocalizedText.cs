@@ -315,7 +315,6 @@ namespace IUR_macesond_NET6.ViewModels
         private string _sortByLabel = "Sort by:";
         private string _levelLabel = "Level";
         private string _useLabel = "Use";
-        private string _datePickerButtonText = "69";
 
         public string SortByLabel
         {
@@ -334,13 +333,6 @@ namespace IUR_macesond_NET6.ViewModels
             get => _useLabel;
             set => SetProperty(ref _useLabel, value);
         }
-
-        public string DatePickerButtonText
-        {
-            get => _datePickerButtonText;
-            set => SetProperty(ref _datePickerButtonText, value);
-        }
-
         #endregion
 
         public void SetLanguage(UserSettingsViewModel.Language newLanguage)
@@ -396,7 +388,6 @@ namespace IUR_macesond_NET6.ViewModels
                     SortByLabel = "Sort by:";
                     LevelLabel = "Level";
                     UseLabel = "Use";
-                    DatePickerButtonText = "69";
 
                     break;
 
@@ -450,7 +441,6 @@ namespace IUR_macesond_NET6.ViewModels
                     SortByLabel = "Řadit dle:";
                     LevelLabel = "Úroveň";
                     UseLabel = "Použít";
-                    DatePickerButtonText = "420";
 
                     break;
             }

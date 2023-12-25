@@ -11,7 +11,7 @@
     <Border Style="{StaticResource ShadowBorder}">
         <StackPanel Orientation="Horizontal" Width="80" Height="40" Background="Transparent" HorizontalAlignment="Left">
 
-            <TextBox x:Name="HoursTextBox" Style="{StaticResource TimeTextBoxLeftStyle}">
+            <TextBox x:Name="HoursTextBox" Style="{StaticResource TimeTextBoxLeftStyle}" HorizontalContentAlignment="Right">
                 <TextBox.Text>
                     <Binding ElementName="root" Path="Hour" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -22,9 +22,9 @@
             </TextBox>
 
             <TextBlock x:Name="DoublePointTextBlock" Text=":" Background="White" Foreground="{StaticResource DarkerTextColorBrush}" Margin="-1,0,-1,0"
-            VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="7" Padding="0,7" FontSize="18" FontWeight="Bold"/>
+            VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Width="7" Padding="1,7" FontSize="18" FontWeight="Bold"/>
 
-            <TextBox x:Name="MinutesTextBox" Style="{StaticResource TimeTextBoxRightStyle}">
+            <TextBox x:Name="MinutesTextBox" Style="{StaticResource TimeTextBoxRightStyle}" HorizontalContentAlignment="Left">
                 <TextBox.Text>
                     <Binding ElementName="root" Path="Minute" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>

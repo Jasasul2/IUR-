@@ -20,6 +20,7 @@
         x:Name="root">
 
     <Window.Resources>
+        <converters:TimeFixConverter x:Key="TimeFixConverter"/>
         <converters:BoolToVisibilityNegatedConverter x:Key="BoolToVisibilityNegatedConverter"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:BoolToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsedConverter"/>
@@ -192,7 +193,7 @@
                                                                     Margin="5,0,0,0"
                                                                     Grid.Column="4" Grid.Row="4"
                                                                     Hour="{Binding NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                    Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                                    Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}">
 
                                                                 <userControls:TimeInput.IsEnabled>
                                                                     <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
@@ -407,8 +408,7 @@
                                                          Margin="5,0,0,0"
                                                          Grid.Column="4" Grid.Row="4"
                                                          Hour="{Binding NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                         Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-
+                                                         Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}">
                                                             <userControls:TimeInput.IsEnabled>
                                                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                     <Binding Path="Deprecated"/>
@@ -543,7 +543,7 @@
                                     <userControls:TimeInput x:Name="ProductiveDayStartTimeInput"
                                             Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="71,0,0,0"
                                             Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}"/>
 
                                     <!-- Productive part of the day end -->
                                     <Label Name="ProductiveEndLabel" Content="{Binding LocalizedText.ProductivePartOfTheDayEndLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
@@ -552,7 +552,7 @@
                                     <userControls:TimeInput x:Name="ProductiveDayEndTimeInput"
                                             Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="71,0,0,0"
                                             Hour="{Binding UserSettings.ProductivityEndTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Minute="{Binding UserSettings.ProductivityEndTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            Minute="{Binding UserSettings.ProductivityEndTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}"/>
 
                                     <!-- Language -->
                                     <Label Name="LanguageLabel" Content="{Binding LocalizedText.LanguageLabel, Mode=TwoWay}" 
@@ -714,7 +714,7 @@
                         <userControls:TimeInput x:Name="TaskNotificationtTimeInput1"
                                 Grid.Column="4" Grid.Row="4"
                                 Hour="{Binding SelectedTask.NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Minute="{Binding SelectedTask.NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                Minute="{Binding SelectedTask.NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}">
 
                             <userControls:TimeInput.IsEnabled>
                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
@@ -855,7 +855,7 @@
                         <userControls:TimeInput x:Name="TaskTemplateNotificationtTimeInput1"
                  Grid.Column="4" Grid.Row="4"
                  Hour="{Binding SelectedTemplate.NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 Minute="{Binding SelectedTemplate.NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                 Minute="{Binding SelectedTemplate.NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}">
 
                             <userControls:TimeInput.IsEnabled>
                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">

@@ -94,6 +94,12 @@
 
                     <StackPanel Name="LeftMainStackPanel" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
+                        <Label x:Name="Timer" Margin="10,8,10,-7" Height="45" Content="{Binding CurrentTimeString}" 
+                               VerticalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
+                               FontSize="25"
+                               FontWeight="DemiBold"/>
+                        
                         <!-- First Stack Panel Row = Day selection-->
                         <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,5">
                             <Button Name="PrevousDayButton" 
@@ -111,13 +117,8 @@
                                     Content="{Binding LocalizedText.NextButton}" Height="40" Width="100" Margin="5,5,0,5" FontSize="18" />
                         </StackPanel>
 
-                        <Label x:Name="Timer" Margin="10,0,10,-5" Height="45" Content="{Binding CurrentTimeString}" 
-                               VerticalContentAlignment="Center"
-                               HorizontalContentAlignment="Center"
-                               FontSize="25"
-                               FontWeight="DemiBold"/>
 
-                        <StackPanel Name="TaskListStackPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,5,0,0">
+                        <StackPanel Name="TaskListStackPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,-8,0,2">
 
                             <!-- First Stack Panel Row = List Box and scroll viewer -->
                             <StackPanel x:Name="TaskListInnerHorizontalPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="545">
@@ -285,7 +286,7 @@
                             </StackPanel>
 
                             <!-- Second Stack Panel Row = Sorting buttons -->
-                            <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+                            <StackPanel Name="SortStackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,0">
                                 <Label Name="SortLabel" Content="{Binding LocalizedText.SortByLabel}" Height="40" Width="100" Margin="7,5,0,5" VerticalContentAlignment="Center"/>
                                 <Button Name="AlphabetSortButton" Content="{Binding LocalizedText.AlphabetButton}" Margin="0,5,5,5" Command="{Binding SortTasksByNameCommand}" CommandParameter="Task"/>
                                 <Button Name="DifficultySortButton" Content="{Binding LocalizedText.DifficultyButton}" Margin="5,5,5,5" Command="{Binding SortTasksByDifficultyCommand}" CommandParameter="Task"/>
@@ -455,21 +456,21 @@
                                         </Button>
 
                                         <Label Name="SortTemplateLabel" Content="{Binding LocalizedText.SortByLabel}" 
-                                               Height="30" Width="70" Margin="15,0,0,20" VerticalContentAlignment="Center"
-                                               VerticalAlignment="Top" FontSize="14"/>
+                                               Height="30" Width="71" Margin="15,0,0,20" VerticalContentAlignment="Center"
+                                               VerticalAlignment="Top" FontSize="13"/>
 
                                         <Button Name="AlphabetSortTemplateButton" Content="{Binding LocalizedText.AlphabetButton}" 
                                                 Margin="5,0,5,20" Command="{Binding SortTasksByNameCommand}" CommandParameter="Template"
-                                                Width="70" Height="30" FontSize="14" VerticalAlignment="Top"/>
+                                                Width="70" Height="30" FontSize="13" VerticalAlignment="Top"/>
                                         <Button Name="DifficultySortTemplateButton" Content="{Binding LocalizedText.DifficultyButton}" 
                                                 Margin="5,0,5,20" Command="{Binding SortTasksByDifficultyCommand}" CommandParameter="Template"
-                                                Width="70" Height="30" FontSize="14" VerticalAlignment="Top"/>
+                                                Width="70" Height="30" FontSize="13" VerticalAlignment="Top"/>
                                         <Button Name="TimeSortTemplateButton" Content="{Binding LocalizedText.TimeButton}" 
                                                 Margin="5,0,5,20" Command="{Binding SortTasksByTimeCommand}" CommandParameter="Template"
-                                                Width="70" Height="30" FontSize="14" VerticalAlignment="Top"/>
+                                                Width="70" Height="30" FontSize="13" VerticalAlignment="Top"/>
                                         <Button Name="RandomSortTemplateButton" Content="{Binding LocalizedText.RandomButton}" 
                                                 Margin="5,0,5,20" Command="{Binding SortTasksRandomlyCommand}" CommandParameter="Template"
-                                                Width="70" Height="30" FontSize="14" VerticalAlignment="Top"/>
+                                                Width="70" Height="30" FontSize="13" VerticalAlignment="Top"/>
                                     </StackPanel>
 
 

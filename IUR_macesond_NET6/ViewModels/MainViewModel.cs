@@ -814,7 +814,7 @@ namespace IUR_macesond_NET6.ViewModels
             set
             {
                 SetProperty(ref _currentDateTime, value);
-                CurrentTimeString = _currentDateTime.ToString("HH:mm");
+                CurrentTimeString = _currentDateTime.ToString("dd.MM.yyy - HH:mm");
                 DayMatch = SelectedDate.Date == CurrentDateTime.Date;
             }
         }

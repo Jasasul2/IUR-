@@ -285,9 +285,9 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void AddTaskTemplate(object obj)
         {
-            TaskViewModel newTask = new TaskViewModel(this, new TaskModel());
-            TaskLibrary.Add(newTask);
-            SelectedTask = newTask;
+            TaskViewModel newTaskTemplate = new TaskViewModel(this, new TaskModel());
+            TaskLibrary.Add(newTaskTemplate);
+            SelectedTemplate = newTaskTemplate;
         }
 
         private bool AddTaskTemplateCommandCanExecute(object obj)

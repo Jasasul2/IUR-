@@ -57,6 +57,8 @@ namespace IUR_macesond_NET6.ViewModels
                     DateToTaskListDictionary.Add(dateOnly, new ObservableCollection<TaskViewModel>());
                 }
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
+
+                DayMatch = SelectedDate.Date == CurrentDateTime.Date;
             }
         }
 
@@ -794,6 +796,14 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region Timer
 
+        private bool _dayMatch = true;
+
+        public bool DayMatch
+        {
+            get => _dayMatch;
+            set => SetProperty(ref _dayMatch, value);
+        }
+
         private Timer _timer; 
 
         private DateTime _currentDateTime;
@@ -805,6 +815,7 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 SetProperty(ref _currentDateTime, value);
                 CurrentTimeString = _currentDateTime.ToString("HH:mm");
+                DayMatch = SelectedDate.Date == CurrentDateTime.Date;
             }
         }
 
@@ -841,7 +852,7 @@ namespace IUR_macesond_NET6.ViewModels
             ObservableCollection<TaskViewModel> presentTaskList = DateToTaskListDictionary[DateOnly.FromDateTime(DateTime.Now)];
             if(presentTaskList == null) return;
 
-            foreach (TaskViewModel task in SelectedTaskList)
+            foreach (TaskViewModel task in presentTaskList)
             {
                 task.Deprecated = deprecated;
             }

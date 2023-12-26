@@ -17,8 +17,11 @@
                     <BulletDecorator Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <BulletDecorator.Bullet>
                             <Border x:Name="Border" Style="{StaticResource ShadowBorder}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" RenderTransformOrigin="0.5, 0.5">
                                 <Path x:Name="CheckMark" Stroke="{TemplateBinding Foreground}" StrokeThickness="3" Data="M 0 4 L 3.5 8 L 9 0" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                                </Border.RenderTransform>
                             </Border>
                         </BulletDecorator.Bullet>
                     </BulletDecorator>
@@ -28,7 +31,32 @@
                             <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource ButtonHoveredBrush}"/>
+                            <Setter TargetName="Border" Property="Background" Value="#f2f2f2" />
+                            
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     To="1.12" Duration="0:0:0.06"/>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     To="1.12" Duration="0:0:0.06"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     To="1.0" Duration="0:0:0.12"/>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     To="1.0" Duration="0:0:0.12"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                     

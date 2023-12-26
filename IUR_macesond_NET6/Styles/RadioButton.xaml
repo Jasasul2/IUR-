@@ -19,7 +19,11 @@
                                 Width="40" 
                                 Height="{TemplateBinding Height}"
                                 CornerRadius="20"
-                                HorizontalAlignment="Left">
+                                HorizontalAlignment="Left" 
+                            RenderTransformOrigin="0.5, 0.5">
+                        <Border.RenderTransform>
+                            <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                        </Border.RenderTransform>
 
                         <Border x:Name="ForegroundBorder" Style="{StaticResource ShadowBorder}"
                                          Background="{TemplateBinding Foreground}" 
@@ -47,7 +51,32 @@
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="BackgroundBorder" Property="Background" Value="{StaticResource ButtonHoveredBrush}"/>
+                            <Setter TargetName="BackgroundBorder" Property="Background" Value="{StaticResource TextHoveredBrush}" />
+
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     To="1.12" Duration="0:0:0.06"/>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     To="1.12" Duration="0:0:0.06"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     To="1.0" Duration="0:0:0.12"/>
+                                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     To="1.0" Duration="0:0:0.12"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                     

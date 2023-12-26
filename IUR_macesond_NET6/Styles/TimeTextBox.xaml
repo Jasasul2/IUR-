@@ -30,6 +30,10 @@
                 <Setter Property="ToolTip" 
                         Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
             </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource TextHoveredBrush}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -61,6 +65,10 @@
                 <Setter Property="Foreground" Value="Red"></Setter>
                 <Setter Property="ToolTip" 
                         Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource TextHoveredBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>

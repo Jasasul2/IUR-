@@ -8,7 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="77" x:Name="root">
 
-    <Border Style="{StaticResource ShadowBorder}">
+    <Border x:Name="BackgroundBorder" Style="{StaticResource ShadowBorder}" RenderTransformOrigin="0.1, 0.5">
+        <Border.RenderTransform>
+            <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+        </Border.RenderTransform>
         <StackPanel Orientation="Horizontal" Width="80" Height="40" Background="Transparent" HorizontalAlignment="Left">
 
             <TextBox x:Name="HoursTextBox" Style="{StaticResource TimeTextBoxLeftStyle}" HorizontalContentAlignment="Right">
@@ -35,5 +38,39 @@
             </TextBox>
 
         </StackPanel>
+
     </Border>
+    
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="MouseEnter">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                To="1.08" Duration="0:0:0.06"/>
+                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                To="1.08" Duration="0:0:0.06"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="MouseLeave">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                    To="1.0" Duration="0:0:0.12"/>
+                            <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
+                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                    To="1.0" Duration="0:0:0.12"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+    
 </UserControl>

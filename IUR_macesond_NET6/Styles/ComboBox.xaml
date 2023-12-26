@@ -11,7 +11,7 @@
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="60" />
             </Grid.ColumnDefinitions>
                
             <VisualStateManager.VisualStateGroups>
@@ -20,11 +20,24 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                (GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                          Storyboard.TargetName="Border">
+                                <EasingColorKeyFrame KeyTime="0"
+                                   Value="{StaticResource DetailGradientColor1}" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
                 (GradientBrush.GradientStops)[1].(GradientStop.Color)"
                                           Storyboard.TargetName="Border">
                                 <EasingColorKeyFrame KeyTime="0"
                                    Value="{StaticResource DetailGradientColor1}" />
                             </ColorAnimationUsingKeyFrames>
+
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     To="1.07" Duration="0:0:0.06"/>
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     To="1.07" Duration="0:0:0.06"/>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed" />
@@ -34,11 +47,24 @@
                     <VisualState x:Name="Checked">
                         <Storyboard>
                             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                (GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                          Storyboard.TargetName="Border">
+                                <EasingColorKeyFrame KeyTime="0"
+                                   Value="{StaticResource DetailGradientColor2}" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
                 (GradientBrush.GradientStops)[1].(GradientStop.Color)"
                                           Storyboard.TargetName="Border">
                                 <EasingColorKeyFrame KeyTime="0"
                                    Value="{StaticResource DetailGradientColor2}" />
                             </ColorAnimationUsingKeyFrames>
+
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     To="1.0" Duration="0:0:0.12"/>
+                            <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     To="1.0" Duration="0:0:0.12"/>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Unchecked" />
@@ -48,21 +74,32 @@
 
             <!--The Dropdown border-->
             <Border x:Name="Border" Style="{StaticResource ShadowBorder}"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="1"
+            Grid.Column="1"
             CornerRadius="5"
-            BorderThickness="0">
+            HorizontalAlignment="Center"
+            Width="30"
+            BorderThickness="0"
+            RenderTransformOrigin="0.5, 0.5">
+                
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="{StaticResource ButtonNormalGC1}" Offset="0"/>
                         <GradientStop Color="{StaticResource ButtonNormalGC2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+
+                <Border.RenderTransform>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </Border.RenderTransform>
             </Border>
             
             <!--The white border-->
-            <Border 
-              Grid.Column="0"
+            <Border x:Name="WhiteBorder" Style="{StaticResource ShadowBorder}"
+            Grid.Column="0"
             CornerRadius="5"
+                    HorizontalAlignment="Left"
+                    Width="80"
             Margin="0" >
                 <Border.Background>
                     <SolidColorBrush Color="White"/>
@@ -167,13 +204,15 @@
                              IsOpen="{TemplateBinding IsDropDownOpen}"
                              AllowsTransparency="True"
                              Focusable="False"
+                             HorizontalAlignment="Left"
                              PopupAnimation="Fade">
                             <Grid x:Name="DropDown"
                                   SnapsToDevicePixels="True"
                                   MinWidth="{TemplateBinding ActualWidth}"
                                   MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border x:Name="DropDownBorder" Style="{StaticResource ShadowBorder}"
-                      BorderThickness="0">
+                                <Border x:Name="DropDownBorder" Style="{StaticResource ShadowBorder}" 
+                                    Margin="10"
+                                    BorderThickness="0">
                                     <Border.Background>
                                         <SolidColorBrush Color="White" />
                                     </Border.Background>

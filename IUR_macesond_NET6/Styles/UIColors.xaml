@@ -8,8 +8,8 @@
     <Color x:Key="BackgroundGradientColor2">#333333</Color>
 
     <!--Foreground Gradient Colors-->
-    <Color x:Key="ForegroundGradientColor1">#474747</Color>
-    <Color x:Key="ForegroundGradientColor2">#333333</Color>
+    <Color x:Key="ForegroundGradientColor1">#525050</Color>
+    <Color x:Key="ForegroundGradientColor2">#3d3d3d</Color>
 
     <!--Detail Gradient Colors-->
     <Color x:Key="DetailGradientColor1">#E2C799</Color>

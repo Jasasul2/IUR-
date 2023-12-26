@@ -86,7 +86,7 @@ namespace IUR_macesond_NET6.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/IUR_macesond_NET6;V1.0.0.0;component/usercontrols/timeinput.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/IUR_macesond_NET6;component/usercontrols/timeinput.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\TimeInput.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -335,7 +335,7 @@
                 <Border Name="TabSelectionBorder" Style="{StaticResource DetailBorderStyleShaded}"
                     Grid.Column="1" Grid.Row="0">
 
-                    <TabControl Name="MainTabControl" Style="{StaticResource TabControlStyle}">
+                    <TabControl Name="MainTabControl" Style="{StaticResource TabControlStyle}" Margin="5,10,5,5">
 
                         <TabItem Header="{Binding LocalizedText.TaskLibraryButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder1" Style="{StaticResource DetailBorderStyle}">
@@ -581,18 +581,18 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- First row: Task editor Label and save and reset buttons -->
-                        <Border x:Name="TaskEditorLabelBorder" Style="{StaticResource ForegroundBorderStyle}" Padding="0" Margin="5,0,5,0" VerticalAlignment="Center" Height="50" HorizontalAlignment="Stretch">
+                        <Border x:Name="TaskEditorLabelBorder" Style="{StaticResource ForegroundBorderStyle}" Padding="0" Margin="8,5,5,0" VerticalAlignment="Center" Height="50" HorizontalAlignment="Stretch">
                             <Label x:Name="TaskEditorLabel" Content="{Binding LocalizedText.TaskEditorTitle}" Margin="0" 
                                 VerticalContentAlignment="Center" FontSize="24" Foreground="White"
                                 Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
                         </Border>
 
                         <Button x:Name="SaveTaskButton" Content="{Binding LocalizedText.SaveButton}" Width="80" Command="{Binding SaveTaskCommand}" CommandParameter="Task"
-                        Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
+                        Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,3" Grid.ColumnSpan="2"/>
                         <Button x:Name="ResetTaskButton" Content="{Binding LocalizedText.ResetButton}" Width="80"
-                                Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}" CommandParameter="Task"/>
+                                Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,3" Command="{Binding ResetSelectedTaskCommand}" CommandParameter="Task"/>
                         <Button x:Name="DeleteTaskButton" Content="{Binding LocalizedText.DeleteButton}" Width="80"
-                                Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}" CommandParameter="Task"/>
+                                Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,3" Command="{Binding DeleteTaskCommand}" CommandParameter="Task"/>
 
                         <!-- Second row: Task Name -->
                         <Label Name="TaskNameLabel" Content="{Binding LocalizedText.TaskEditorNameLabel}" Width="304" VerticalContentAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Grid.RowSpan="2"/>
@@ -758,18 +758,18 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- First row: Task editor Label and save and reset buttons -->
-                        <Border x:Name="TaskTemplateEditorLabelBorder" Style="{StaticResource ForegroundBorderStyle}" Padding="0" Margin="5,0,5,0" VerticalAlignment="Center" Height="50" HorizontalAlignment="Stretch">
+                        <Border x:Name="TaskTemplateEditorLabelBorder" Style="{StaticResource ForegroundBorderStyle}" Padding="0" Margin="8,5,5,0" VerticalAlignment="Center" Height="50" HorizontalAlignment="Stretch">
                             <Label x:Name="TaskTemplateEditorLabel" Content="{Binding LocalizedText.TaskTemplateEditorTitle}" Margin="0" 
                  VerticalContentAlignment="Center" FontSize="24" Foreground="White"
                  Grid.Column="0" Grid.Row="0" FontWeight="Bold"/>
                         </Border>
 
                         <Button x:Name="SaveTaskTemplateButton" Content="{Binding LocalizedText.SaveButton}" Width="80" Command="{Binding SaveTaskCommand}" CommandParameter="Template"
-                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Grid.ColumnSpan="2"/>
+                 Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,3" Grid.ColumnSpan="2"/>
                         <Button x:Name="ResetTaskTemplateButton" Content="{Binding LocalizedText.ResetButton}" Width="80"
-                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding ResetSelectedTaskCommand}" CommandParameter="Template"/>
+                 Grid.Column="4" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,3" Command="{Binding ResetSelectedTaskCommand}" CommandParameter="Template"/>
                         <Button x:Name="DeleteTaskTemplateButton" Content="{Binding LocalizedText.DeleteButton}" Width="80"
-                 Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,3,0,3" Command="{Binding DeleteTaskCommand}" CommandParameter="Template"/>
+                 Grid.Column="5" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,3" Command="{Binding DeleteTaskCommand}" CommandParameter="Template"/>
 
                         <!-- Second row: Task Name -->
                         <Label Name="TaskTemplateNameLabel" Content="{Binding LocalizedText.TaskEditorTemplateNameLabel}" Width="304" VerticalContentAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Grid.RowSpan="2"/>

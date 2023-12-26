@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IUR_macesond_NET6")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28b6718bc3239d4b461690f7865c0029bc3fae8e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64925a016f142cf0a8a7c50dcb5b59c16a920415")]
 [assembly: System.Reflection.AssemblyProductAttribute("IUR_macesond_NET6")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IUR_macesond_NET6")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

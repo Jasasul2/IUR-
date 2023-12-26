@@ -516,12 +516,21 @@ namespace IUR_macesond_NET6.ViewModels
 
         public RelayCommand SortTasksByNameCommand
         {
-            get { return _sortTasksByNameCommand ?? (_sortTasksByNameCommand = new RelayCommand(SortTasksByName, SortTasksByNameCommandCanExecute)); }
+            get { return _sortTasksByNameCommand ?? (_sortTasksByNameCommand = new RelayCommand(SortTasksByName, SortTasksCommandCanExecute)); }
         }
 
-        private bool SortTasksByNameCommandCanExecute(object obj)
+        private bool SortTasksCommandCanExecute(object obj)
         {
-            return (SelectedTaskList.Count > 0);
+            var type = obj as string;
+            if (type == "Task")
+            {
+                return (SelectedTaskList.Count > 0);
+            }
+            else if (type == "Template")
+            {
+                return (TaskLibrary.Count > 0);
+            }
+            return false;
         }
         public void SortTasksByName(object obj)
         {
@@ -561,12 +570,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         public RelayCommand SortTasksByDifficultyCommand
         {
-            get { return _sortTasksByDifficultyCommand ?? (_sortTasksByDifficultyCommand = new RelayCommand(SortTasksByDifficulty, SortTasksByDifficultyCommandCanExecute)); }
-        }
-
-        private bool SortTasksByDifficultyCommandCanExecute(object obj)
-        {
-            return (SelectedTaskList.Count > 0);
+            get { return _sortTasksByDifficultyCommand ?? (_sortTasksByDifficultyCommand = new RelayCommand(SortTasksByDifficulty, SortTasksCommandCanExecute)); }
         }
 
         public void SortTasksByDifficulty(object obj)
@@ -607,12 +611,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         public RelayCommand SortTasksByCompletionCommand
         {
-            get { return _sortTasksByCompletionCommand ?? (_sortTasksByCompletionCommand = new RelayCommand(SortTasksByCompletion, SortTasksByCompletionCommandCanExecute)); }
-        }
-
-        private bool SortTasksByCompletionCommandCanExecute(object obj)
-        {
-            return (SelectedTaskList.Count > 0);
+            get { return _sortTasksByCompletionCommand ?? (_sortTasksByCompletionCommand = new RelayCommand(SortTasksByCompletion, SortTasksCommandCanExecute)); }
         }
 
         public void SortTasksByCompletion(object obj)
@@ -636,12 +635,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         public RelayCommand SortTasksByTimeCommand
         {
-            get { return _sortTasksByTimeCommand ?? (_sortTasksByTimeCommand = new RelayCommand(SortTasksByTime, SortTasksByTimeCommandCanExecute)); }
-        }
-
-        private bool SortTasksByTimeCommandCanExecute(object obj)
-        {
-            return (SelectedTaskList.Count > 0);
+            get { return _sortTasksByTimeCommand ?? (_sortTasksByTimeCommand = new RelayCommand(SortTasksByTime, SortTasksCommandCanExecute)); }
         }
 
         public void SortTasksByTime(object obj)
@@ -681,14 +675,8 @@ namespace IUR_macesond_NET6.ViewModels
 
         public RelayCommand SortTasksRandomlyCommand
         {
-            get { return _sortTasksRandomlyCommand ?? (_sortTasksRandomlyCommand = new RelayCommand(SortTasksRandomly, SortTasksRandomlyCommandCanExecute)); }
+            get { return _sortTasksRandomlyCommand ?? (_sortTasksRandomlyCommand = new RelayCommand(SortTasksRandomly, SortTasksCommandCanExecute)); }
         }
-
-        private bool SortTasksRandomlyCommandCanExecute(object obj)
-        {
-            return (SelectedTaskList.Count > 0);
-        }
-
         public void SortTasksRandomly(object obj)
         {
             var type = obj as string;

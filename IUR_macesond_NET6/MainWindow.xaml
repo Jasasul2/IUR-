@@ -216,12 +216,6 @@
                                                             <!--Note Collapser-->
                                                             <Button x:Name="NoteCollapserButton" Content="..." Width="30" Height="30" Margin="10,0,0,0" 
                                                                         Command="{Binding ToggleTaskNoteVisibilityCommand}">
-                                                                <Button.IsEnabled>
-                                                                    <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
-                                                                        <Binding Path="Deprecated"/>
-                                                                        <Binding Path="MarkedForCompletion"/>
-                                                                    </MultiBinding>
-                                                                </Button.IsEnabled>
                                                             </Button>
 
 

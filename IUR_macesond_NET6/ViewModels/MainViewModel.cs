@@ -334,10 +334,17 @@ namespace IUR_macesond_NET6.ViewModels
 
             if(type == "Task")
             {
-                SelectedTask.SetAttributes(new TaskModel());
+                SelectedTaskList.Remove(SelectedTask);
+                SelectedTask = null;
+                AddTask(null);
+                
+//                SelectedTask.SetAttributes(new TaskModel());
             } else if (type == "Template")
             {
-                SelectedTemplate.SetAttributes(new TaskModel());
+                TaskLibrary.Remove(SelectedTemplate);
+                SelectedTemplate = null;
+                AddTaskTemplate(null);
+                //SelectedTemplate.SetAttributes(new TaskModel());
             }
         }
 

@@ -85,6 +85,7 @@ namespace IUR_macesond_NET6.ViewModels
                     SetProperty(ref _notificationTimeHours, hour);
                     NotificationTime = new TimeOnly(hour, NotificationTime.Minute);
                 }
+                //SelectThisTask();
             }
         }
  
@@ -99,6 +100,7 @@ namespace IUR_macesond_NET6.ViewModels
                     SetProperty(ref _notificationTimeMinutes, minute);
                     NotificationTime = new TimeOnly(NotificationTime.Hour, minute);
                 }
+                //SelectThisTask();
             }
         }
 
@@ -117,19 +119,30 @@ namespace IUR_macesond_NET6.ViewModels
         public string TaskName
         {
             get => _taskName;
-            set => SetProperty(ref _taskName, value);
+            set {
+                SetProperty(ref _taskName, value);
+                //SelectThisTask();
+            } 
         }
 
         public Difficulty TaskDifficulty
         {
             get => _taskDifficulty;
-            set => SetProperty(ref _taskDifficulty, value);
+            set
+            {
+                SetProperty(ref _taskDifficulty, value);
+                //SelectThisTask();
+            }
         }
 
         public string TaskNote
         {
             get => _taskNote;
-            set => SetProperty(ref _taskNote, value);
+            set
+            {
+                SetProperty(ref _taskNote, value);
+                //SelectThisTask();
+            }
         }
         #endregion
 
@@ -155,6 +168,7 @@ namespace IUR_macesond_NET6.ViewModels
                 {
                     UnComplete();
                 }
+                //SelectThisTask();
             }
         }
 
@@ -273,6 +287,23 @@ namespace IUR_macesond_NET6.ViewModels
             TaskNote= taskModel.TaskNote;
             MarkedForCompletion = taskModel.MarkedForCompletion;
             TaskNoteVisibility = taskModel.TaskNoteVisibility;
+        }
+
+        private RelayCommand _selectThisTaskCommand;
+
+        public RelayCommand SelectThisTaskCommand
+        {
+            get { return _selectThisTaskCommand ?? (_selectThisTaskCommand = new RelayCommand(SelectThisTask, SelectThisTaskCommandCanExecute)); }
+        }
+
+        private bool SelectThisTaskCommandCanExecute(object obj)
+        {
+            return true;
+        }
+
+        private void SelectThisTask(object obj)
+        {
+            _mainViewModelReference.SelectThisTask(this);
         }
 
         public TaskViewModel(MainViewModel mainViewModelReference, TaskModel taskModel)

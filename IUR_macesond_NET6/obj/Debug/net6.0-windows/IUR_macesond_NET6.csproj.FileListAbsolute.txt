@@ -41,3 +41,5 @@ C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_maces
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\obj\Debug\net6.0-windows\Styles\DatePicker.baml
 C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\bin\Debug\net6.0-windows\Microsoft.Toolkit.Uwp.Notifications.dll
+C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\bin\Debug\net6.0-windows\Microsoft.Expression.Interactions.dll
+C:\Users\ondra\OneDrive\Plocha\FEL\IUR\IUR_Semestral_Work\IUR-macesond\IUR_macesond_NET6\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll

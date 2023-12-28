@@ -147,6 +147,18 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region TaskLists 
 
+        public void SelectThisTask(TaskViewModel task)
+        {
+            if (SelectedTaskList == null) return;
+
+            if(SelectedTaskList.Contains(task))
+            {
+                SelectedTask = task;
+            } else
+            {
+                SelectedTemplate = task;
+            }
+        }
 
         // Selected Task 
         private bool _isTaskSelected;

@@ -40,5 +40,14 @@ namespace IUR_macesond_NET6
         {
 
         }
+
+        private void ListBoxItem_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            ListBoxItem item = sender as ListBoxItem;
+            if (item != null && !item.IsMouseCaptured)
+            {
+                item.IsSelected = true;
+            }
+        }
     }
 }

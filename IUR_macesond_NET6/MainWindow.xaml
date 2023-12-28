@@ -7,6 +7,7 @@
         xmlns:viewModels="clr-namespace:IUR_macesond_NET6.ViewModels"
         xmlns:converters="clr-namespace:IUR_macesond_NET6.Converters"
         xmlns:userControls="clr-namespace:IUR_macesond_NET6.UserControls"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:support="clr-namespace:IUR_macesond_NET6.Support"
         xmlns:validationRules="clr-namespace:IUR_macesond_NET6.ValidationRules" 
         xmlns:placeholdertextboxcustomcontrol="clr-namespace:PlaceholderTextBoxCustomControl;assembly=PlaceholderTextBoxCustomControl"
@@ -173,6 +174,12 @@
                                                                      VerticalContentAlignment="Center"
                                                                      MaxLength="35"
                                                                      Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2">
+
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="GotFocus">
+                                                                        <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
                                                                 <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
                                                                     <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                         <Binding Path="Deprecated"/>
@@ -213,6 +220,12 @@
                                                                     Hour="{Binding NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                     Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}">
 
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="GotFocus">
+                                                                        <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+
                                                                 <userControls:TimeInput.IsEnabled>
                                                                     <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                         <Binding Path="Deprecated"/>
@@ -227,6 +240,12 @@
                                                             <!--Note Collapser-->
                                                             <Button x:Name="NoteCollapserButton" Content="..." Width="30" Height="30" Margin="10,0,0,0" 
                                                                         Command="{Binding ToggleTaskNoteVisibilityCommand}">
+
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="GotFocus">
+                                                                        <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
                                                             </Button>
 
 
@@ -235,7 +254,14 @@
                                                                     Grid.Column="3" Margin="60,0,0,0"
                                                                     Visibility="{Binding MainViewModelReference.DayMatch, Converter={StaticResource BoolToVisibilityConverter}}"
                                                                     IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"
-                                                                    IsEnabled="{Binding Deprecated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanNegationConverter }}"/>
+                                                                    IsEnabled="{Binding Deprecated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanNegationConverter }}">\
+
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="GotFocus">
+                                                                        <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+                                                            </CheckBox>
                                                         </StackPanel>
 
                                                         <!-- Note -->
@@ -253,6 +279,13 @@
                                                                  HorizontalAlignment="Left" 
                                                                  VerticalContentAlignment="Top"
                                                                  MaxLength="500">
+
+
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="GotFocus">
+                                                                    <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
                                                             <placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
                                                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                     <Binding Path="Deprecated"/>
@@ -266,6 +299,7 @@
 
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
+
                                         </ListBox>
 
                                         <StackPanel Orientation="Horizontal"
@@ -383,6 +417,11 @@
                                                               MaxLength="35"
                                                               Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2">
 
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="GotFocus">
+                                                                    <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
                                                         </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
                                                         <!-- Difficulty -->
                                                         <Border Style="{StaticResource ShadowBorder}"
@@ -408,6 +447,12 @@
                                                          Grid.Column="4" Grid.Row="4"
                                                          Hour="{Binding NotificationTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                          Minute="{Binding NotificationTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}">
+
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="GotFocus">
+                                                                    <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
                                                             <userControls:TimeInput.IsEnabled>
                                                                 <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
                                                                     <Binding Path="DoesNotHaveNotificationTime"/>
@@ -420,6 +465,12 @@
                                                         <!--Note Collapser-->
                                                         <Button x:Name="NoteCollapserButton" Content="..." Width="30" Height="30" Margin="10,0,0,0" 
                                                              Command="{Binding ToggleTaskNoteVisibilityCommand}">
+
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="GotFocus">
+                                                                    <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
                                                         </Button>
 
 
@@ -449,6 +500,12 @@
                                                       HorizontalAlignment="Left" 
                                                       VerticalContentAlignment="Top"
                                                       MaxLength="500">
+
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="GotFocus">
+                                                                <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
                                                     </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
                                                 </StackPanel>
 

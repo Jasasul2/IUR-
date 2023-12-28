@@ -59,6 +59,11 @@ namespace IUR_macesond_NET6.ViewModels
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
 
                 DayMatch = SelectedDate.Date == CurrentDateTime.Date;
+                if(SelectedDate.Date < CurrentDateTime.Date)
+                {
+                    MarkTasksAsDeprecated(true);
+                }
+
             }
         }
 
@@ -827,12 +832,17 @@ namespace IUR_macesond_NET6.ViewModels
 
                 TimeOnly timeOnly = TimeOnly.FromDateTime(CurrentDateTime);
 
-                if (timeOnly > UserSettings.ProductivityStartTime && timeOnly < UserSettings.ProductivityEndTime)
+                if (timeOnly < UserSettings.ProductivityStartTime)
+                {
+                    timeString += Translator.TranslateToCzech("Preparation Part of the Day");
+                    MarkTasksAsDeprecated(false);
+                }
+                else if (timeOnly >= UserSettings.ProductivityStartTime && timeOnly < UserSettings.ProductivityEndTime)
                 {
                     timeString += Translator.TranslateToCzech("Productive Part of the Day");
                     MarkTasksAsDeprecated(false);
                 }
-                else
+                else 
                 {
                     timeString += Translator.TranslateToCzech("Resting Part of the Day");
                     MarkTasksAsDeprecated(true);
@@ -844,7 +854,11 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void MarkTasksAsDeprecated(bool deprecated)
         {
-            ObservableCollection<TaskViewModel> presentTaskList = DateToTaskListDictionary[DateOnly.FromDateTime(DateTime.Now)];
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+
+            if (!DateToTaskListDictionary.ContainsKey(currentDate)) return;
+
+            ObservableCollection<TaskViewModel> presentTaskList = DateToTaskListDictionary[currentDate];
             if(presentTaskList == null) return;
 
             foreach (TaskViewModel task in presentTaskList)

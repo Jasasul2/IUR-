@@ -498,6 +498,7 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 TaskLibrary.Add(CopyTask(SelectedTemplate));
             }
+            SelectedTabIndex = 0;
         }
 
         private bool SaveTaskCommandCanExecute(object obj)
@@ -867,6 +868,18 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 task.Deprecated = deprecated;
             }
+        }
+
+        #endregion
+
+        #region TabSelection    
+
+        private int _selectedTabIndex;
+
+        public int SelectedTabIndex
+        {
+            get => _selectedTabIndex;
+            set => SetProperty(ref _selectedTabIndex, value);
         }
 
         #endregion

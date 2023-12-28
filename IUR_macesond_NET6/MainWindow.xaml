@@ -329,7 +329,7 @@
                 <Border Name="TabSelectionBorder" Style="{StaticResource DetailBorderStyleShaded}"
                     Grid.Column="1" Grid.Row="0">
 
-                    <TabControl Name="MainTabControl" Style="{StaticResource TabControlStyle}" Margin="5,10,5,5">
+                    <TabControl Name="MainTabControl" Style="{StaticResource TabControlStyle}" Margin="5,10,5,5" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
 
                         <TabItem Header="{Binding LocalizedText.TaskLibraryButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder1" Style="{StaticResource DetailBorderStyle}">

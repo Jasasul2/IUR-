@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="/Styles/Label.xaml"/>
                 <ResourceDictionary Source="/Styles/RadioButton.xaml"/>
                 <ResourceDictionary Source="/Styles/DatePicker.xaml"/>
+                <ResourceDictionary Source="/Styles/DifficultyButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

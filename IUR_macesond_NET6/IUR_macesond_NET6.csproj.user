@@ -10,6 +10,9 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\DifficultyButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\DatePicker.xaml">
       <SubType>Designer</SubType>
     </Page>

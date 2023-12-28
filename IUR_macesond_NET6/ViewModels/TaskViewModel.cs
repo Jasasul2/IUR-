@@ -306,6 +306,27 @@ namespace IUR_macesond_NET6.ViewModels
             _mainViewModelReference.SelectThisTask(this);
         }
 
+        #region SelectNextDifficultyCommand
+
+        private RelayCommand _selectNextDifficultyCommand; 
+
+        public RelayCommand SelectNextDifficultyCommand
+        {
+            get { return _selectNextDifficultyCommand ?? (_selectNextDifficultyCommand = new RelayCommand(SelectNextDifficulty, SelectNextDifficultyCommandCanExecute)); }
+        }
+
+        private bool SelectNextDifficultyCommandCanExecute(object obj)
+        {
+            return true;
+        }
+
+        private void SelectNextDifficulty(object obj)
+        {
+            TaskDifficulty = (Difficulty)(((int)TaskDifficulty + 1) % 3);
+        }
+
+        #endregion
+
         public TaskViewModel(MainViewModel mainViewModelReference, TaskModel taskModel)
         {
             _mainViewModelReference = mainViewModelReference;

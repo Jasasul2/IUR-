@@ -188,31 +188,35 @@
                                                                 </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
 
                                                             </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
+                                                            
                                                             <!-- Difficulty -->
-                                                            <Border Style="{StaticResource ShadowBorder}"
-                                                                        Width="40" Height="40" Background="White" CornerRadius="20"
-                                                                        Margin="10,0,5,0">
+                                                            <Button Style="{StaticResource DifficultyButton}"
+                                                              Width="40" Height="40" Background="White"
+                                                              Margin="10,0,5,0"
+                                                              Command="{Binding SelectNextDifficultyCommand}">
 
-                                                                <Border Style="{StaticResource ShadowBorder}"
-                                                                            Width="30" Height="30"
-                                                                            CornerRadius="25">
-                                                                    <Border.Background>
-                                                                        <MultiBinding Converter="{StaticResource EnumToBrushConverter}">
-                                                                            <Binding Path="TaskDifficulty"/>
-                                                                            <Binding Source="{StaticResource EasyColorBrush}"/>
-                                                                            <Binding Source="{StaticResource MediumColorBrush}"/>
-                                                                            <Binding Source="{StaticResource HardColorBrush}"/>
-                                                                        </MultiBinding>
-                                                                    </Border.Background>
-                                                                </Border>
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="GotFocus">
+                                                                        <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
 
-                                                                <Border.IsEnabled>
-                                                                    <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
-                                                                        <Binding Path="Deprecated"/>
-                                                                        <Binding Path="MarkedForCompletion"/>
+                                                                <Button.Foreground>
+                                                                    <MultiBinding Converter="{StaticResource EnumToBrushConverter}">
+                                                                        <Binding Path="TaskDifficulty"/>
+                                                                        <Binding Source="{StaticResource EasyColorBrush}"/>
+                                                                        <Binding Source="{StaticResource MediumColorBrush}"/>
+                                                                        <Binding Source="{StaticResource HardColorBrush}"/>
                                                                     </MultiBinding>
-                                                                </Border.IsEnabled>
-                                                            </Border>
+                                                                </Button.Foreground>
+
+                                                                <Button.IsEnabled>
+                                                                  <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                      <Binding Path="Deprecated"/>
+                                                                      <Binding Path="MarkedForCompletion"/>
+                                                                  </MultiBinding>
+                                                              </Button.IsEnabled>
+                                                          </Button>
 
                                                             <userControls:TimeInput
                                                                     Margin="5,0,0,0"
@@ -424,23 +428,33 @@
                                                             </i:Interaction.Triggers>
                                                         </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
                                                         <!-- Difficulty -->
-                                                        <Border Style="{StaticResource ShadowBorder}"
-                                                             Width="40" Height="40" Background="White" CornerRadius="20"
-                                                             Margin="10,0,5,0">
+                                                        <Button Style="{StaticResource DifficultyButton}"
+                                                            Width="40" Height="40" Background="White"
+                                                            Margin="10,0,5,0"
+                                                            Command="{Binding SelectNextDifficultyCommand}">
 
-                                                            <Border Style="{StaticResource ShadowBorder}"
-                                                                 Width="30" Height="30"
-                                                                 CornerRadius="25">
-                                                                <Border.Background>
-                                                                    <MultiBinding Converter="{StaticResource EnumToBrushConverter}">
-                                                                        <Binding Path="TaskDifficulty"/>
-                                                                        <Binding Source="{StaticResource EasyColorBrush}"/>
-                                                                        <Binding Source="{StaticResource MediumColorBrush}"/>
-                                                                        <Binding Source="{StaticResource HardColorBrush}"/>
-                                                                    </MultiBinding>
-                                                                </Border.Background>
-                                                            </Border>
-                                                        </Border>
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="GotFocus">
+                                                                    <i:InvokeCommandAction Command="{Binding SelectThisTaskCommand}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
+
+                                                            <Button.Foreground>
+                                                                <MultiBinding Converter="{StaticResource EnumToBrushConverter}">
+                                                                    <Binding Path="TaskDifficulty"/>
+                                                                    <Binding Source="{StaticResource EasyColorBrush}"/>
+                                                                    <Binding Source="{StaticResource MediumColorBrush}"/>
+                                                                    <Binding Source="{StaticResource HardColorBrush}"/>
+                                                                </MultiBinding>
+                                                            </Button.Foreground>
+
+                                                            <Button.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                    <Binding Path="Deprecated"/>
+                                                                    <Binding Path="MarkedForCompletion"/>
+                                                                </MultiBinding>
+                                                            </Button.IsEnabled>
+                                                        </Button>
 
                                                         <userControls:TimeInput
                                                          Margin="5,0,0,0"

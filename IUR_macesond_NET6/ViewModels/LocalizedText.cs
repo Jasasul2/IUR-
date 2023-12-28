@@ -60,6 +60,7 @@ namespace IUR_macesond_NET6.ViewModels
         private string _settingsButton = "Settings";
         private string _previousButton = "Previous";
         private string _nextButtonButton = "Next";
+        private string _todayButton = "Today";
         private string _alphabetButton = "Alphabet";
         private string _difficultyButton = "Difficulty";
         private string _completedButton = "Completed";
@@ -100,6 +101,12 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _nextButtonButton;
             set => SetProperty(ref _nextButtonButton, value);
+        }
+
+        public string TodayButton
+        {
+            get => _todayButton;
+            set => SetProperty(ref _todayButton, value);
         }
 
         public string AlphabetButton
@@ -351,6 +358,7 @@ namespace IUR_macesond_NET6.ViewModels
                     SettingsButton = "Settings";
                     PreviousButton = "Previous";
                     NextButton = "Next";
+                    TodayButton = "Today";
                     AlphabetButton = "Alphabet";
                     DifficultyButton = "Difficulty";
                     CompletedButton = "Completed";
@@ -404,6 +412,7 @@ namespace IUR_macesond_NET6.ViewModels
                     SettingsButton = "Nastavení";
                     PreviousButton = "Předchozí";
                     NextButton = "Další";
+                    TodayButton = "Dnes";
                     AlphabetButton = "Abecedy";
                     DifficultyButton = "Obtížnosti";
                     CompletedButton = "Hotovosti";

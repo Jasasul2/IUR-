@@ -94,19 +94,31 @@
 
                     <StackPanel Name="LeftMainStackPanel" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                        <Label x:Name="Timer" Margin="10,8,10,-7" Height="45" Content="{Binding CurrentTimeString}" 
+                        <Grid Margin="0,0,0,-2">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <!-- First column -->
+                                <ColumnDefinition Width="110"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label x:Name="Timer" Margin="10,8,10,-7" Height="45" Content="{Binding CurrentTimeString}" 
                                VerticalContentAlignment="Center"
                                HorizontalContentAlignment="Left"
                                FontSize="25"
                                FontWeight="DemiBold"/>
 
-                        <!-- First Stack Panel Row = Day selection-->
+                            <Button x:Name="TodayButton" Content="{Binding LocalizedText.TodayButton}" Width="100" Height="40" Margin="0,10,10,0"
+                                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    Grid.Column="1"
+                                    Command="{Binding TodayCommand}"/>
+                        </Grid>
+
                         <StackPanel Name="TopStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,5">
                             <Button Name="PrevousDayButton" 
                                     Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
                                     Content="{Binding LocalizedText.PreviousButton}" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
-                            <!--IsEnabled="{Binding IsNotFirstDate, Mode=TwoWay}"-->
-
+                            
                             <DatePicker Name="DatePicker" 
                                         SelectedDate="{Binding SelectedDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDateTime, Converter={StaticResource DateTimeToStringConverter}}"
                                         DisplayDateStart="{Binding FirstDate, UpdateSourceTrigger=PropertyChanged}"

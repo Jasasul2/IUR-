@@ -108,6 +108,24 @@ namespace IUR_macesond_NET6.ViewModels
             PreviousDayCommand.RaiseCanExecuteChanged();
         }
 
+        private RelayCommand _todayCommand;
+
+        public RelayCommand TodayCommand
+        {
+            get { return _todayCommand ?? (_todayCommand = new RelayCommand(Today, TodayCommandCanExecute)); }
+        }
+
+        private bool TodayCommandCanExecute(object obj)
+        {
+            return true;
+        }
+
+        private void Today(object obj)
+        {
+            SelectedDateTime = DateTime.Now;
+            PreviousDayCommand.RaiseCanExecuteChanged();
+        }
+
         #endregion
 
         #region XPAndLevelProperties

@@ -11,7 +11,7 @@
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
                
             <VisualStateManager.VisualStateGroups>
@@ -76,7 +76,7 @@
             <Border x:Name="Border" Style="{StaticResource ShadowBorder}"
             Grid.ColumnSpan="1"
             Grid.Column="1"
-            CornerRadius="5"
+            CornerRadius="0,5,5,0"
             HorizontalAlignment="Center"
             Width="30"
             BorderThickness="0"
@@ -97,7 +97,7 @@
             <!--The white border-->
             <Border x:Name="WhiteBorder" Style="{StaticResource ShadowBorder}"
             Grid.Column="0"
-            CornerRadius="5"
+            CornerRadius="5,0,0,5"
                     HorizontalAlignment="Left"
                     Width="80"
             Margin="0" >

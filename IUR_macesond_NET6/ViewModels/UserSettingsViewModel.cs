@@ -74,10 +74,7 @@ namespace IUR_macesond_NET6.ViewModels
         public string CurrentLanguageString
         {
             get => _currentLanguageString;
-            set
-            {
-                SetProperty(ref _currentLanguageString, value);
-            }
+            set => SetProperty(ref _currentLanguageString, value);
         }
 
         #endregion
@@ -111,14 +108,19 @@ namespace IUR_macesond_NET6.ViewModels
         }
 
 
+        private string _productivityStartTimeStringHour;
+        private string _productivityStartTimeStringMinute;
+        private string _productivityEndTimeStringHour;
+        private string _productivityEndTimeStringMinute;
 
         public string ProductivityStartTimeStringHour
         {
-            get => ProductivityStartTime.Hour.ToString();
+            get => _productivityStartTimeStringHour;
             set
             {
                 if (int.TryParse(value, out int hour))
                 {
+                    SetProperty(ref _productivityStartTimeStringHour, value);
                     ProductivityStartTime = new TimeOnly(hour, ProductivityStartTime.Minute);
                     RefreshMainViewModelTime();
                 }
@@ -127,11 +129,12 @@ namespace IUR_macesond_NET6.ViewModels
 
         public string ProductivityStartTimeStringMinute
         {
-            get => ProductivityStartTime.Minute.ToString();
+            get => _productivityStartTimeStringMinute;
             set
             {
                 if (int.TryParse(value, out int minute))
                 {
+                    SetProperty(ref _productivityStartTimeStringMinute, value);
                     ProductivityStartTime = new TimeOnly(ProductivityStartTime.Hour, minute);
                     RefreshMainViewModelTime();
                 }
@@ -140,11 +143,12 @@ namespace IUR_macesond_NET6.ViewModels
 
         public string ProductivityEndTimeStringHour
         {
-            get => ProductivityEndTime.Hour.ToString();
+            get => _productivityEndTimeStringHour;
             set
             {
                 if (int.TryParse(value, out int hour))
                 {
+                    SetProperty(ref _productivityEndTimeStringHour, value);
                     ProductivityEndTime = new TimeOnly(hour, ProductivityEndTime.Minute);
                     RefreshMainViewModelTime();
                 }
@@ -153,11 +157,12 @@ namespace IUR_macesond_NET6.ViewModels
 
         public string ProductivityEndTimeStringMinute
         {
-            get => ProductivityEndTime.Minute.ToString();
+            get => _productivityEndTimeStringMinute;
             set
             {
                 if (int.TryParse(value, out int minute))
                 {
+                    SetProperty(ref _productivityEndTimeStringMinute, value);
                     ProductivityEndTime = new TimeOnly(ProductivityEndTime.Hour, minute);
                     RefreshMainViewModelTime();
                 }
@@ -176,6 +181,14 @@ namespace IUR_macesond_NET6.ViewModels
 
             ProductivityStartTime = savedUserSettings.ProductivityStartTime;
             ProductivityEndTime = savedUserSettings.ProductivityEndTime;
+
+            ProductivityStartTimeStringHour = ProductivityStartTime.Hour.ToString();
+            ProductivityStartTimeStringMinute = ProductivityStartTime.Minute.ToString();
+            ProductivityEndTimeStringHour = ProductivityEndTime.Hour.ToString();
+            ProductivityEndTimeStringMinute = ProductivityEndTime.Minute.ToString();
+
+
+
             CurrentLanguage = savedUserSettings.CurrentLanguage;
             NotificationSoundsEnabled = savedUserSettings.NotificationSoundsEnabled;
         }

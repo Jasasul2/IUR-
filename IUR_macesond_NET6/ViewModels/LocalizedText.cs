@@ -322,7 +322,10 @@ namespace IUR_macesond_NET6.ViewModels
         private string _sortByLabel = "Sort by:";
         private string _levelLabel = "Level";
         private string _useLabel = "Use";
-
+        private string _pointsText = "Points";
+        private string _completedTasksText = "Completed Tasks: ";
+        private string _noTasksText = "No tasks";
+         
         public string SortByLabel
         {
             get => _sortByLabel;
@@ -340,6 +343,25 @@ namespace IUR_macesond_NET6.ViewModels
             get => _useLabel;
             set => SetProperty(ref _useLabel, value);
         }
+
+        public string PointsText
+        {
+            get => _pointsText;
+            set => SetProperty(ref _pointsText, value);
+        }
+
+        public string CompletedTasksText
+        {
+            get => _completedTasksText;
+            set => SetProperty(ref _completedTasksText, value);
+        }
+
+        public string NoTasksText
+        {
+            get => _noTasksText;
+            set => SetProperty(ref _noTasksText, value);
+        }
+
         #endregion
 
         public void SetLanguage(UserSettingsViewModel.Language newLanguage)
@@ -396,6 +418,9 @@ namespace IUR_macesond_NET6.ViewModels
                     SortByLabel = "Sort by:";
                     LevelLabel = "Level";
                     UseLabel = "Use";
+                    PointsText = "Points";
+                    CompletedTasksText = "Completed Tasks: ";
+                    NoTasksText = "No tasks";
 
                     break;
 
@@ -450,6 +475,10 @@ namespace IUR_macesond_NET6.ViewModels
                     SortByLabel = "Řadit dle:";
                     LevelLabel = "Úroveň";
                     UseLabel = "Použít";
+                    PointsText = "Bodů";
+
+                    CompletedTasksText = "Hotové úkoly: ";
+                    NoTasksText = "Žádné úkoly";
 
                     break;
             }

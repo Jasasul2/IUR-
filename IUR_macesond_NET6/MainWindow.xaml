@@ -29,8 +29,7 @@
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
         <converters:EnumComparisonConverter x:Key="EnumComparisonConverter"/>
         <converters:EnumToBrushConverter x:Key="EnumToBrushConverter"/>
-        <converters:XPTextConverter x:Key="XPTextConverter"/>
-        <converters:LevelConverter x:Key="LevelConverter"/>
+        <converters:PointsConverter x:Key="PointsConverter"/>
     </Window.Resources>
 
     <!--window data context -->
@@ -302,33 +301,38 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Border x:Name="XPBorder" Style="{StaticResource ForegroundBorderStyle}" Height="95" Margin="10,10,10,0">
+                        <Border x:Name="CompletedBorder" Style="{StaticResource ForegroundBorderStyle}" Height="95" Margin="10,10,10,0">
                             <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal" Margin="0,-7,0,0">
+                                <Grid Margin="0,-7,0,0">
 
-                                    <TextBlock x:Name="LevelTextBlock" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
-                                           FontSize="22" Foreground="White" Margin="12,20,475,0" FontWeight="Bold">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <!-- First column -->
+                                        <ColumnDefinition Width="160"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock x:Name="CompletionTextBlock" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                                           FontSize="22" Foreground="White" Margin="12,20,0,0" FontWeight="Bold"
+                                           Grid.Column="0"
+                                           Text="{Binding CompletionString, UpdateSourceTrigger=PropertyChanged}">
+                                    </TextBlock>
+                                    
+                                    <TextBlock x:Name="EXPTextBlock" HorizontalAlignment="Right" VerticalAlignment="Stretch" 
+                                               FontSize="22" Foreground="White" Margin="0,20,15,0" FontWeight="Bold" Grid.Column="1">
                                         <TextBlock.Text>
-                                            <MultiBinding Converter="{StaticResource LevelConverter}">
-                                                <Binding Path="CurrentLevel"/>
-                                                <Binding Path="LocalizedText.LevelLabel"/>
+                                            <MultiBinding Converter="{StaticResource PointsConverter}">
+                                                <Binding Path="TotalPoints"/>
+                                                <Binding Path="LocalizedText.PointsText"/>
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
-                                    <TextBlock x:Name="EXPTextBlock" HorizontalAlignment="Right" VerticalAlignment="Stretch" FontSize="22" Foreground="White" Margin="0,20,0,0" FontWeight="Bold">
-                                        <TextBlock.Text>
-                                            <MultiBinding Converter="{StaticResource XPTextConverter}">
-                                                <Binding Path="CurrentXP"/>
-                                                <Binding Path="NextLevelXP"/>
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
 
-                                </StackPanel>
+                                </Grid>
 
                                 <ProgressBar x:Name="EXPProgressBar" Style="{StaticResource RoundProgressBarStyle}"
-                                             Height="25" Width="630" Margin="10, 4, 10, 20" Value="{Binding CurrentXP}"
-                                             Foreground="{StaticResource EasyColorBrush}" Maximum="{Binding NextLevelXP}"/>
+                                             Height="25" Width="630" Margin="10, 4, 10, 20" Value="{Binding CompletedTasks}"
+                                             Foreground="{StaticResource EasyColorBrush}" Maximum="{Binding TotalTasks}"
+                                             Visibility="{Binding HasTasks, Converter={StaticResource BoolToVisibilityConverter}}"/>
                             </StackPanel>
                         </Border>
 

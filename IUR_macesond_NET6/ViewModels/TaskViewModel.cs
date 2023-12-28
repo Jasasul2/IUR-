@@ -173,7 +173,8 @@ namespace IUR_macesond_NET6.ViewModels
             if (_completed) return;
             
             _completed = true;
-            _mainViewModelReference.AddXP(DifficultyToExp[TaskDifficulty]);
+            _mainViewModelReference.CountCompletedTasks();
+            _mainViewModelReference.AddPoints(DifficultyToExp[TaskDifficulty]);
         }
 
         private void UnComplete()
@@ -181,7 +182,8 @@ namespace IUR_macesond_NET6.ViewModels
             if (!_completed) return;
 
             _completed = false;
-            _mainViewModelReference.AddXP(-DifficultyToExp[TaskDifficulty]);
+            _mainViewModelReference.CountCompletedTasks();
+            _mainViewModelReference.AddPoints(-DifficultyToExp[TaskDifficulty]);
         }
 
         #endregion

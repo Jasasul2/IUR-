@@ -14,11 +14,7 @@ namespace IUR_macesond_NET6.Models
         public DateOnly FirstDate { get; set; }
         public DateOnly SelectedDate { get; set; }
         
-        public int CurrentLevel { get; set; }
-
-        public int CurrentXP { get; set; }
-
-        public int NextLevelXP { get; set; }
+        public int TotalPoints { get; set; }
 
 
         public MainModel() {
@@ -27,19 +23,15 @@ namespace IUR_macesond_NET6.Models
             FirstDate = DateOnly.FromDateTime(DateTime.Now);
             SelectedDate = DateOnly.FromDateTime(DateTime.Now);
 
-            CurrentLevel = 1;
-            CurrentXP = 0;
-            NextLevelXP = 10;
+            TotalPoints = 0;
         }
 
         public void SetAttributes(MainViewModel mainViewModel)
         {
             FirstDate = DateOnly.FromDateTime(mainViewModel.FirstDate);
             SelectedDate = DateOnly.FromDateTime(mainViewModel.SelectedDateTime);
-            CurrentLevel = mainViewModel.CurrentLevel;
-
-            CurrentXP = mainViewModel.CurrentXP;
-            NextLevelXP = mainViewModel.NextLevelXP;  
+            
+            TotalPoints = mainViewModel.TotalPoints;
         }
     }
 }

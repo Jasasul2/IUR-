@@ -1,19 +1,19 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows.Data;
 
 namespace IUR_macesond_NET6.Converters
 {
-    public class XPTextConverter : IMultiValueConverter
+    public class PointsConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length == 2 && values[0] != null && values[1] != null)
             {
-                string currentXP = values[0].ToString();
-                string nextLevelXP = values[1].ToString();
+                string currentPoints = values[0].ToString();
 
-                return $"{currentXP}/{nextLevelXP} XP";
+                string localizedPointsText = values[1].ToString();
+
+                return $"{currentPoints} {localizedPointsText}";
             }
 
             return string.Empty;

@@ -60,7 +60,7 @@ namespace IUR_macesond_NET6.ViewModels
 
                 DayMatch = SelectedDateTime.Date == CurrentDateTime.Date;
                 MarkTasksAsDeprecated();
-
+                CountCompletedTasks();
             }
         }
 
@@ -131,59 +131,17 @@ namespace IUR_macesond_NET6.ViewModels
         #region XPAndLevelProperties
         private readonly int XP_LEVEL_INCREASER = 5;
 
-        private int _currentLevel;
-        private int _currentXP;
-        private int _nextLevelXP;
+        private int _totalPoints;
 
-        public int CurrentLevel
+        public int TotalPoints
         {
-            get => _currentLevel;
-            set => SetProperty(ref _currentLevel, value);
+            get => _totalPoints;
+            set => SetProperty(ref _totalPoints, value);
         }
 
-        public int CurrentXP
+        public void AddPoints(int newPoints)
         {
-            get => _currentXP;
-            set => SetProperty(ref _currentXP, value);
-        }
-
-        public int NextLevelXP
-        {
-            get => _nextLevelXP;
-            set => SetProperty(ref _nextLevelXP, value);
-        }
-
-        private void LevelUp()
-        {
-            CurrentXP -= NextLevelXP;
-            CurrentLevel++;
-            NextLevelXP += XP_LEVEL_INCREASER;
-        }
-
-        private void LevelDown()
-        {
-            if(CurrentLevel == 0)
-            {
-                CurrentXP = 0;
-                return; 
-            }
-
-            CurrentLevel--;
-            NextLevelXP = Math.Max(0, NextLevelXP - XP_LEVEL_INCREASER);
-            CurrentXP += NextLevelXP;
-        }
-
-        public void AddXP(int newXP)
-        {
-            CurrentXP += newXP;
-            if (CurrentXP >= NextLevelXP)
-            {
-                LevelUp();
-            } 
-            else if (CurrentXP < 0)
-            {
-                LevelDown();
-            }
+            TotalPoints += newPoints;
         }
         #endregion
 
@@ -247,7 +205,10 @@ namespace IUR_macesond_NET6.ViewModels
         public ObservableCollection<TaskViewModel> SelectedTaskList
         {
             get => _selectedTaskList;
-            set => SetProperty(ref _selectedTaskList, value);
+            set {
+                SetProperty(ref _selectedTaskList, value);
+                UpdateTotalTasks();
+            } 
         }
 
         private Dictionary<DateOnly, ObservableCollection<TaskViewModel>> DateToTaskListDictionary = new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
@@ -263,7 +224,7 @@ namespace IUR_macesond_NET6.ViewModels
         }
 
         #endregion
-
+        
         // This is the add button on the left (aka create new)
         #region AddTaskCommand
 
@@ -279,6 +240,7 @@ namespace IUR_macesond_NET6.ViewModels
             TaskViewModel newTask = new TaskViewModel(this, new TaskModel());
             SelectedTaskList.Add(newTask);
             SelectedTask = newTask;
+            UpdateTotalTasks();
         }
 
         private bool AddTaskCommandCanExecute(object obj)
@@ -304,6 +266,7 @@ namespace IUR_macesond_NET6.ViewModels
             TaskViewModel newTaskViewModel = new TaskViewModel(this, newTask);
             SelectedTaskList.Add(newTaskViewModel);
             SelectedTask = newTaskViewModel;
+            UpdateTotalTasks();
         }
 
         private bool AddRandomTaskCommandCanExecute(object obj)
@@ -404,6 +367,7 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 SelectedTaskList.Remove(SelectedTask);
                 SelectedTask = null;
+                UpdateTotalTasks();
             }
             else if (type == "Template")
             {
@@ -430,30 +394,6 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
-        #region CompleteTaskTestCommand
-
-        private RelayCommand _completeTaskCommand;
-
-        public RelayCommand CompleteTaskCommand
-        {
-            get { return _completeTaskCommand ?? (_completeTaskCommand = new RelayCommand(CompleteSelectedTask, CompleteTaskCommandCanExecute)); }
-        }
-
-        private void CompleteSelectedTask(object obj)
-        {
-            if (SelectedTask != null)
-            {
-                SelectedTask.Complete();
-            }
-            ResetSelectedTaskCommand.RaiseCanExecuteChanged();
-        }
-
-        private bool CompleteTaskCommandCanExecute(object obj)
-        {
-            return (SelectedTask != null && !SelectedTask.Deprecated);
-        }
-        #endregion
-
         #region DeleteGivenTask
 
         public void DeleteTask(TaskViewModel taskToDelete, string type)
@@ -465,6 +405,7 @@ namespace IUR_macesond_NET6.ViewModels
                     SelectedTask = null;
                 }
                 SelectedTaskList.Remove(taskToDelete);
+                UpdateTotalTasks();
             } else if (type == "Template")
             {
                 if (SelectedTemplate == taskToDelete)
@@ -490,6 +431,7 @@ namespace IUR_macesond_NET6.ViewModels
         public void UseTaskTemplate(TaskViewModel templateToAdd) 
         {
             SelectedTaskList.Add(CopyTask(templateToAdd));
+            UpdateTotalTasks();
         }
 
         #endregion
@@ -723,6 +665,81 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
         #region SaveAndLoad
 
+        private int _completedTasks;
+
+        public int CompletedTasks
+        {
+            get => _completedTasks;
+            set => SetProperty(ref _completedTasks, value);
+        }
+
+        private int _totalTasks;
+
+        public int TotalTasks
+        {
+            get => _totalTasks;
+            set => SetProperty(ref _totalTasks, value);
+        }
+
+        private string _completionString; 
+
+        public string CompletionString
+        {
+            get => _completionString;
+            set => SetProperty(ref _completionString, value);
+        }
+
+        private void UpdateTotalTasks()
+        {
+            if (SelectedTaskList == null) {
+                HasTasks = false;
+                return;
+            }
+
+            TotalTasks = SelectedTaskList.Count;
+            HasTasks = TotalTasks > 0;
+            UpdateCompletionString();
+        }
+
+        private bool _hasTasks;
+
+        public bool HasTasks
+        {
+            get => _hasTasks;
+            set => SetProperty(ref _hasTasks, value);
+        }
+
+
+        private void UpdateCompletionString()
+        {
+            if (SelectedTaskList == null || SelectedTaskList.Count == 0)
+            {
+                CompletionString = LocalizedText.NoTasksText;
+                return;
+            }
+
+            CompletionString = LocalizedText.CompletedTasksText + CompletedTasks + "/" + TotalTasks;
+        }
+
+        public void CountCompletedTasks()
+        {
+            if (SelectedTaskList == null) return;
+
+            int c = 0;
+
+            foreach (TaskViewModel task in SelectedTaskList)
+            {
+                if (task.MarkedForCompletion)
+                {
+                    c++;
+                }
+            }
+
+            CompletedTasks = c;
+
+            UpdateCompletionString();
+        }
+
         private void LoadTaskDictionary()
         {
             Dictionary<DateOnly, ObservableCollection<TaskModel>> loadedDictionary = ModelDataLoader.LoadTaskDictionary();
@@ -771,9 +788,7 @@ namespace IUR_macesond_NET6.ViewModels
 
             FirstDate = mainModel.FirstDate.ToDateTime(new TimeOnly());
             SelectedDateTime = mainModel.SelectedDate.ToDateTime(new TimeOnly());
-            CurrentLevel = mainModel.CurrentLevel;
-            CurrentXP = mainModel.CurrentXP;
-            NextLevelXP = mainModel.NextLevelXP;
+            TotalPoints = mainModel.TotalPoints;
         }
 
         private void SaveMainModel()

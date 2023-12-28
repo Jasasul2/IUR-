@@ -36,6 +36,7 @@ namespace IUR_macesond_NET6.ViewModels
         private void RefreshMainViewModelTime() {
             if (_mainViewModelReference.UserSettings == null) return;
             _mainViewModelReference.CurrentDateTime = DateTime.Now;
+            _mainViewModelReference.UpdateCompletionString();
         } 
 
         #region Language

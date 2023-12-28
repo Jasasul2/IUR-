@@ -722,7 +722,7 @@ namespace IUR_macesond_NET6.ViewModels
         }
 
 
-        private void UpdateCompletionString()
+        public void UpdateCompletionString()
         {
             if (SelectedTaskList == null || SelectedTaskList.Count == 0)
             {

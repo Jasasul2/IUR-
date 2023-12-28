@@ -108,7 +108,7 @@
                             <!--IsEnabled="{Binding IsNotFirstDate, Mode=TwoWay}"-->
 
                             <DatePicker Name="DatePicker" 
-                                        SelectedDate="{Binding SelectedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDate, Converter={StaticResource DateTimeToStringConverter}}"
+                                        SelectedDate="{Binding SelectedDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDateTime, Converter={StaticResource DateTimeToStringConverter}}"
                                         DisplayDateStart="{Binding FirstDate, UpdateSourceTrigger=PropertyChanged}"
                                         Margin="5,0,5,0"
                                         Width="450" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
@@ -510,7 +510,7 @@
 
                                     <userControls:TimeInput x:Name="ProductiveDayStartTimeInput"
                                             Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,0"
-                                            Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Hour="{Binding UserSettings.ProductivityStartTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                             Minute="{Binding UserSettings.ProductivityStartTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}"/>
 
                                     <!-- Productive part of the day end -->
@@ -519,7 +519,7 @@
 
                                     <userControls:TimeInput x:Name="ProductiveDayEndTimeInput"
                                             Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,0"
-                                            Hour="{Binding UserSettings.ProductivityEndTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Hour="{Binding UserSettings.ProductivityEndTimeStringHour, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                             Minute="{Binding UserSettings.ProductivityEndTimeStringMinute, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeFixConverter}}"/>
 
                                     <!-- Language -->

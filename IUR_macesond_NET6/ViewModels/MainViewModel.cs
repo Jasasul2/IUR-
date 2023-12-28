@@ -41,14 +41,14 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _firstDate, DateOnly.FromDateTime(value));
         }
 
-        private DateOnly _selectedDate;
-        public DateTime SelectedDate
+        private DateOnly _selectedDateTime;
+        public DateTime SelectedDateTime
         {
-            get => _selectedDate.ToDateTime(new TimeOnly());
+            get => _selectedDateTime.ToDateTime(new TimeOnly());
             set
             {
-                SetProperty(ref _selectedDate, DateOnly.FromDateTime(value));
-                IsNotFirstDate = (SelectedDate.Date > FirstDate.Date);
+                SetProperty(ref _selectedDateTime, DateOnly.FromDateTime(value));
+                IsNotFirstDate = (SelectedDateTime.Date > FirstDate.Date);
 
                 // Updating the task list
                 DateOnly dateOnly = DateOnly.FromDateTime(value);
@@ -58,11 +58,8 @@ namespace IUR_macesond_NET6.ViewModels
                 }
                 SelectedTaskList = DateToTaskListDictionary[dateOnly];
 
-                DayMatch = SelectedDate.Date == CurrentDateTime.Date;
-                if(SelectedDate.Date < CurrentDateTime.Date)
-                {
-                    MarkTasksAsDeprecated(true);
-                }
+                DayMatch = SelectedDateTime.Date == CurrentDateTime.Date;
+                MarkTasksAsDeprecated();
 
             }
         }
@@ -83,13 +80,13 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void PreviousDay(object obj)
         {
-            SelectedDate = SelectedDate.AddDays(-1);
+            SelectedDateTime = SelectedDateTime.AddDays(-1);
             PreviousDayCommand.RaiseCanExecuteChanged();
         }
 
         private bool PreviousDayCommandCanExecute(object obj)
         {
-            IsNotFirstDate = (SelectedDate.Date > FirstDate.Date);
+            IsNotFirstDate = (SelectedDateTime.Date > FirstDate.Date);
             return IsNotFirstDate;
         }
 
@@ -107,7 +104,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void NextDay(object obj)
         {
-            SelectedDate = SelectedDate.AddDays(1);
+            SelectedDateTime = SelectedDateTime.AddDays(1);
             PreviousDayCommand.RaiseCanExecuteChanged();
         }
 
@@ -268,7 +265,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool AddTaskCommandCanExecute(object obj)
         {
-            return SelectedTaskList.Count < MAX_TASK_LIST_LENGTH;
+            return SelectedTaskList.Count < MAX_TASK_LIST_LENGTH && !CheckDeprecationCondition();
         }
 
         #endregion
@@ -293,7 +290,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool AddRandomTaskCommandCanExecute(object obj)
         {
-            return SelectedTaskList.Count < MAX_TASK_LIST_LENGTH && TaskLibrary.Count > 0;
+            return SelectedTaskList.Count < MAX_TASK_LIST_LENGTH && TaskLibrary.Count > 0 && !CheckDeprecationCondition();  
         }
 
 
@@ -754,7 +751,7 @@ namespace IUR_macesond_NET6.ViewModels
             MainModel mainModel = ModelDataLoader.LoadMainModel();
 
             FirstDate = mainModel.FirstDate.ToDateTime(new TimeOnly());
-            SelectedDate = mainModel.SelectedDate.ToDateTime(new TimeOnly());
+            SelectedDateTime = mainModel.SelectedDate.ToDateTime(new TimeOnly());
             CurrentLevel = mainModel.CurrentLevel;
             CurrentXP = mainModel.CurrentXP;
             NextLevelXP = mainModel.NextLevelXP;
@@ -815,7 +812,7 @@ namespace IUR_macesond_NET6.ViewModels
             {
                 SetProperty(ref _currentDateTime, value);
                 CurrentTimeString = _currentDateTime.ToString("dd.MM.yyy - HH:mm");
-                DayMatch = SelectedDate.Date == CurrentDateTime.Date;
+                DayMatch = SelectedDateTime.Date == CurrentDateTime.Date;
             }
         }
 
@@ -834,31 +831,36 @@ namespace IUR_macesond_NET6.ViewModels
 
                 if (timeOnly < UserSettings.ProductivityStartTime)
                 {
-                    timeString += Translator.TranslateToCzech("Preparation Part of the Day");
-                    MarkTasksAsDeprecated(false);
+                    timeString += Translator.TranslateToCzech("Preparation Part of the Day");      
                 }
                 else if (timeOnly >= UserSettings.ProductivityStartTime && timeOnly < UserSettings.ProductivityEndTime)
                 {
                     timeString += Translator.TranslateToCzech("Productive Part of the Day");
-                    MarkTasksAsDeprecated(false);
                 }
                 else 
                 {
                     timeString += Translator.TranslateToCzech("Resting Part of the Day");
-                    MarkTasksAsDeprecated(true);
                 }
 
+                MarkTasksAsDeprecated();
                 SetProperty(ref _currentTimeString, timeString);
             }
         }
 
-        private void MarkTasksAsDeprecated(bool deprecated)
+        private bool CheckDeprecationCondition()
         {
-            DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+            bool deprecated = SelectedDateTime.Date < CurrentDateTime.Date ||
+                (SelectedDateTime.Date == CurrentDateTime.Date && TimeOnly.FromDateTime(CurrentDateTime) >= UserSettings.ProductivityEndTime);
+            return deprecated;
+        }
 
-            if (!DateToTaskListDictionary.ContainsKey(currentDate)) return;
+        private void MarkTasksAsDeprecated()
+        {
+            // Getting the current date
+            DateOnly selectedDateOnly = DateOnly.FromDateTime(SelectedDateTime);
+            bool deprecated = CheckDeprecationCondition();
 
-            ObservableCollection<TaskViewModel> presentTaskList = DateToTaskListDictionary[currentDate];
+            ObservableCollection<TaskViewModel> presentTaskList = DateToTaskListDictionary[selectedDateOnly];
             if(presentTaskList == null) return;
 
             foreach (TaskViewModel task in presentTaskList)
@@ -889,8 +891,10 @@ namespace IUR_macesond_NET6.ViewModels
             // Load Task Library
             LoadTaskLibrary();
 
+
             // "MainLoop"
             Timer _timer = new Timer(this);
+            MarkTasksAsDeprecated();
         }
 
         public void ExitApplication()

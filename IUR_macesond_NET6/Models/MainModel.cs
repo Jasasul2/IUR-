@@ -35,7 +35,7 @@ namespace IUR_macesond_NET6.Models
         public void SetAttributes(MainViewModel mainViewModel)
         {
             FirstDate = DateOnly.FromDateTime(mainViewModel.FirstDate);
-            SelectedDate = DateOnly.FromDateTime(mainViewModel.SelectedDate);
+            SelectedDate = DateOnly.FromDateTime(mainViewModel.SelectedDateTime);
             CurrentLevel = mainViewModel.CurrentLevel;
 
             CurrentXP = mainViewModel.CurrentXP;

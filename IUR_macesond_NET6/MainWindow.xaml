@@ -122,8 +122,8 @@
                             <DatePicker Name="DatePicker" 
                                         SelectedDate="{Binding SelectedDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDateTime, Converter={StaticResource DateTimeToStringConverter}}"
                                         DisplayDateStart="{Binding FirstDate, UpdateSourceTrigger=PropertyChanged}"
-                                        Margin="5,0,5,0"
-                                        Width="450" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                        Margin="10,0,10,0"
+                                        Width="440" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                             <Button Name="NextDayButton" Command="{Binding NextDayCommand}"
                                     Content="{Binding LocalizedText.NextButton}" Height="40" Width="100" Margin="5,5,0,5" FontSize="18" />
@@ -256,7 +256,6 @@
                                                             <!--Task finished checkbox-->
                                                             <CheckBox
                                                                     Grid.Column="3" Margin="60,0,0,0"
-                                                                    Visibility="{Binding MainViewModelReference.DayMatch, Converter={StaticResource BoolToVisibilityConverter}}"
                                                                     IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"
                                                                     IsEnabled="{Binding Deprecated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanNegationConverter }}">\
 

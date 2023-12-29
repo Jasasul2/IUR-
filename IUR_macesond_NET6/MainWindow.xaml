@@ -11,6 +11,7 @@
         xmlns:support="clr-namespace:IUR_macesond_NET6.Support"
         xmlns:validationRules="clr-namespace:IUR_macesond_NET6.ValidationRules" 
         xmlns:placeholdertextboxcustomcontrol="clr-namespace:PlaceholderTextBoxCustomControl;assembly=PlaceholderTextBoxCustomControl"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="BeProductive!" Height="860" Width="1440"
         WindowStartupLocation="CenterScreen"
@@ -565,7 +566,11 @@
                         </TabItem>
                         <TabItem Header="{Binding LocalizedText.ProductivityButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder2" Style="{StaticResource DetailBorderStyle}">
-                                <Grid/>
+                                <Grid>
+                                    <userControls:BasicStackedColumn>
+                
+                                    </userControls:BasicStackedColumn>
+                                </Grid>
                             </Border>
                         </TabItem>
 

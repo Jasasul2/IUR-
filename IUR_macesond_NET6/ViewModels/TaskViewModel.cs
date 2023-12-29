@@ -22,6 +22,8 @@ namespace IUR_macesond_NET6.ViewModels
 
     internal class TaskViewModel : ViewModelBase
     {
+        private static int _toastID = 0;
+
         private MainViewModel _mainViewModelReference;
 
         public MainViewModel MainViewModelReference
@@ -123,10 +125,24 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void SendToastNotification()
         {
-            new ToastContentBuilder()
-                .AddText(TaskName)
-                .AddText(TaskNote)
-                .Show();
+            string localTaskName = MainViewModelReference.CurrentDateTime.ToString("HH:mm") + " - ";
+            localTaskName += (TaskName == "") ? "Unnamed Task" : TaskName;
+
+
+            ToastContentBuilder toast = new ToastContentBuilder();
+
+            toast.AddHeader(_toastID.ToString(), "BeProductive!", "");
+            toast.AddText(localTaskName);
+            toast.AddText(TaskNote);
+
+            // Audio - muted if disabled in settings
+            if (!MainViewModelReference.UserSettings.NotificationSoundsEnabled) {
+                toast.AddAudio(null, false, true);
+            }
+ 
+            toast.Show();
+
+            _toastID++;
         }
 
         #endregion

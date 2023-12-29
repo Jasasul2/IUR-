@@ -4,18 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:IUR_macesond_NET6.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             d:DesignHeight="300" d:DesignWidth="300" x:Name="root">
+    
+    
+    
+    <Grid x:Name="GraphGrid">
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Days" 
-                          Labels="{Binding Labels}" 
-                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" />
+                <lvc:Axis Labels="{Binding Labels}" 
+                          Title="{Binding XLabel}"
+                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}"
+                          Foreground="White"
+                          FontSize="16"/>
             </lvc:CartesianChart.AxisX>
+            
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Tasks Completed" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                <lvc:Axis Title="{Binding YLabel}" Foreground="White" FontSize="16"/>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
-    </UserControl>
+</UserControl>

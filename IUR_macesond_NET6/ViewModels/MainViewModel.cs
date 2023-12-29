@@ -133,7 +133,6 @@ namespace IUR_macesond_NET6.ViewModels
         #endregion
 
         #region XPAndLevelProperties
-        private readonly int XP_LEVEL_INCREASER = 5;
 
         private int _totalPoints;
 
@@ -142,7 +141,7 @@ namespace IUR_macesond_NET6.ViewModels
             get => _totalPoints;
             set => SetProperty(ref _totalPoints, value);
         }
-
+        
         public void AddPoints(int newPoints)
         {
             TotalPoints += newPoints;
@@ -971,6 +970,16 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region Constructor and Close
 
+        private ProductivityGraphViewModel _productivityGraphViewModel;
+
+        public ProductivityGraphViewModel ProductivityGraphViewModel
+        {
+            get => _productivityGraphViewModel;
+            set => SetProperty(ref _productivityGraphViewModel, value);
+        }
+
+
+
         public MainViewModel()
         {
             // Data Loader Instantiation
@@ -993,6 +1002,9 @@ namespace IUR_macesond_NET6.ViewModels
             // "MainLoop"
             Timer _timer = new Timer(this);
             MarkTasksAsDeprecated();
+
+
+            ProductivityGraphViewModel = new ProductivityGraphViewModel(this);
         }
 
         public void ExitApplication()

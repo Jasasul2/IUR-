@@ -29,39 +29,69 @@ namespace IUR_macesond_NET6.UserControls
         {
             InitializeComponent();
 
-            SeriesCollection = new SeriesCollection
-            {
-                new StackedColumnSeries
-                {
-                    Values = new ChartValues<double> {4, 5, 6, 8},
-                    StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
-                },
-                new StackedColumnSeries
-                {
-                    Values = new ChartValues<double> {2, 5, 6, 7},
-                    StackMode = StackMode.Values,
-                }
-            };
+            //SeriesCollection = new SeriesCollection
+            //{
+            //    new StackedColumnSeries
+            //    {
+            //        Values = new ChartValues<double> {4, 5, 6, 8},
+            //        StackMode = StackMode.Values, 
+            //        Fill = Brushes.Orange,
+            //    },
+            //    new StackedColumnSeries
+            //    {
+            //        Values = new ChartValues<double> {2, 5, 6, 7},
+            //        StackMode = StackMode.Values,
+            //    },
+            //    new StackedColumnSeries
+            //    {
+            //        Values = new ChartValues<double> {2, 5, 6, 7},
+            //        StackMode = StackMode.Values,
+            //    }
+            //};
 
-            //adding series updates and animates the chart
-            SeriesCollection.Add(new StackedColumnSeries
-            {
-                Values = new ChartValues<double> { 6, 2, 7 },
-                StackMode = StackMode.Values
-            });
-
-            //adding values also updates and animates
-            SeriesCollection[2].Values.Add(4d);
-
-            Labels = new[] { "Chrome", "Mozilla", "Opera", "IE" };
-            Formatter = value => value + "";
+            //Labels = new[] { "Chrome", "Mozilla", "Opera", "IE" };
 
             DataContext = this;
         }
 
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
+
+        // Dependency properties for binding
+        public static readonly DependencyProperty SeriesCollectionProperty =
+            DependencyProperty.Register("SeriesCollection", typeof(SeriesCollection), typeof(BasicStackedColumn));
+
+        public SeriesCollection SeriesCollection
+        {
+            get { return (SeriesCollection)GetValue(SeriesCollectionProperty); }
+            set { SetValue(SeriesCollectionProperty, value); }
+        }
+
+        public static readonly DependencyProperty LabelsProperty =
+            DependencyProperty.Register("Labels", typeof(string[]), typeof(BasicStackedColumn));
+
+        public string[] Labels
+        {
+            get { return (string[])GetValue(LabelsProperty); }
+            set { SetValue(LabelsProperty, value); }
+        }
+
+        public static readonly DependencyProperty XLabelProperty =
+            DependencyProperty.Register("XLabel", typeof(string), typeof(BasicStackedColumn));
+
+        public string XLabel
+        {
+            get { return (string)GetValue(XLabelProperty); }
+            set { SetValue(LabelsProperty, value); }
+        }
+
+        public static readonly DependencyProperty YLabelProperty =
+            DependencyProperty.Register("YLabel", typeof(string), typeof(BasicStackedColumn));
+
+        public string YLabel
+        {
+            get { return (string)GetValue(YLabelProperty); }
+            set { SetValue(LabelsProperty, value); }
+        }
 
     }
 }
+

@@ -19,7 +19,7 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        x:Name="root">
+        x:Name="mainWindow">
 
     <Window.Resources>
         <converters:TimeFixConverter x:Key="TimeFixConverter"/>
@@ -567,7 +567,11 @@
                         <TabItem Header="{Binding LocalizedText.ProductivityButton}" Style="{StaticResource TabItemStyle}">
                             <Border Name="TabSelectionBorder2" Style="{StaticResource DetailBorderStyle}">
                                 <Grid>
-                                    <userControls:BasicStackedColumn>
+                                    <userControls:BasicStackedColumn 
+                                        XLabel="{Binding DataContext.LocalizedText.XLabelString, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}" 
+                                        YLabel="{Binding DataContext.LocalizedText.YLabelString, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"
+                                        Labels="{Binding DataContext.ProductivityGraphViewModel.Labels, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"
+                                        SeriesCollection="{Binding DataContext.ProductivityGraphViewModel.SeriesCollection, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}">
                 
                                     </userControls:BasicStackedColumn>
                                 </Grid>

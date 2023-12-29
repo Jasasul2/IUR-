@@ -364,6 +364,26 @@ namespace IUR_macesond_NET6.ViewModels
 
         #endregion
 
+        #region Graph
+
+        private string _xLabelString = "Days";
+
+        public string XLabelString
+        {
+            get => _xLabelString;
+            set => SetProperty(ref _xLabelString, value);
+        }
+
+        private string _yLabelString = "Completed Tasks";
+
+        public string YLabelString
+        {
+            get => _yLabelString;
+            set => SetProperty(ref _yLabelString, value);
+        }
+
+        #endregion
+
         public void SetLanguage(UserSettingsViewModel.Language newLanguage)
         {
             switch (newLanguage)
@@ -422,6 +442,9 @@ namespace IUR_macesond_NET6.ViewModels
                     CompletedTasksText = "Completed Tasks: ";
                     NoTasksText = "No tasks";
 
+                    XLabelString = "Days";
+                    YLabelString = "Completed Tasks";
+
                     break;
 
                 case UserSettingsViewModel.Language.CZ:
@@ -479,6 +502,9 @@ namespace IUR_macesond_NET6.ViewModels
 
                     CompletedTasksText = "Hotové úkoly: ";
                     NoTasksText = "Žádné úkoly";
+
+                    XLabelString = "Dny";
+                    YLabelString = "Hotové úkoly";
 
                     break;
             }

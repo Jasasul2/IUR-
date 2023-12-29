@@ -226,7 +226,7 @@ namespace IUR_macesond_NET6.ViewModels
             } 
         }
 
-        private Dictionary<DateOnly, ObservableCollection<TaskViewModel>> DateToTaskListDictionary = new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
+        public Dictionary<DateOnly, ObservableCollection<TaskViewModel>> DateToTaskListDictionary = new Dictionary<DateOnly, ObservableCollection<TaskViewModel>>();
 
         // Task Library
 

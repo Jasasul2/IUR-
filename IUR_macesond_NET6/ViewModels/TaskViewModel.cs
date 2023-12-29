@@ -8,6 +8,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Notifications;
+using System.Runtime.CompilerServices;
 
 namespace IUR_macesond_NET6.ViewModels
 {
@@ -38,6 +39,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region NotificationTime
 
+        private bool _notificationAlreadyRung = false;
         private bool _hasNotificationTime = false;
 
         private bool _hasNotificationTimeNegation = true; 
@@ -68,10 +70,15 @@ namespace IUR_macesond_NET6.ViewModels
         public TimeOnly NotificationTime
         {
             get => _notificationTime;
-            set { 
+            set {
                 SetProperty(ref _notificationTime, value);
                 SetProperty(ref _notificationTimeHours, value.Hour);
                 SetProperty(ref _notificationTimeMinutes, value.Minute);
+
+                if(value > TimeOnly.FromDateTime(MainViewModelReference.CurrentDateTime))
+                {
+                    _notificationAlreadyRung = false;
+                }
             }
         }
 
@@ -104,16 +111,17 @@ namespace IUR_macesond_NET6.ViewModels
 
         public void TrySendNotification(TimeOnly time)
         {
-            if (!HasNotificationTime) return; 
+            if (!HasNotificationTime || _notificationAlreadyRung || MarkedForCompletion) return; 
 
             if(time.Hour == NotificationTime.Hour && 
                 time.Minute == NotificationTime.Minute)
             {
-                SendNotification();
+                _notificationAlreadyRung = true;
+                SendToastNotification();
             }
         }
 
-        private void SendNotification()
+        private void SendToastNotification()
         {
             new ToastContentBuilder()
                 .AddText(TaskName)

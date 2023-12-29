@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace IUR_macesond_NET6.ViewModels
 {
@@ -35,11 +36,10 @@ namespace IUR_macesond_NET6.ViewModels
             { Difficulty.Hard, 10 }
         };
 
-        #region NotificationTimesAttributes
+        #region NotificationTime
 
         private bool _hasNotificationTime = false;
 
-        // This is a horrible code sorry for that 
         private bool _hasNotificationTimeNegation = true; 
 
         public bool HasNotificationTime
@@ -85,7 +85,6 @@ namespace IUR_macesond_NET6.ViewModels
                     SetProperty(ref _notificationTimeHours, hour);
                     NotificationTime = new TimeOnly(hour, NotificationTime.Minute);
                 }
-                //SelectThisTask();
             }
         }
  
@@ -100,8 +99,24 @@ namespace IUR_macesond_NET6.ViewModels
                     SetProperty(ref _notificationTimeMinutes, minute);
                     NotificationTime = new TimeOnly(NotificationTime.Hour, minute);
                 }
-                //SelectThisTask();
             }
+        }
+
+        public void TrySendNotification(TimeOnly time)
+        {
+            if(time.Hour == NotificationTime.Hour && 
+                time.Minute == NotificationTime.Minute)
+            {
+                SendNotification();
+            }
+        }
+
+        private void SendNotification()
+        {
+            new ToastContentBuilder()
+                .AddText(TaskName)
+                .AddText(TaskNote)
+                .Show();
         }
 
         #endregion

@@ -859,6 +859,7 @@ namespace IUR_macesond_NET6.ViewModels
                 SetProperty(ref _currentDateTime, value);
                 CurrentTimeString = _currentDateTime.ToString("dd.MM.yyy - HH:mm");
                 DayMatch = SelectedDateTime.Date == CurrentDateTime.Date;
+                TrySendingNotifications(TimeOnly.FromDateTime(value));
             }
         }
 
@@ -925,6 +926,18 @@ namespace IUR_macesond_NET6.ViewModels
         {
             get => _selectedTabIndex;
             set => SetProperty(ref _selectedTabIndex, value);
+        }
+
+        #endregion
+
+        #region TaskNotifications
+
+        private void TrySendingNotifications(TimeOnly timeOnly)
+        {
+            foreach (TaskViewModel task in SelectedTaskList)
+            {
+                task.TrySendNotification(timeOnly);
+            }
         }
 
         #endregion

@@ -1,6 +1,7 @@
 ﻿using IUR_macesond_NET6.ViewModels;
 using Microsoft.VisualBasic;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -52,6 +53,15 @@ namespace IUR_macesond_NET6.Converters
 
                     case "Resting Part of the Day":
                         return "Odpočinková část dne";
+
+                    case "Easy":
+                        return "Jednoduché";
+
+                    case "Medium":
+                        return "Středně obtížné";
+
+                    case "Hard":
+                        return "Těžké";
                 }
             }
 

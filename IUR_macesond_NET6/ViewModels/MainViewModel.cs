@@ -882,6 +882,9 @@ namespace IUR_macesond_NET6.ViewModels
                 SetProperty(ref _currentDateTime, value);
                 CurrentTimeString = _currentDateTime.ToString("dd.MM.yyy - HH:mm");
                 DayMatch = SelectedDateTime.Date == CurrentDateTime.Date;
+
+                if (ProductivityGraphViewModel == null) return;
+                ProductivityGraphViewModel.UpdateProductivityGraph(true);
             }
         }
 
@@ -951,7 +954,13 @@ namespace IUR_macesond_NET6.ViewModels
         public int SelectedTabIndex
         {
             get => _selectedTabIndex;
-            set => SetProperty(ref _selectedTabIndex, value);
+            set {
+                SetProperty(ref _selectedTabIndex, value);
+                if(value == 1)
+                {
+                    ProductivityGraphViewModel.UpdateProductivityGraph(false);
+                }
+            } 
         }
 
         #endregion

@@ -209,7 +209,9 @@ namespace IUR_macesond_NET6.ViewModels
                 {
                     UnComplete();
                 }
-                //SelectThisTask();
+
+                if (MainViewModelReference.ProductivityGraphViewModel == null) return;
+                MainViewModelReference.ProductivityGraphViewModel.UpdateProductivityGraph(false);
             }
         }
 

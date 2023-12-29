@@ -37,6 +37,7 @@ namespace IUR_macesond_NET6.ViewModels
             if (_mainViewModelReference.UserSettings == null) return;
             _mainViewModelReference.CurrentDateTime = DateTime.Now;
             _mainViewModelReference.UpdateCompletionString();
+            _mainViewModelReference.ProductivityGraphViewModel.UpdateProductivityGraph(false);
         } 
 
         #region Language

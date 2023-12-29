@@ -29,28 +29,6 @@ namespace IUR_macesond_NET6.UserControls
         {
             InitializeComponent();
 
-            //SeriesCollection = new SeriesCollection
-            //{
-            //    new StackedColumnSeries
-            //    {
-            //        Values = new ChartValues<double> {4, 5, 6, 8},
-            //        StackMode = StackMode.Values, 
-            //        Fill = Brushes.Orange,
-            //    },
-            //    new StackedColumnSeries
-            //    {
-            //        Values = new ChartValues<double> {2, 5, 6, 7},
-            //        StackMode = StackMode.Values,
-            //    },
-            //    new StackedColumnSeries
-            //    {
-            //        Values = new ChartValues<double> {2, 5, 6, 7},
-            //        StackMode = StackMode.Values,
-            //    }
-            //};
-
-            //Labels = new[] { "Chrome", "Mozilla", "Opera", "IE" };
-
             DataContext = this;
         }
 

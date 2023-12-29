@@ -5,8 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using IUR_macesond_NET6.Support;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using Windows.Globalization;
+using IUR_macesond_NET6.Converters;
+using System.Windows.Media;
+using IUR_macesond_NET6.ViewModels;
 
 namespace IUR_macesond_NET6.ViewModels
 {
@@ -15,10 +19,10 @@ namespace IUR_macesond_NET6.ViewModels
         #region Constructor 
 
         private MainViewModel _mainViewModelReference;
-        public ProductivityGraphViewModel(MainViewModel mainViewModelReference) { 
-        
+        public ProductivityGraphViewModel(MainViewModel mainViewModelReference) {
+
             _mainViewModelReference = mainViewModelReference;
-            UpdateProductivityGraph();
+            UpdateProductivityGraph(false);
         }
 
         #endregion
@@ -41,38 +45,30 @@ namespace IUR_macesond_NET6.ViewModels
         public string[] Labels
         {
             get { return _labels; }
-            set 
+            set
             {
                 SetProperty(ref _labels, value);
             }
         }
 
-        public void UpdateProductivityDefault()
-        {
-            SeriesCollection = new SeriesCollection
+        Dictionary<Difficulty, Color> _customColors = new Dictionary<Difficulty, Color>() 
             {
-                new StackedColumnSeries
-                {
-                    Values = new ChartValues<double> {4, 5, 6, 8},
-                    StackMode = StackMode.Values,
-                },
-                new StackedColumnSeries
-                {
-                    Values = new ChartValues<double> {2, 5, 6, 7},
-                    StackMode = StackMode.Values,
-                },
-                new StackedColumnSeries
-                {
-                    Values = new ChartValues<double> {2, 5, 6, 7},
-                    StackMode = StackMode.Values,
-                }
+                {Difficulty.Easy, Color.FromRgb(177, 237, 138)},   
+                {Difficulty.Medium, Color.FromRgb(237, 192, 138)},
+                {Difficulty.Hard, Color.FromRgb(237, 138, 138)},
+                // Add more custom colors as needed
             };
 
-            Labels = new[] { "Chrome", "Mozilla", "Opera", "IE" };
-        }
 
-        public void UpdateProductivityGraph()
+        private DateOnly previousCurrentDate = DateOnly.FromDateTime(DateTime.Now);
+
+        public void UpdateProductivityGraph(bool fromDateChange)
         {
+
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+
+            if (fromDateChange && currentDate == previousCurrentDate) return;
+
             // Part 1 - Count day span
 
             // Subtract two DateOnly variables
@@ -94,9 +90,10 @@ namespace IUR_macesond_NET6.ViewModels
 
                 DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
                 StackedColumnSeries difficultyStack = new StackedColumnSeries();
-                difficultyStack.Title = difficulty.ToString();
+                difficultyStack.Title = Translator.TranslateToCzech(difficulty.ToString());
                 difficultyStack.StackMode = StackMode.Values;
                 difficultyStack.Values = new ChartValues<int>();
+                difficultyStack.Fill = new SolidColorBrush(_customColors[difficulty]);
 
                 for (int i = daySpan - 1; i >= 0; i--)
                 {
@@ -119,6 +116,8 @@ namespace IUR_macesond_NET6.ViewModels
                 }
                 SeriesCollection.Add(difficultyStack);
             }
+
+            previousCurrentDate = currentDate;
 
 
         }

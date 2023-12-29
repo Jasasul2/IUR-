@@ -104,6 +104,8 @@ namespace IUR_macesond_NET6.ViewModels
 
         public void TrySendNotification(TimeOnly time)
         {
+            if (!HasNotificationTime) return; 
+
             if(time.Hour == NotificationTime.Hour && 
                 time.Minute == NotificationTime.Minute)
             {

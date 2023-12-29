@@ -61,6 +61,9 @@ namespace IUR_macesond_NET6.ViewModels
                 DayMatch = SelectedDateTime.Date == CurrentDateTime.Date;
                 MarkTasksAsDeprecated();
                 CountCompletedTasks();
+
+                // Updating the current date to refresh the UI
+                CurrentDateTime = DateTime.Now;
             }
         }
 
@@ -844,7 +847,27 @@ namespace IUR_macesond_NET6.ViewModels
         public bool DayMatch
         {
             get => _dayMatch;
-            set => SetProperty(ref _dayMatch, value);
+            set {
+                SetProperty(ref _dayMatch, value);
+                DayMisMatch = !value;
+            } 
+        }
+
+        private bool _dayMisMatch = false;
+
+        public bool DayMisMatch
+        {
+            get => _dayMisMatch;
+            set => SetProperty(ref _dayMisMatch, value);
+        }
+
+
+        private bool _isPreparationTime;
+
+        public bool IsPreparationTime
+        {
+            get => _isPreparationTime;
+            set => SetProperty(ref _isPreparationTime, value);
         }
 
         private Timer _timer; 
@@ -878,15 +901,18 @@ namespace IUR_macesond_NET6.ViewModels
 
                 if (timeOnly < UserSettings.ProductivityStartTime)
                 {
-                    timeString += Translator.TranslateToCzech("Preparation Part of the Day");      
+                    timeString += Translator.TranslateToCzech("Preparation Part of the Day");
+                    IsPreparationTime = true;
                 }
                 else if (timeOnly >= UserSettings.ProductivityStartTime && timeOnly < UserSettings.ProductivityEndTime)
                 {
                     timeString += Translator.TranslateToCzech("Productive Part of the Day");
+                    IsPreparationTime = false;
                 }
                 else 
                 {
                     timeString += Translator.TranslateToCzech("Resting Part of the Day");
+                    IsPreparationTime = false;
                 }
 
                 MarkTasksAsDeprecated();

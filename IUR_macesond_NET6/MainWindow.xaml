@@ -13,12 +13,9 @@
         xmlns:placeholdertextboxcustomcontrol="clr-namespace:PlaceholderTextBoxCustomControl;assembly=PlaceholderTextBoxCustomControl"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="BeProductive!" Height="860" Width="1440"
+        Title="BeProductive!" Height="900" Width="1455"
+        ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        ResizeMode="NoResize"
-        Background="Transparent"
-        AllowsTransparency="True"
         x:Name="mainWindow">
 
     <Window.Resources>
@@ -40,22 +37,7 @@
     </Window.DataContext>
 
     <!-- Outer Border -->
-    <Border x:Name="ApplicationBorder" CornerRadius="10" BorderThickness="5">
-        <Border.BorderBrush>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{StaticResource TextColor}" Offset="0"/>
-                <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource BackgroundGradientColor2}" Offset="1"/>
-            </LinearGradientBrush>
-        </Border.BorderBrush>
-
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{StaticResource TextColor}" Offset="0"/>
-                <GradientStop Color="{StaticResource ForegroundGradientColor1}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource BackgroundGradientColor2}" Offset="1"/>
-            </LinearGradientBrush>
-        </Border.Background>
+    <Border x:Name="ApplicationBorder" CornerRadius="10" BorderThickness="5" BorderBrush="White">
 
         <!-- Inner Border -->
         <Border x:Name="ApplicationInnerBorder" CornerRadius="10" BorderThickness="5">

@@ -84,7 +84,7 @@
                                 <!-- First column -->
                                 <ColumnDefinition Width="110"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <Label x:Name="Timer" Margin="10,8,10,-7" Height="45" Content="{Binding CurrentTimeString}" 
                                VerticalContentAlignment="Center"
                                HorizontalContentAlignment="Left"
@@ -101,7 +101,7 @@
                             <Button Name="PrevousDayButton" 
                                     Command="{Binding PreviousDayCommand, UpdateSourceTrigger=PropertyChanged}"
                                     Content="{Binding LocalizedText.PreviousButton}" Height="40" Width="100" Margin="0,5,5,5" FontSize="18" />
-                            
+
                             <DatePicker Name="DatePicker" 
                                         SelectedDate="{Binding SelectedDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding SelectedDateTime, Converter={StaticResource DateTimeToStringConverter}}"
                                         DisplayDateStart="{Binding FirstDate, UpdateSourceTrigger=PropertyChanged}"
@@ -124,6 +124,11 @@
                                             <RowDefinition Height="*" MinHeight="0" MaxHeight="450" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
+
+                                        <Label x:Name="HelperLabel" Content="{Binding LocalizedText.NoTasksLabel}" 
+                                            Visibility="{Binding HasTasks, Converter={StaticResource BoolToVisibilityNegatedConverter}}"
+                                            Foreground="White" VerticalAlignment="Center" HorizontalContentAlignment="Center"
+                                            HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Grid.Row="0"/>
 
                                         <ListBox x:Name="TaskListBox" ItemsSource="{Binding SelectedTaskList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                  Margin="8,8,0,8" Background="Transparent" BorderBrush="Transparent"
@@ -171,7 +176,7 @@
                                                                 </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl.IsEnabled>
 
                                                             </placeholdertextboxcustomcontrol:PlaceholderTextBoxCustomControl>
-                                                            
+
                                                             <!-- Difficulty -->
                                                             <Button Style="{StaticResource DifficultyButton}"
                                                               Width="40" Height="40" Background="White"
@@ -194,12 +199,12 @@
                                                                 </Button.Foreground>
 
                                                                 <Button.IsEnabled>
-                                                                  <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
-                                                                      <Binding Path="Deprecated"/>
-                                                                      <Binding Path="MarkedForCompletion"/>
-                                                                  </MultiBinding>
-                                                              </Button.IsEnabled>
-                                                          </Button>
+                                                                    <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
+                                                                        <Binding Path="Deprecated"/>
+                                                                        <Binding Path="MarkedForCompletion"/>
+                                                                    </MultiBinding>
+                                                                </Button.IsEnabled>
+                                                            </Button>
 
                                                             <userControls:TimeInput
                                                                     Margin="5,0,0,0"
@@ -342,7 +347,7 @@
                                            Grid.Column="0"
                                            Text="{Binding CompletionString, UpdateSourceTrigger=PropertyChanged}">
                                     </TextBlock>
-                                    
+
                                     <TextBlock x:Name="EXPTextBlock" HorizontalAlignment="Right" VerticalAlignment="Stretch" 
                                                FontSize="22" Foreground="White" Margin="0,20,15,0" FontWeight="Bold" Grid.Column="1">
                                         <TextBlock.Text>
@@ -554,7 +559,7 @@
                                         YLabel="{Binding DataContext.LocalizedText.YLabelString, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"
                                         Labels="{Binding DataContext.ProductivityGraphViewModel.Labels, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}"
                                         SeriesCollection="{Binding DataContext.ProductivityGraphViewModel.SeriesCollection, RelativeSource={RelativeSource AncestorType={x:Type Window}}, UpdateSourceTrigger=PropertyChanged}">
-                
+
                                     </userControls:BasicStackedColumn>
                                 </Grid>
                             </Border>

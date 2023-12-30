@@ -121,7 +121,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool TodayCommandCanExecute(object obj)
         {
-            return !DayMatch;
+            return DayMisMatch;
         }
 
         private void Today(object obj)

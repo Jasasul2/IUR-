@@ -180,7 +180,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region TaskEditorLabels
 
-        private string _invisibleTaskEditorLabel = "Select a task to Edit";
+        private string _invisibleTaskEditorLabel = "Select a task to Edit.";
 
         private string _taskEditorTitle = "Task Editor";
         private string _taskTemplateEditorTitle = "Task Template Editor";
@@ -382,6 +382,14 @@ namespace IUR_macesond_NET6.ViewModels
             set => SetProperty(ref _yLabelString, value);
         }
 
+        private string _noTasksLabel = "This task list is currently empty.";
+
+        public string NoTasksLabel
+        {
+            get => _noTasksLabel;
+            set => SetProperty(ref _noTasksLabel, value);
+        }
+
         #endregion
 
         public void SetLanguage(UserSettingsViewModel.Language newLanguage)
@@ -414,7 +422,7 @@ namespace IUR_macesond_NET6.ViewModels
 
                     AddTaskTemplateButton = "Add New Task Template";
 
-                    InvisibleTaskEditorLabel = "Select a task to Edit";
+                    InvisibleTaskEditorLabel = "Select a task to Edit.";
 
                     TaskEditorTitle = "Task Editor";
                     TaskTemplateEditorTitle = "Task Template Editor";
@@ -445,6 +453,8 @@ namespace IUR_macesond_NET6.ViewModels
                     XLabelString = "Days";
                     YLabelString = "Completed Tasks";
 
+                    NoTasksLabel = "This task list is currently empty.";
+
                     break;
 
                 case UserSettingsViewModel.Language.CZ:
@@ -474,7 +484,7 @@ namespace IUR_macesond_NET6.ViewModels
 
                     AddTaskTemplateButton = "Přidat šablonu úkolu";
 
-                    InvisibleTaskEditorLabel = "Vyberte úkol k úpravě";
+                    InvisibleTaskEditorLabel = "Vyberte úkol k úpravě.";
 
                     TaskEditorTitle = "Editor úkolů";
                     TaskTemplateEditorTitle = "Editor šablon úkolů";
@@ -505,6 +515,8 @@ namespace IUR_macesond_NET6.ViewModels
 
                     XLabelString = "Dny";
                     YLabelString = "Hotové úkoly";
+
+                    NoTasksLabel = "Tento seznam úkolů je zatím prázdný.";
 
                     break;
             }

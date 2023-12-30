@@ -29,7 +29,7 @@ namespace IUR_macesond_NET6.Models
             TaskDifficulty = Difficulty.Easy;
             TaskNote = "";
             MarkedForCompletion = false;
-            TaskNoteVisibility = false;
+            TaskNoteVisibility = true;
         }
 
         public void SetAttributes(TaskViewModel taskViewModel)

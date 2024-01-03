@@ -483,7 +483,7 @@ namespace IUR_macesond_NET6.ViewModels
 
             if (type == "Task")
             {
-                return (SelectedTask != null && !SelectedTask.Deprecated && !SelectedTask.MarkedForCompletion);
+                return (SelectedTask != null);
             }
             else if (type == "Template")
             {

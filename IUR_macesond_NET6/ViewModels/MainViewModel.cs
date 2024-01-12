@@ -969,6 +969,8 @@ namespace IUR_macesond_NET6.ViewModels
 
         private void TrySendingNotifications(TimeOnly timeOnly)
         {
+            if(DateToTaskListDictionary == null || !DateToTaskListDictionary.ContainsKey(DateOnly.FromDateTime(CurrentDateTime))) return;
+
             foreach (TaskViewModel task in DateToTaskListDictionary[DateOnly.FromDateTime(CurrentDateTime)])
             {
                 task.TrySendNotification(timeOnly);

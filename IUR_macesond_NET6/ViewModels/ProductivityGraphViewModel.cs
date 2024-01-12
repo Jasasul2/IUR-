@@ -105,6 +105,9 @@ namespace IUR_macesond_NET6.ViewModels
                     }
 
                     int diffMatchCount = 0;
+
+                    if (!_mainViewModelReference.DateToTaskListDictionary.ContainsKey(date)) continue;
+
                     foreach (TaskViewModel taskVM in _mainViewModelReference.DateToTaskListDictionary[date]) 
                     {
                         if(taskVM.TaskDifficulty == difficulty && taskVM.MarkedForCompletion)

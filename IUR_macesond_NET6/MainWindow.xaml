@@ -244,13 +244,8 @@
                                                             <!--Task finished checkbox-->
                                                             <CheckBox
                                                                     Grid.Column="3" Margin="60,0,0,0"
-                                                                    IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30">
-                                                                <CheckBox.IsEnabled>
-                                                                    <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
-                                                                        <Binding Path="MainViewModelReference.IsPreparationTime"/>
-                                                                        <Binding Path="MainViewModelReference.DayMisMatch"/>
-                                                                    </MultiBinding>
-                                                                </CheckBox.IsEnabled>
+                                                                    IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"
+                                                                    IsEnabled="{Binding MainViewModelReference.CanToggleMarkedForCompletion, UpdateSourceTrigger=PropertyChanged}">
 
                                                                 <i:Interaction.Triggers>
                                                                     <i:EventTrigger EventName="GotFocus">

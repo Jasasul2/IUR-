@@ -862,7 +862,11 @@ namespace IUR_macesond_NET6.ViewModels
         public bool DayMisMatch
         {
             get => _dayMisMatch;
-            set => SetProperty(ref _dayMisMatch, value);
+            set
+            {
+                SetProperty(ref _dayMisMatch, value);
+                UpdateCanToggleMarkedForCompletion();
+            }
         }
 
 
@@ -871,7 +875,34 @@ namespace IUR_macesond_NET6.ViewModels
         public bool IsPreparationTime
         {
             get => _isPreparationTime;
-            set => SetProperty(ref _isPreparationTime, value);
+            set
+            {
+                SetProperty(ref _isPreparationTime, value);
+                UpdateCanToggleMarkedForCompletion();
+            }
+        }
+
+
+        private bool canToggleMarkedForCompletion;
+
+        public bool CanToggleMarkedForCompletion
+        {
+            get => canToggleMarkedForCompletion;
+            set => SetProperty(ref canToggleMarkedForCompletion, value);
+        }
+
+        private void UpdateCanToggleMarkedForCompletion()
+        {
+            if(!DayMisMatch)
+            {
+                CanToggleMarkedForCompletion = !IsPreparationTime;
+            } else if (SelectedDateTime.Date < CurrentDateTime.Date)
+            {
+                CanToggleMarkedForCompletion = true;
+            } else
+            {
+                CanToggleMarkedForCompletion = false;
+            }
         }
 
         private Timer _timer; 

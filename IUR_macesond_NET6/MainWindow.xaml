@@ -247,7 +247,6 @@
                                                                     IsChecked="{Binding MarkedForCompletion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30">
                                                                 <CheckBox.IsEnabled>
                                                                     <MultiBinding Converter="{StaticResource MultiBooleanNegatorConverter}">
-                                                                        <Binding Path="Deprecated"/>
                                                                         <Binding Path="MainViewModelReference.IsPreparationTime"/>
                                                                         <Binding Path="MainViewModelReference.DayMisMatch"/>
                                                                     </MultiBinding>

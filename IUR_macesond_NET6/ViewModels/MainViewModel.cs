@@ -435,11 +435,15 @@ namespace IUR_macesond_NET6.ViewModels
 
         #region UseTaskTemplateCommand
 
-        private TaskViewModel CopyTask(TaskViewModel original)
+        private TaskViewModel CopyTask(TaskViewModel original, bool saveCompleted = true)
         {
             TaskModel newTaskModel = new TaskModel();
             newTaskModel.SetAttributes(original);
             TaskViewModel newTask = new TaskViewModel(this, newTaskModel);
+            if(!saveCompleted)
+            {
+                newTask.MarkedForCompletion = false;
+            }
             return newTask;
         }
 
@@ -467,11 +471,11 @@ namespace IUR_macesond_NET6.ViewModels
 
             if (type == "Task")
             {
-                TaskLibrary.Add(CopyTask(SelectedTask));
+                TaskLibrary.Add(CopyTask(SelectedTask, false));
             }
             else if (type == "Template")
             {
-                TaskLibrary.Add(CopyTask(SelectedTemplate));
+                TaskLibrary.Add(CopyTask(SelectedTemplate, false));
             }
             SelectedTabIndex = 0;
         }

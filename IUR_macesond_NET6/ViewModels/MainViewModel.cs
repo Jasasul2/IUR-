@@ -24,7 +24,7 @@ namespace IUR_macesond_NET6.ViewModels
     {
         // This Main View Model consists of both the user settings and the Task lists for every saved day
 
-        private const int MAX_TASK_LIST_LENGTH = 10;
+        public const int MAX_TASK_LIST_LENGTH = 10;
         private const int MAX_TASK_LIBRARY_LENGTH = 40;
 
         public ModelDataLoader ModelDataLoader { get; set; }
@@ -958,7 +958,7 @@ namespace IUR_macesond_NET6.ViewModels
             }
         }
 
-        private bool CheckDeprecationCondition()
+        public bool CheckDeprecationCondition()
         {
             bool deprecated = SelectedDateTime.Date < CurrentDateTime.Date ||
                 (SelectedDateTime.Date == CurrentDateTime.Date && TimeOnly.FromDateTime(CurrentDateTime) >= UserSettings.ProductivityEndTime);

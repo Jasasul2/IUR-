@@ -282,7 +282,7 @@ namespace IUR_macesond_NET6.ViewModels
 
         private bool UseTaskTemplateCommandCanExecute(object obj)
         {
-            return true; 
+            return MainViewModelReference.SelectedTaskList.Count < MainViewModel.MAX_TASK_LIST_LENGTH && !MainViewModelReference.CheckDeprecationCondition();
         }
 
         private void UseTaskTemplate(object obj)
